@@ -6,13 +6,15 @@
   
   <title>page1 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
+  <meta name="description" content="Redis第一节	入门概述 基本介绍：全称 Remote Dictionary Server ，即远程字典服务，是一个完全开源的，使用 ANSIC 语言编写遵守 BSD 协议，高性能的 Key-Value 数据库，提供了丰富的数据结构，数据是存在内存中的，同时 Redis 支持事务、持久化、LUA 脚本、发布&#x2F;订阅、缓存淘汰、流技术等多种功能特性提供了主从模式、Redis Sentine">
+<meta property="og:type" content="website">
 <meta property="og:title" content="page1">
 <meta property="og:url" content="http://example.com/page1/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Redis第一节	入门概述 基本介绍：全称 Remote Dictionary Server ，即远程字典服务，是一个完全开源的，使用 ANSIC 语言编写遵守 BSD 协议，高性能的 Key-Value 数据库，提供了丰富的数据结构，数据是存在内存中的，同时 Redis 支持事务、持久化、LUA 脚本、发布&#x2F;订阅、缓存淘汰、流技术等多种功能特性提供了主从模式、Redis Sentine">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-12-10T05:25:55.000Z">
-<meta property="article:modified_time" content="2023-12-10T05:25:55.271Z">
+<meta property="article:modified_time" content="2023-12-10T05:27:51.992Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -91,7 +93,1149 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
+        <h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><h2 id="第一节入门概述"><a href="#第一节入门概述" class="headerlink" title="第一节	入门概述"></a>第一节	入门概述</h2><ul>
+<li><p><strong>基本介绍</strong>：全称 <strong>Remote Dictionary Server</strong> ，即远程字典服务，是一个完全开源的，使用 <strong>ANSIC</strong> 语言编写遵守 <strong>BSD</strong> 协议，高性能的 <strong>Key-Value</strong> 数据库，提供了丰富的数据结构，数据是存在内存中的，同时 <strong>Redis</strong> 支持事务、持久化、<strong>LUA</strong> 脚本、发布&#x2F;订阅、缓存淘汰、流技术等多种功能特性提供了主从模式、<strong>Redis Sentinel和Redis Cluster</strong> 集群架构方案</p>
+</li>
+<li><p><strong>功能</strong></p>
+<ul>
+<li>分布式缓存，挡在 <strong>MySQL</strong> 数据库之前的一道屏障</li>
+<li>内存存储和持久化，支持异步将内存中的数据写到硬盘上，同时不影响继续服务</li>
+<li>高可用架构搭配</li>
+<li>缓存穿透、击穿、雪崩</li>
+<li>分布式锁</li>
+<li>消息队列平台</li>
+</ul>
+</li>
+<li><p><strong>优势</strong></p>
+<ul>
+<li>性能极高，读写速度快</li>
+<li>数据类型丰富，不仅仅支持简单的 <strong>key-value</strong> 类型的数据，同时还提供 <strong>list</strong>，<strong>zset</strong>，<strong>set</strong>，<strong>hash</strong> 等数据结构的存储</li>
+<li>支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用</li>
+</ul>
+</li>
+<li><p><strong>Redis 启动命令</strong></p>
+<ul>
+<li><p><strong>默认启动</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis-server // 启动服务器</span><br><span class="line">redis-cli // 启动客户端</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>指定参数</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis-server --port 6379 --requirepass 12456 // 指定端口和密码</span><br><span class="line">redis-cli -p 6379 -a 123456 // 启动客户端</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>配置文件启动</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis-server redis-6379.conf // 启动服务器</span><br><span class="line">redis-cli // 启动客户端</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="第二节数据类型"><a href="#第二节数据类型" class="headerlink" title="第二节	数据类型"></a>第二节	数据类型</h2><h3 id="2-1数据库"><a href="#2-1数据库" class="headerlink" title="2.1	数据库"></a>2.1	数据库</h3><ul>
+<li><p><strong>键的相关操作</strong></p>
+<ul>
+<li><p>查询所有键</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keys *</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>判断键是否存在</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exists key</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看键的类型</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">type</span> key</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除指定键</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">del key</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>非阻塞删除</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">unlink</span> key</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看过期时间</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ttl key</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置过期时间</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expire key 1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看键的数量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dbsize</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>数据库的相关操作</strong></p>
+<ul>
+<li><p>移动数据库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">move key [0-15]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>切换数据库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> [0-15]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>清空当前数据库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flushdb</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>清空所有数据库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flushall</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2字符串"><a href="#2-2字符串" class="headerlink" title="2.2	字符串"></a>2.2	字符串</h3><ul>
+<li><p><strong>字符串类型</strong></p>
+<ul>
+<li><strong>Redis</strong> 最基本的类型，一个 <strong>key</strong> 对应一个 <strong>value</strong></li>
+<li><strong>string</strong> 类型是二进制安全的，可以包含任何数据，比如jpg图片或者序列化的对象</li>
+<li>一个字符串 <strong>value</strong> 最多可以是512M</li>
+</ul>
+</li>
+<li><p><strong>SET 语句</strong></p>
+<ul>
+<li><p>添加键值对</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> key value</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>执行条件</p>
+<ul>
+<li><p>键不存在时设置键值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> key value nx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>键存在时设置键值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> key value xx </span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>设置过期时间</p>
+<ul>
+<li><p>以秒为单位设置过期时间</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> key value ex seconds</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>以毫秒为单位设置过期时间</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> key value px milliseconds</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>以秒为单位设置以 <strong>UNIX</strong> 时间戳对应时间为过期时间</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> key value exat unix-time-seconds</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>以毫秒为单位设置以 <strong>UNIX</strong> 时间戳对应时间为过期时间</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> key value pxat unix-time-milliseconds</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>保留设置前指定键的生存时间</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> key value keepttl</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>GET 语句</strong></p>
+<ul>
+<li><p>返回指定键的值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get key</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>返回指定键原本的值，并修改键值对</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getset key value</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>同时获取设置多对键值对</strong></p>
+<ul>
+<li><p>同时设置多对键值对</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mset key1 value1 key2 value2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>同时获取多对键值对</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mget key1 key2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>仅当键都不存在时，同时设置多对键值对</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msetnx key1 value1 key2 value2</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>获取指定区间</strong></p>
+<ul>
+<li><p>获取键的全部值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getrange key 0 -1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取键的指定区间值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getrange key 0 x</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>替换键的指定区间值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setrange key x <span class="string">&quot;xxx&quot;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>数值增减</strong></p>
+<ul>
+<li><p>数值递增</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">incr key</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数值相加</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">incrby key</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数值递减</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">decr key</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数值相减</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">decrby key</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>获取字符串长度和内容相加</strong></p>
+<ul>
+<li><p>获取键值长度</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strlen key</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>字符串相加</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">append key value</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="2-3列表"><a href="#2-3列表" class="headerlink" title="2.3	列表"></a>2.3	列表</h3><ul>
+<li><p><strong>列表类型</strong></p>
+<ul>
+<li>一个双端链表的结构，容量是2的32次方减1个元素，大概40多亿，主要功能有 <strong>push</strong>，<strong>pop</strong> 等，一般用在栈、队列、消息队列等场景</li>
+<li><strong>left</strong>、<strong>right</strong> 都可以插入添加</li>
+<li>底层就是个双向链表，对两端的操作性能很高，通过索引下标的操作中间的节点性能会较差</li>
+</ul>
+</li>
+<li><p><strong>添加元素</strong></p>
+<ul>
+<li><p>左侧添加元素</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lpush key value</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>右侧添加元素</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpush key value</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>获取元素</strong></p>
+<ul>
+<li><p>遍历列表</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lrange key 0 -1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>左侧出栈</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lpop key</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>右侧出栈</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpop key</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过索引获取值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lindex key index</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取元素个数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">llen key</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>删除元素</strong></p>
+<ul>
+<li><p>从左到右删除指定数量的指定值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lrem key num value</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>从左到右删除所有指定值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lrem key 0 value</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>修改元素</strong></p>
+<ul>
+<li><p>截取指定区间值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ltrim key index1 index2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将最后一个值添加到另一个列表的第一个</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpoplpush key1 key2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改指定值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lset key index value</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在指定值前后插入值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">linsert key before/after value1 value2</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="2-4哈希表"><a href="#2-4哈希表" class="headerlink" title="2.4	哈希表"></a>2.4	哈希表</h3><ul>
+<li><p><strong>哈希表类型</strong>：<strong>key-value</strong> 模式不变，但是 <strong>value</strong> 是一个键值对</p>
+</li>
+<li><p><strong>获取键值对</strong></p>
+<ul>
+<li><p>获取字段数量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hlen key</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>判断键值对中是否含有指定键</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexists key1 key2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取键值对中所有键</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hkeys key</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取键值对中所有值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hvals key</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>修改键值对</strong></p>
+<ul>
+<li><p>添加键值对</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hset key1 key2 value</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>键值对中的指定键的值增加指定整数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hincrby key1 key2 num</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>键值对中的指定键的值增加指定小数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hincrbyfloat key1 key2 num</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>不存在赋值，存在失效</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hsetnx key1 key2 value</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="2-5集合"><a href="#2-5集合" class="headerlink" title="2.5	集合"></a>2.5	集合</h3><ul>
+<li><p><strong>集合类型</strong>：单个 <strong>key</strong> 含有多个 <strong>value</strong>，且不重复</p>
+</li>
+<li><p><strong>常用操作</strong></p>
+<ul>
+<li><p>添加元素</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sadd key member</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>遍历集合</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">smenbers key</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>判断元素是否存在</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sismember key member</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除元素</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">srem key membr</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取集合长度</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scard key</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>随机取出指定数量的元素</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">srandmember key m</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>随机删除指定数量的元素</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spop key m</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将集合内的指定元素赋值给另外一个集合</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">smove key1 key2 member</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>集合运算</strong></p>
+<ul>
+<li><p>减运算</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sdiff key1 key2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>交运算</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sinter key1 key2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>并运算</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sunion key1 key2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>交运算结果的基数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sintercard numkeys key1 key2</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="2-6有序集合"><a href="#2-6有序集合" class="headerlink" title="2.6	有序集合"></a>2.6	有序集合</h3><ul>
+<li><p><strong>有序集合类型</strong>：在集合的基础上加上一个 <strong>score</strong> 分数</p>
+</li>
+<li><p><strong>常用操作</strong></p>
+<ul>
+<li><p>添加元素</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zadd key score member</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>以分数排序返回指定区间元素</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zrange key index1 index2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>反序</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zrevrange key index1 index2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取指定分数区间的元素</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zrangebyscore key min max [<span class="built_in">limit</span> offset count]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取元素的分数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zscore key member</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取集合元素数量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zcard key</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除元素</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zrem key value</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>增加指定元素的分数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">incrby key increment member</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取指定分数区间的元素数量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zcount key min max</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取指定元素下标值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zrank key values</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>逆序获得下标值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zrevrank key values</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="2-7位图"><a href="#2-7位图" class="headerlink" title="2.7	位图"></a>2.7	位图</h3><ul>
+<li><p><strong>位图类型</strong></p>
+<ul>
+<li>用 <strong>string</strong> 类型作为底层数据结构实现的一种统计二值状态的数据类型</li>
+<li>本质是数组，基于 <strong>string</strong> 数据类型的按位的操作，该数组由多个二进制位组成，每个二进制位都对应一个偏移量</li>
+<li>支持的最大位数是2^32位，它可以极大的节约存储空间，使用512M内存就可以存储多达42.9亿的字节信息</li>
+</ul>
+</li>
+<li><p><strong>常用操作</strong></p>
+<ul>
+<li><p>设置二进制位</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setbit key offset value</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取二进制位的值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getbit key offset</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取字节数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strlen key</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获得含有一的数量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bitcount key</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>并运算</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bitop and destKey key1 key2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>或运算</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bitop or destKey key1 key2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>异或运算</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bitop xor destKey key1 key2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>非运算</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bitop not destKey key1 key2</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="2-8基数统计"><a href="#2-8基数统计" class="headerlink" title="2.8	基数统计"></a>2.8	基数统计</h3><ul>
+<li><p><strong>基数统计类型</strong></p>
+<ul>
+<li>去重复统计功能的基数估计算法</li>
+<li>基数是一种数据集，去重复后的真实个数</li>
+<li>用于统计一个集合中不重复的元素个数，就是对集合去重复后剩余元素的计算，只需要花费12KB内存，就能记录2的64次方个不同元素的基数</li>
+</ul>
+</li>
+<li><p><strong>常用操作</strong></p>
+<ul>
+<li><p>添加元素</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pfadd key value</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取指定基数估算值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pfcount key</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>合并基数统计</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pfmerge destKey sourceKey</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="2-9地理空间"><a href="#2-9地理空间" class="headerlink" title="2.9	地理空间"></a>2.9	地理空间</h3><ul>
+<li><p><strong>地理空间类型</strong>： 使用二维的经纬度表示，经度范围 (-180, 180]，纬度范围 (-90, 90]，只要我们确定一个点的经纬度就可以名取得他在地球的位置</p>
+</li>
+<li><p><strong>常用操作</strong></p>
+<ul>
+<li><p>添加坐标</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">geoadd key longitude latitude member</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取经纬度</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">geopos key member</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取坐标的bash32表示</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">geohash key member</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取两个位置之间的距离</p>
+<ul>
+<li><p>以米为单位计算</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">geodist key member1 member2 m</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>以千米为单位计算</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">geodist key member1 member2 km</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>以英寸为单位计算</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">geodist key member1 member2 ft</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>以英里为单位计算</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">geodist key member1 member2 mi</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>获取指定距离内的位置元素</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">georadius key longitude latitude radius</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取指定范围内的元素</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">georadiusbymember key longitude latitude radius</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="2-10流"><a href="#2-10流" class="headerlink" title="2.10	流"></a>2.10	流</h3><ul>
+<li><p><strong>流类型</strong>：实现消息队列，支持消息的持久化、支持自动生成全局唯一 <strong>id</strong>、支持 <strong>ACK</strong> 确认消息的模式、支持消费组模式等，让消息队列更加的稳定和可靠</p>
+</li>
+<li><p><strong>流的结构</strong></p>
+<ul>
+<li><strong>消费组</strong>：由命令创建，同一消费组可以有多个消费者</li>
+<li><strong>游标</strong>：每个消费组都有一个游标，任意消费者读取消息后都会使游标向前移动</li>
+<li><strong>消费者</strong>：消费组中的消费者</li>
+<li><strong>待处理编号</strong>：记录当前被消费已读取但未 <strong>ACK</strong> 的消息 <strong>id</strong></li>
+</ul>
+</li>
+<li><p><strong>常用操作</strong></p>
+<ul>
+<li><p><strong>队列指令</strong></p>
+<ul>
+<li><p>添加到队列末尾</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xadd key field value</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>限制流的长度</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xtrim key maxlen len</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除消息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xdel key <span class="built_in">id</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取消息长度</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xlen key</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取消息列表</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xrange key index1 index2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>反向获取消息列表</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xrevrange key index1 index2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取消息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xread count block key <span class="built_in">id</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>消费组指令</strong></p>
+<ul>
+<li><p>创建消费者组</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xgroup create key groupname</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>读取消费者组的消息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xreadgroup group group consumer key <span class="built_in">id</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>消息被标记为已处理</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xack key group <span class="built_in">id</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置消费组最后递送消息的 <strong>id</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xgroup setid key groupname <span class="built_in">id</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除消费者组</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xgroup delconsumer key groupname consumername</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取待处理消息的详细信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xpending key group index1 index2 count</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>转移消息的归属权</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xclaim key group consumer time <span class="built_in">id</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打印消费者组的详细信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xinfo <span class="built_in">groups</span> key</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打印流的详细信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xinfo stream key</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打印流的详细信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xinfo consumers key groupname</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>四个特殊符号</strong></p>
+<ul>
+<li>**+&#x2F;-**：最小和最大可能出现的 <strong>id</strong></li>
+<li>**$**：表示只消费新的消息，当前流中最大的 <strong>id</strong></li>
+<li>**&gt;**：用于 <strong>xreadgroup</strong> 命令，表示迄今没有发送给组中的使用者的消息</li>
+<li>*****：用于 <strong>xadd</strong> 命令，让系统自动生成 <strong>id</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="2-11位域"><a href="#2-11位域" class="headerlink" title="2.11	位域"></a>2.11	位域</h3><ul>
+<li><strong>位域类型</strong><ul>
+<li>将很多小的整数存储到一个长度较大的位图中，又或者将一个非常庞大的键分割位多个较小的键来进行储存，从而高效利用内存</li>
+<li>将 <strong>Redis</strong> 字符串看作是一个由二进制位组成的数组并能对变长位宽和任意没有字节对齐的指定整型位域进行寻址和修改</li>
+</ul>
+</li>
+</ul>
+<h2 id="第三节持久化"><a href="#第三节持久化" class="headerlink" title="第三节	持久化"></a>第三节	持久化</h2><h3 id="3-1RDB"><a href="#3-1RDB" class="headerlink" title="3.1	RDB"></a>3.1	RDB</h3><ul>
+<li><p><strong>RDB</strong>：全称 <strong>Redis Data Base</strong>，即 <strong>Redis</strong> 数据库，<strong>RDB</strong> 持久性以指定的时间间隔执行数据集的时间点快照</p>
+<ul>
+<li>在指定的时间间隔，执行数据集的时间点快照</li>
+<li>实现类似照片记录效果的方式，就是把某一时刻的数据和状态以文件的形式写到磁盘上，也就是快照，即使故障宕机，快照文件也不会丢失，数据的可靠性也就得到了保证</li>
+<li>将内存数据全部保存到磁盘 <strong>dump.rdb</strong> 文件中</li>
+</ul>
+</li>
+<li><p><strong>配置方法</strong></p>
+<ul>
+<li><p>配置保存间隔</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">save 3600 1 300 100 60 100  // 3600秒 修改一次  100秒 修改60次  60秒 修改10000次 触发保存</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改快照文件保存地址</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dir</span> /user/local/dump</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改快照文件名称</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abfilename dump6666.rdb</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>恢复备份</strong></p>
+<ul>
+<li><strong>自动操作</strong>：物理恢复，一定服务和备份分机隔离，各自存储</li>
+<li><strong>手动操作</strong><ul>
+<li><strong>save</strong>：在主线程中执行会阻塞 <strong>Redis</strong> 服务器，直到持久化工作完成才能处理其他命令，线上禁止使用</li>
+<li><strong>bgsave</strong>：在后台异步进行快照操作，不阻塞快照同时还可以响应客户端请求，该触发过程会 <strong>fork</strong> 一个子进程由子进程复制持久化过程</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>优缺点</strong></p>
+<ul>
+<li><strong>优点</strong>：适合大规模的数据恢复，按照业务定时备份，对数据完整性和一致性要求不高，<strong>RDB</strong> 文件在内存中的加载速度比 <strong>AOF</strong> 快得多</li>
+<li><strong>缺点</strong><ul>
+<li>在一定间隔时间做一次备份，如果 <strong>Redis</strong> 意外宕机，就会丢掉最近一次快照到宕机时的数据</li>
+<li>内存数量的全量同步，如果数据量过大会导致 <strong>IO</strong> 严重影响服务器性能</li>
+<li><strong>RDB</strong> 依赖于主进程的 <strong>fork</strong> ，在更大的数据集中，这可能会导致服务器请求的瞬间延迟</li>
+<li><strong>fork</strong> 的时候内存中的数据被克隆了一份，大致2倍的膨胀性，需要考虑</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>检查修复快照文件</strong>：当文件受损时，检查并修复受损的文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-check-rdb dump.rdb</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>触发 RDB 快照的情况</strong></p>
+<ul>
+<li>配置文件中默认快照配置</li>
+<li>手动执行 <strong>save</strong> 或者 <strong>bgsave</strong> 命令</li>
+<li>执行清空数据库的命令</li>
+<li>执行关机命令且没有开启 <strong>AOF</strong> 持久化</li>
+<li>主从复制时，主节点自动触发</li>
+</ul>
+</li>
+<li><p><strong>禁用快照</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">save <span class="string">&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>RDB 配置优化</strong></p>
+<ul>
+<li><p>保存错误时停止写入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stop-writes-on-bgsave-error <span class="built_in">yes</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>快照压缩存储</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rdbcompression <span class="built_in">yes</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>算法数据校验</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rdbchecksum <span class="built_in">yes</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除复制中的快照文件启用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rdb-del-sync-files no</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="3-2AOF"><a href="#3-2AOF" class="headerlink" title="3.2	AOF"></a>3.2	AOF</h3><ul>
+<li><p><strong>AOF 简介</strong>：以日志的形式来记录每个写操作，将 <strong>Redis</strong> 执行过的所有写指令记录下来（读操作不记录），只许追加文件但不可以改写文件，<strong>Redis</strong> 启动之初会读取该文件重新构建数据，即根据日志文件的内容将写指令从前到后执行一次以完成数据的恢复工作</p>
+</li>
+<li><p><strong>AOF 持久化流程</strong></p>
+<ul>
+<li>客户端作为命令的来源，会有多个源头以及源源不断的请求命令</li>
+<li>在这些命令到达服务器以后并不是直接写入 <strong>AOF</strong> 文件，会将这些命念先放入 <strong>AOF</strong> 缓存中进行保存，即内存中的一片区域，当这些命令达到一定量以后再写入磁盘，避免频繁的磁盘 <strong>IO</strong> 操作</li>
+<li><strong>AOF</strong> 缓存会根据同步文件的三种写回策略将命令写入磁盘上 <strong>AOF</strong> 文件</li>
+<li>随着写入 <strong>AOF</strong> 内容的增加为避免文件膨胀，会根据规则进行命令的合并，从而起到 <strong>AOF</strong> 文件压縮的目的</li>
+<li>当服务器重启的时候会从 <strong>AOF</strong> 文件载入数据</li>
+</ul>
+</li>
+<li><p><strong>AOF 缓冲区三种写回策略</strong></p>
+<ul>
+<li><strong>always</strong>：同步写回，每个写命令执行完立刻同步地将日志写回磁盘</li>
+<li><strong>everysec</strong>：每秒写回，每个写命令执行完，只是先把日志写到 <strong>AOF</strong> 缓冲区，每隔1s把缓存区地数据写入磁盘</li>
+<li><strong>no</strong>：操作系统控制写回，只是将日志先写到 <strong>AOF</strong> 文件的内存缓冲区，由操作系统决定何时将缓冲区内容写回磁盘</li>
+</ul>
+</li>
+<li><p><strong>AOF 配置优化</strong></p>
+<ul>
+<li><p>开启 <strong>AOF</strong> 持久化</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">appendonly no</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置 <strong>AOF</strong> 文件保存路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">appenddirname <span class="string">&quot;appendonlydir&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置 <strong>AOF</strong> 文件名称</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">appendfilename <span class="string">&quot;appendonly.aof&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>异常恢复</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-check-aof --fix appendonly.aof</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>优缺点</strong></p>
+<ul>
+<li><strong>优点</strong>：更好的保护数据不丢失、性能高、可做紧急恢复</li>
+<li><strong>缺点</strong><ul>
+<li>相同数据集的数据而言 <strong>AOF</strong> 文件要远大于 <strong>RDB</strong> 文件，恢复速度慢于 <strong>RDB</strong></li>
+<li><strong>AOF</strong> 运行效率要慢于 <strong>RDB</strong>，每秒同步策略效率较好，不同步效率和 <strong>RDB</strong> 相同</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>AOF 重写机制</strong></p>
+<ul>
+<li><p>开启重写机制</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">auto-aof-rewrite-percentage 100</span><br><span class="line">auto-aof-rewrite-min-size 64mb</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>自动触发</p>
+<ul>
+<li>满足配置文件中的选项后，<strong>Redis</strong> 会记录上次重写时的 <strong>AOF</strong> 大小</li>
+<li>默认配置是当 <strong>AOF</strong> 文件大小是上次重写后大小的一倍且文件大于64M时触发</li>
+</ul>
+</li>
+<li><p>手动触发</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bgrewriteaof</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="3-3RDB-AOF混合持久化"><a href="#3-3RDB-AOF混合持久化" class="headerlink" title="3.3	RDB-AOF混合持久化"></a>3.3	RDB-AOF混合持久化</h3><ul>
+<li><strong>数据恢复顺序和加载顺序</strong>：在同时开启 <strong>RDB</strong> 和 <strong>AOF</strong> 持久化时，重启时只会加载 <strong>AOF</strong> 文件，不会加载 <strong>RDB</strong> 文件</li>
+<li><strong>同时开启两种持久化方式</strong><ul>
+<li>设置 <strong>aof-use-rdb-preamble</strong> 的值为 <strong>yes</strong>，开启混合方式持久化</li>
+<li>当 <strong>Redis</strong> 重启时候会优先载入 <strong>AOF</strong> 文件来恢复原始的数据，在通常情况下 <strong>AOF</strong> 文件保存的数据集要比 <strong>RDB</strong> 文件保存的数据集要完整</li>
+<li>当 <strong>RDB</strong> 的数据不实时，同时使用两者时服务器重启也只会找 <strong>AOF</strong> 文件</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-4纯缓存模式"><a href="#3-4纯缓存模式" class="headerlink" title="3.4	纯缓存模式"></a>3.4	纯缓存模式</h3><ul>
+<li><strong>同时关闭 RDB 和 AOF</strong><ul>
+<li>禁用 <strong>RDB</strong> 持久化：<strong>save “”</strong> 命令，禁用 <strong>RDB</strong> 持久化模式下，仍然可以使用命令 <strong>save</strong>、<strong>bgsave</strong>生成 <strong>RDB</strong> 文件</li>
+<li>禁用 <strong>AOF</strong>持久化：<strong>appendonly no</strong> 命令，禁用 <strong>AOF</strong> 持久化模式下，仍然可以使用命令 <strong>bgrewriteaof</strong> 生成 <strong>AOF</strong> 文件</li>
+</ul>
+</li>
+</ul>
+<h2 id="第四节事务"><a href="#第四节事务" class="headerlink" title="第四节	事务"></a>第四节	事务</h2><h3 id="4-1事务介绍"><a href="#4-1事务介绍" class="headerlink" title="4.1	事务介绍"></a>4.1	事务介绍</h3><ul>
+<li><strong>Redis 事务介绍</strong><ul>
+<li>可以一次执行多个命令，本质是一组命令的集合，一个事务中的所有命令都会序列化，按顺序地串行化执行而不会被其他命令插入，不许加塞</li>
+<li>一个队列中，一次性、顺序性、排他性的执行一系列命令</li>
+</ul>
+</li>
+<li><strong>Redis事务和数据库事务</strong><ul>
+<li><strong>单独的隔离操作</strong>：仅仅保证事务里的操作会被连续地独占执行，在执行完所有指令之前不会同时执行其他客户端的请求</li>
+<li><strong>没有隔离级别的概念</strong>：事务提交前不会执行任何指令，所有不存在隔离级别的概念</li>
+<li><strong>不保证原子性</strong>：不保证所有指令同时成功或同时失败，没有执行到一半回滚的能力</li>
+<li><strong>排它性</strong>：会保证一个事务内的命令依次执行，不会被其他命令插入</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-2事务基本操作"><a href="#4-2事务基本操作" class="headerlink" title="4.2	事务基本操作"></a>4.2	事务基本操作</h3><ul>
+<li><p><strong>事务命令</strong></p>
+<ul>
+<li><p>取消事务，放弃事务块内的所有命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">discard</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>执行事务块内的所有命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exec</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>标记一个事务块的开始</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">multi</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>取消 <strong>watch</strong> 命令对所有 <strong>key</strong> 的监视</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unwatch</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>监视一个或多个 <strong>key</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">watch key</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>事务操作</strong></p>
+<ul>
+<li><p>正常执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">multi</span><br><span class="line"><span class="built_in">exec</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>放弃事务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">multi</span><br><span class="line">discard</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>全体连坐：事务中含有语法错误时，全部指令都不会执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">multi</span><br><span class="line">// 语法错误</span><br><span class="line"><span class="built_in">exec</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>冤头债主：执行后错误时，不提供事务回滚，正确的指令依然会执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">multi</span><br><span class="line"><span class="built_in">exec</span></span><br><span class="line">// 执行错误</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>监视：监视变量后，如果中途发生数据篡改，后续命令执行会失败</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">watch key</span><br><span class="line">// 加塞篡改</span><br><span class="line">multi</span><br><span class="line"><span class="built_in">exec</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="第五节管道"><a href="#第五节管道" class="headerlink" title="第五节	管道"></a>第五节	管道</h2><h3 id="5-1管道介绍"><a href="#5-1管道介绍" class="headerlink" title="5.1	管道介绍"></a>5.1	管道介绍</h3><ul>
+<li><p><strong>管道简介</strong></p>
+<ul>
+<li>可以一次性发送多条命令给服务端</li>
+<li>服务端依次处理完完毕后，通过一条响应一次性将结果返回，通过减少客户端与 <strong>Redis</strong> 的通信次数来实现降低往返延时时间</li>
+<li>管道实现的原理是队列，先进先出特性保证数据的顺序性</li>
+<li>将多个命令都存在一个 <strong>txt</strong> 文件中，然后一同批处理，验证批处理</li>
+</ul>
+</li>
+<li><p><strong>管道通信</strong>：<strong>Redis</strong> 是一种基于客户端-服务端模型以及请求&#x2F;响应协议的 <strong>TCP</strong> 服务，如果同时需要执行大量的命令，那么就要等待上一条命令应答后再执行，这中间不仅仅多了 <strong>RTT</strong>，而且还频繁调用系统 <strong>IO</strong>，发送网络请求，同时需要  <strong>Redis</strong> 调用多次读写系统方法，系统方法会将数据从用户态转移到内核态，会对进程上下文有较大的影响，管道通过一条响应一次性将结果返回，通过减少通信次数来实现降低往返延时时间</p>
+</li>
+</ul>
+<h3 id="5-2管道操作"><a href="#5-2管道操作" class="headerlink" title="5.2	管道操作"></a>5.2	管道操作</h3><ul>
+<li><p><strong>管道操作</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> cmd.txt | redis-cli --pipe</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>管道与原生批量</strong></p>
+<ul>
+<li>原生批量命令是原子性，而管道是非原子性</li>
+<li>原生批量命令一次只能执行一种命令，而管道支持批量执行不同命令</li>
+<li>原生批命令是服务端实现，而管道需要服务端与客户端共同完成</li>
+</ul>
+</li>
+<li><p><strong>管道与事务</strong></p>
+<ul>
+<li>事务具有原子性，管道不具有原子性</li>
+<li>管道一次性将多条命令发送到服务器，事务是一条一条发的，事务只有在接收到 <strong>exec</strong> 命令后才会执行，管道不会</li>
+<li>执行事务时会阻塞其他命令的执行，而执行管道中的命令时不会</li>
+</ul>
+</li>
+<li><p><strong>管道注意事项</strong></p>
+<ul>
+<li>管道缓冲的指令只是会依次执行，不保证原子性，如果执行中指令发生异常，将会继续执行后续的指令</li>
+<li>使用管道组装的命令个数不能太多，不然数据量过大客户端阻塞的时间可能过久，同时服务器也被迫回复一个队列答复，占用很多内存</li>
+</ul>
+</li>
+</ul>
+<h2 id="第六节复制"><a href="#第六节复制" class="headerlink" title="第六节	复制"></a>第六节	复制</h2><h3 id="6-1复制介绍"><a href="#6-1复制介绍" class="headerlink" title="6.1	复制介绍"></a>6.1	复制介绍</h3><ul>
+<li><strong>主从复制</strong>：将一台 <strong>Redis</strong> 服务器的数据，复制到其他的 <strong>Redis</strong> 服务器，前者称为主节点，后者称为从节点，数据的复制是单向的，只能由主节点到从节点，主节点以写为主，从节点以读为主，当主节点数据变化时，自动将新的数据异步同步到其他从节点数据库</li>
+</ul>
+<h3 id="6-2基本操作"><a href="#6-2基本操作" class="headerlink" title="6.2	基本操作"></a>6.2	基本操作</h3><ul>
+<li><p><strong>配置方式</strong></p>
+<ul>
+<li><strong>配置文件</strong>：一次配置，持久稳定</li>
+<li><strong>命令配置</strong>：当次生效</li>
+</ul>
+</li>
+<li><p><strong>编辑 redis.conf 配置文件</strong></p>
+<ul>
+<li><p>修改端口号</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">port 6379</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开启守护进程模式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">daemonize <span class="built_in">yes</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改 <strong>pid</strong> 文件名</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pidfile <span class="string">&quot;/var/run/redis_6379.pid&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改 <strong>log</strong> 文件名</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logfile <span class="string">&quot;./log/6379.log&quot;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>主从复制配置</strong></p>
+<ul>
+<li><p>去除配置文件中的从属关系</p>
+</li>
+<li><p>升级为主机</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">replicaof/slaveof no one</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>从机连接到主机</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">replicaof/slaveof 192.168.1.100 6379</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看复制节点的主从关系和配置信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">info replication</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>主从复制结构</strong></p>
+<ul>
+<li><strong>一主多从结构</strong><ul>
+<li>主机有读写能力，从机只有读能力</li>
+<li>当主机宕机时，从机原地待命，不会变成主机</li>
+<li>当主机恢复时，主从关系恢复正常</li>
+</ul>
+</li>
+<li><strong>薪火相传结构</strong><ul>
+<li>上一个从机也可以是下一个从机的主机，从机同样可以接受其他的从机的连接和同步请求</li>
+<li>从机作为链条中下一个的主机，可以有效减轻主机的写压力</li>
+<li>中途变更转向会清除之前的数据，重新建立拷贝最新的数据</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-3复制原理"><a href="#6-3复制原理" class="headerlink" title="6.3	复制原理"></a>6.3	复制原理</h3><ul>
+<li><strong>主从复制原理</strong><ul>
+<li><strong>从机启动</strong>，<strong>同步初请</strong><ul>
+<li>从机启动成功连接到主机后会发送一个 <strong>sync</strong> 同步命令</li>
+<li>从机首次全新连接主机，一次完全同步将被自动执行，原有数据将会被主机数据覆盖清除</li>
+</ul>
+</li>
+<li><strong>首次连接</strong>，<strong>全量复制</strong><ul>
+<li>主机节点收到同步命令后开始保存快照，同时收集所有接受接收到的数据修改命令，在执行快照持久化后，将所有的快照文件和缓存命令后发送到从机，完成一次同步</li>
+<li>从机服务在接受到数据库文件操作后，将其存盘并加载到内存中，从而完成复制初始化</li>
+</ul>
+</li>
+<li><strong>心跳持续</strong>，<strong>保持通信</strong><ul>
+<li>设置复制周期 <strong>repl-ping-replica-period</strong> 参数</li>
+<li>主机发出 <strong>ping</strong> 包的周期默认为10秒</li>
+</ul>
+</li>
+<li><strong>进入平稳</strong>，<strong>增量复制</strong><ul>
+<li>主机继续将新的所有收集到的修改命令自动一次传给从机，完成同步</li>
+</ul>
+</li>
+<li><strong>从机下线</strong>，重传续传<ul>
+<li>主机会检查 <strong>backlog</strong> 里面的 <strong>offset</strong>，主机和从机都会保存一个复制的 <strong>offset</strong> 怀有一个 <strong>masterId</strong></li>
+<li><strong>offset</strong> 是保存在 <strong>backlog</strong> 中的，主机只会把已经复制的 <strong>offset</strong> 后面的数据赋值给从机，类似断电续传</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>主从复制的缺点</strong><ul>
+<li><strong>复制延时，信号衰弱</strong>：所有的写操作先在主机上操作，然后同步更新到从机上，存在一定的延迟<ul>
+<li><strong>主机宕机</strong>：默认情况下当主机宕机时不会重选一个主机，需要人工干预</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="第七节哨兵"><a href="#第七节哨兵" class="headerlink" title="第七节	哨兵"></a>第七节	哨兵</h2><h3 id="7-1哨兵介绍"><a href="#7-1哨兵介绍" class="headerlink" title="7.1	哨兵介绍"></a>7.1	哨兵介绍</h3><ul>
+<li><strong>哨兵介绍</strong>：哨兵巡查监控后主机是否故障，如果故障了根据投票数自动将某一个从库转换为新主库，继续对外服务，俗称无人值守运维</li>
+<li><strong>哨兵的作用</strong><ul>
+<li>监控 <strong>Redis</strong> 运行状态，包括主节点和从节点</li>
+<li>当主节点宕机时，能自动将从节点切换成新主节点</li>
+</ul>
+</li>
+<li><strong>哨兵的功能</strong><ul>
+<li><strong>主从监控</strong>：监控主从 <strong>Redis</strong> 库运行是否正常</li>
+<li><strong>消息通知</strong>：哨兵可以将故障转移的结果发送到客户端</li>
+<li><strong>故障转移</strong>：如果主节点异常，则会进行主从切换，将其中一个从节点作为新主节点</li>
+<li><strong>配置中心</strong>：客户端通过连接哨兵来获得当前 <strong>Redis</strong> 服务的主节点地址</li>
+</ul>
+</li>
+</ul>
+<h3 id="7-2基本操作"><a href="#7-2基本操作" class="headerlink" title="7.2	基本操作"></a>7.2	基本操作</h3><ul>
+<li><p><strong>哨兵配置文件 sentinel.conf 参数</strong></p>
+<ul>
+<li><strong>bind</strong>：服务监听地址，用于客户端连接</li>
+<li><strong>daemonize</strong>：守护进程模式</li>
+<li><strong>protect-mode</strong>：安全保护模式</li>
+<li><strong>port</strong>：端口号</li>
+<li><strong>logfile</strong>：日志文件存放地址</li>
+<li><strong>pidfile</strong>：<strong>pid</strong> 日志路径</li>
+<li><strong>dir</strong>：工作目录</li>
+<li><strong>sentinel monitor</strong><ul>
+<li>设置要监视的主机</li>
+<li>其中 <strong>quorum</strong> 参数表示最少有几个哨兵认可客观下线，同意故障迁移的法定票数</li>
+</ul>
+</li>
+<li><strong>sentiel auth-pass</strong>：通过密码连接主机，对应主机 <strong>redis.conf</strong> 配置文件的 <strong>masterauth</strong> 参数</li>
+</ul>
+</li>
+<li><p><strong>哨兵案例演示</strong></p>
+<ul>
+<li><p>启动一主多从的服务端和客户端</p>
+</li>
+<li><p>启动哨兵</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">redis-sentinel sentinel26379.conf --sentinel</span><br><span class="line">redis-sentinel sentinel26380.conf --sentinel</span><br><span class="line">redis-sentinel sentinel26381.conf --sentinel</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当主机宕机时，会从从机中选举一个新的主机，如果主机恢复，则充当从机身份</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="7-3哨兵原理"><a href="#7-3哨兵原理" class="headerlink" title="7.3	哨兵原理"></a>7.3	哨兵原理</h3><ul>
+<li><strong>SDOWN 主观下线</strong><ul>
+<li>单个哨兵主观上检测到关于主机的状态，如果发送 <strong>ping</strong> 包后在一定时间内没有收到合法的回复，就达到了主观下线的条件</li>
+<li>哨兵配置文件中设置了 <strong>down-after-milliseconds</strong> 参数表示判断主观下线的时间长度</li>
+</ul>
+</li>
+<li><strong>ODOWN 客观下线</strong><ul>
+<li>需要一定数量的哨兵，多个哨兵达成一致意见才能认为一个主机客观上已经宕机</li>
+<li>哨兵配置文件中设置了 <strong>quorum</strong> 参数表示判断主机宕机的最少哨兵数量</li>
+</ul>
+</li>
+<li><strong>选举出领导者哨兵</strong><ul>
+<li>当主节点被判断客观下线后，各哨兵会进行协商，先选举一个领导哨兵节点并由它进行故障迁移</li>
+<li>使用 <strong>Raft</strong> 算法选出领导节点，算法的基本思路是先到先得，哨兵 <strong>A</strong> 向 <strong>B</strong> 发送成为领导者的请求，如果 <strong>B</strong> 没有同意其他哨兵的请求，则同意其成为领导者</li>
+</ul>
+</li>
+<li><strong>领导者哨兵选举主机</strong><ul>
+<li>过滤故障的节点</li>
+<li>选择优先级 <strong>slave-priority</strong> 属性最大的从节点作为主节点，如不存在则继续</li>
+<li>选择复制偏移量最大，即记录数据最多的从节点作为主节点，如不存在则继续</li>
+<li>选择 <strong>runid</strong> 属性最小，即 <strong>Redis</strong> 随机标识最小的从节点作为主节点</li>
+</ul>
+</li>
+<li><strong>哨兵选举流程</strong><ul>
+<li><strong>新主登基</strong>：某一个从机备选成为新的主机</li>
+<li><strong>群臣俯首</strong>：其他从机更新从属关系</li>
+<li><strong>旧主拜服</strong>：原有的主机回来也会成为新主机的从机</li>
+</ul>
+</li>
+<li><strong>哨兵的使用技巧</strong><ul>
+<li>哨兵节点数量应为多个，保证高可用</li>
+<li>哨兵节点数量应为奇数个</li>
+<li>各个哨兵节点的配置应该保持一致</li>
+<li>哨兵集群 + 主从复制并不能保证数据零丢失</li>
+</ul>
+</li>
+</ul>
+<h2 id="第八节集群"><a href="#第八节集群" class="headerlink" title="第八节	集群"></a>第八节	集群</h2><h3 id="8-1集群介绍"><a href="#8-1集群介绍" class="headerlink" title="8.1	集群介绍"></a>8.1	集群介绍</h3><ul>
+<li><strong>集群简介</strong>：对多个复制集进行集群，形成水平扩展每个复制集只负责存储整个数据集的一部分，是一个提供在多个 <strong>Redis</strong> 节点间共享数据的程序集</li>
+<li><strong>集群的功能</strong><ul>
+<li>支持多个主机，每个主机又可以挂载多个从机</li>
+<li>读写分离，支持海量数据的高可用，支持海量数据的读写存储操作</li>
+<li>由于集群自带哨兵的故障转移机制，内置了高可用的支持，无需再去使用哨兵功能</li>
+<li>客户端和 <strong>Redis</strong> 的节点连接，不再需要连接集群中所有节点，只需连接集群中的任意一个可用节点即可</li>
+<li>槽位 <strong>slot</strong> 负责分配到各个物理服务节点，由对应的集群来负责维护节点、插槽和数据之间的关系</li>
+</ul>
+</li>
+</ul>
+<h3 id="8-2集群分布式存储"><a href="#8-2集群分布式存储" class="headerlink" title="8.2	集群分布式存储"></a>8.2	集群分布式存储</h3><ul>
+<li><p><strong>哈希取余分区</strong></p>
+<ul>
+<li><strong>算法描述</strong>：<strong>hash(key) % N</strong> 个机器台数，计算出哈希值，用来决定数据映射到哪一个节点上</li>
+<li><strong>优点</strong>：简单粗暴，直接有效，只需要预估好数据规划节点，就能保证一段时间的数据支撑，使用 <strong>Hash</strong> 算法让固定的一部分请求落到同一台服务器上，每台服务器固定处理一部分请求，起到负载均衡和分而治之的作用</li>
+<li><strong>缺点</strong><ul>
+<li>直接规划好节点，进行扩容或者缩容会很麻烦，每次数据变动会导致节点有变动，映射关系都要重新计算</li>
+<li>如果需要弹性扩容或故障停机的情况下，原来的取模公式就会发生变化，此时地址经过取余运算的结果将发生很大变化，根据公式获取的服务器也会变得不可控</li>
+<li>某个 <strong>Redis</strong> 机器宕机了，由于台数数量变化，会导致 <strong>hash</strong> 取余全部数据重新洗牌</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>一致性哈希算法分区</strong></p>
+<ul>
+<li><p><strong>算法描述</strong></p>
+<ul>
+<li>将整个哈希值组织成一个抽象的圆环，称为哈希环，哈希函数的输出值一般在0到 <strong>INT_MAX</strong> 之间，这些输出值可以均匀地映射到哈希环边上</li>
+<li>将分布式系统的节点映射到圆环上，可以通过机器名称或 <strong>IP</strong> 地址将节点映射到环上</li>
+<li>将需要存储的数据的关键字输入哈希函数，计算出哈希值，根据哈希值将数据映射到哈希环上</li>
+<li>数据存储在按照顺时针方向遇到的第一个节点上</li>
+</ul>
+</li>
+<li><p><strong>优点</strong></p>
+<ul>
+<li>容错性高，如果一台服务器不可用，则受影响的数据仅仅是此服务器到其环空间中前一台服务器</li>
+<li>扩展性高，添加服务器节点不会导致 <strong>hash</strong> 取余全部数据重新洗牌</li>
+</ul>
+</li>
+<li><p><strong>缺点</strong>：在服务节点太少时，容易因为节点分布不均匀而造成数据倾斜问题</p>
+</li>
+</ul>
+</li>
+<li><p><strong>哈希槽分区</strong></p>
+<ul>
+<li><strong>算法描述</strong><ul>
+<li>在数据和节点之间加入一层哈希槽，本质是一个数组，用于管理数据和节点之间的关系</li>
+<li>一个集群只能有 16384个 槽，这些槽会分配给集群中的所有主节点，分配策略没有要求</li>
+<li>集群会记录节点和槽的对应关系，需要对 <strong>key</strong> 求哈希值，然后对16384取模，根据余数落入对应的槽里</li>
+<li>当需要在集群中放置一个节点时，先对 <strong>key</strong> 使用 <strong>crc16</strong> 算法算出一个结果然后用结果对16384取模，这样每个 <strong>key</strong> 都会对应一个编号在 0-16383 之间的哈希槽，也就是映射到某个节点上</li>
+</ul>
+</li>
+<li><strong>优点</strong>：很容易增加或删除节点，无论添加删除或者改变某个节点的哈希槽的数量都不会造成集群不可用的状态</li>
+<li><strong>缺点</strong>：集群不保证强一致性，在特定的条件下，可能会丢掉一些被系统收到的写入请求命令</li>
+</ul>
+</li>
+</ul>
+<h3 id="8-3集群配置"><a href="#8-3集群配置" class="headerlink" title="8.3	集群配置"></a>8.3	集群配置</h3><ul>
+<li><p><strong>集群配置步骤</strong></p>
+<ul>
+<li><p>创建配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cluster-enabled <span class="built_in">yes</span> // 系统启用集群</span><br><span class="line">cluster-config-file nodes-6381.conf // 指定包含集群中节点信息的配置文件</span><br><span class="line">cluster-node-timeout 5000 // 检验集群中节点无响应的超时时间</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>构建集群关系</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis-server /myredis/cluster/redisCluter6381.conf // 启动服务器</span><br><span class="line">redis-cli --cluster create ip1:port1 ip2:port2 ip3:port3 ip4:port4 ip5:port5 ip6:port6 --cluster-replicas 1 // 构建主从关系</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>检验集群状态</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -a 123456 -p 6381 -c // 连接集群端口</span><br><span class="line">cluster nodes // 查看集群的主从关系</span><br><span class="line">cluster info // 查看集群信息</span><br><span class="line">info replication // 查看主从信息</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试集群</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cluster keyslot k1 // 查看键的槽位值</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>主从容错切换迁移</strong></p>
+<ul>
+<li><p>主机宕机，从机会成为主机，当原主机恢复时，不会重新成为主机</p>
+</li>
+<li><p>恢复原有主从关系</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CLUSTER FAILOVER   // 在原始从机端口号下执行</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>主从扩容</strong></p>
+<ul>
+<li><p>新建主节点服务实例配置文件并启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server redis_7007.conf</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>主节点 7007 加入集群</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli --cluster add-node 192.168.3.100:7007 192.168.3.100:7001</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>分配槽号，并输入分配槽位数量和插入节点 ID</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli --cluster reshard 192.168.3.100:7007</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>检查集群情况</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli --cluster check 192.168.3.100:7001</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新建从节点服务实例配置文件并启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server redis_7008.conf</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>从节点 7008 加入集群</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli --cluster add-node 192.168.3.100:7008 192.168.3.100:7001</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>挂接从节点，参数为主节点的 ID</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:7008&gt; cluster replicate 1d708c5042d53b6bc1e855ea41755782b6692e1a</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>检查集群情况</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cluster nodes</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>主从缩容</strong></p>
+<ul>
+<li><p>删除从节点，参数为待删除从节点的 ID</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli --cluster del-node 192.168.3.100:7001 cd26feeb271c1260ec134d85dcdeaf4c72bfc3ad</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关闭从节点 7008 服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -p 7008 shutdown</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>分配槽位给其他主节点，并输入分配槽位数量和接受节点 ID，其中 done 表示结束</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli --cluster reshard 192.168.3.100:7001</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除主节点，参数为待删除从节点的 ID</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli --cluster del-node 192.168.3.100:7001 1d708c5042d53b6bc1e855ea41755782b6692e1a</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关闭主节点 7007 服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -p 7007 shutdown</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="第九节SpringBoot集成Redis"><a href="#第九节SpringBoot集成Redis" class="headerlink" title="第九节	SpringBoot集成Redis"></a>第九节	SpringBoot集成Redis</h2><h3 id="9-1Redis配置"><a href="#9-1Redis配置" class="headerlink" title="9.1	Redis配置"></a>9.1	Redis配置</h3><ul>
+<li><p><strong>编写  redis.conf 配置文件</strong></p>
+<ul>
+<li><p>开启守护模式进程</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">daemonize <span class="built_in">yes</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关闭安全保护模式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">protected-mode=no</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注释服务监听地址</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bind 127.0.0.1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">requirepass=123456</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>防火墙配置</strong></p>
+<ul>
+<li><p>开启防火墙</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start firewalld</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关闭防火墙</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开机禁用防火墙</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">disable</span> firewalld</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开机启用防火墙</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> firewalld</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="9-2Redis-Template"><a href="#9-2Redis-Template" class="headerlink" title="9.2	Redis Template"></a>9.2	Redis Template</h3><ul>
+<li><p><strong>连接单机</strong></p>
+<ul>
+<li><p><strong>添加依赖</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.data<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.5.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>配置文件</strong></p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring.data.redis.host</span>=<span class="string">127.0.0.1</span></span><br><span class="line"><span class="attr">spring.data.redis.port</span>=<span class="string">6379</span></span><br><span class="line"><span class="attr">spring.data.redis.timeout</span>=<span class="string">3000</span></span><br><span class="line"><span class="attr">spring.data.redis.connectTimeout</span>=<span class="string">5000</span></span><br><span class="line"><span class="attr">spring.data.redis.lettuce.pool.min-idle</span>=<span class="string">0</span></span><br><span class="line"><span class="attr">spring.data.redis.lettuce.pool.max-idle</span>=<span class="string">8</span></span><br><span class="line"><span class="attr">spring.data.redis.lettuce.pool.max-active</span>=<span class="string">100   </span></span><br><span class="line"><span class="attr">spring.data.redis.lettuce.pool.max-wait</span>=<span class="string">2000</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>配置类</strong></p>
+<ul>
+<li><p><strong>Redis 配置</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RedisConfig</span> &#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> RedisTemplate&lt;String,Object&gt; <span class="title function_">redisTemplate</span><span class="params">(LettuceConnectionFactory lettuceConnectionFactory)</span>&#123;</span><br><span class="line">        RedisTemplate&lt;String, Object&gt; redisTemplate = <span class="keyword">new</span> <span class="title class_">RedisTemplate</span>&lt;&gt;();</span><br><span class="line">        redisTemplate.setConnectionFactory(lettuceConnectionFactory);</span><br><span class="line">        <span class="comment">//设置key序列化方式String</span></span><br><span class="line">        redisTemplate.setKeySerializer(<span class="keyword">new</span> <span class="title class_">StringRedisSerializer</span>());</span><br><span class="line">        <span class="comment">//设置value的序列化方式json，使用GenericJackson2JsonRedisSerializer替换默认的序列化</span></span><br><span class="line">        redisTemplate.setValueSerializer(<span class="keyword">new</span> <span class="title class_">GenericJackson2JsonRedisSerializer</span>());</span><br><span class="line">        redisTemplate.setHashKeySerializer(<span class="keyword">new</span> <span class="title class_">StringRedisSerializer</span>());</span><br><span class="line">        redisTemplate.setHashValueSerializer(<span class="keyword">new</span> <span class="title class_">GenericJackson2JsonRedisSerializer</span>());</span><br><span class="line">        redisTemplate.afterPropertiesSet();</span><br><span class="line">        <span class="keyword">return</span> redisTemplate;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>业务层</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OrderService</span> &#123;</span><br><span class="line">    <span class="meta">@Resource</span></span><br><span class="line">    <span class="keyword">private</span> RedisTemplate redisTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addOrder</span><span class="params">()</span>&#123;</span><br><span class="line">        redisTemplate.opsForValue().set(key,value);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getOrderId</span><span class="params">(Integer keyId)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (String) redisTemplate.opsForValue().get(ORDER_KEY + keyId);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>控制层</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OrderController</span> &#123;</span><br><span class="line">    <span class="meta">@Resource</span></span><br><span class="line">    <span class="keyword">private</span> OrderService orderService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(value = &quot;/order/add&quot;, method = RequestMethod.POST)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addOrder</span><span class="params">()</span>&#123;</span><br><span class="line">        orderService.addOrder();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@RequestMapping(value = &quot;/order/&#123;keyId&#125;&quot;, method = RequestMethod.GET)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getOrderId</span><span class="params">(<span class="meta">@PathVariable</span> Integer keyId)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> orderService.getOrderId(keyId);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>连接集群</strong></p>
+<ul>
+<li><p><strong>配置文件</strong></p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring.redis.password</span>=<span class="string">123456</span></span><br><span class="line"><span class="attr">spring.redis.clusterspring.redis.cluster.nodes</span>=<span class="string">192.1.max-redirects=3</span></span><br><span class="line"><span class="attr">spring.redis.lettuce.pool.max-active</span>=<span class="string">8</span></span><br><span class="line"><span class="attr">spring.redis.lettuce.pool.max-wait</span>=<span class="string">-1ms</span></span><br><span class="line"><span class="attr">spring.redis.lettuce.pool.max-idle</span>=<span class="string">8</span></span><br><span class="line"><span class="attr">spring.redis.lettuce.pool.min-idle</span>=<span class="string">0</span></span><br><span class="line"><span class="attr">68.238.111</span>:<span class="string">6381,192.168.238.111:6382,192.168.238.112:6383,192.168.238.112:6384,192.168.238.113:6385,192.168.238.113:6386</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>设置刷新节点结群拓扑和动态感应</strong></p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring.redis.lettuce.cluster.refresh.adaptive</span>=<span class="string">true</span></span><br><span class="line"><span class="attr">spring.redis.lettuce.cluster.refresh.period</span>=<span class="string">2000</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="第十节多线程"><a href="#第十节多线程" class="headerlink" title="第十节	多线程"></a>第十节	多线程</h2><h2 id="第十一节BigKey"><a href="#第十一节BigKey" class="headerlink" title="第十一节	BigKey"></a>第十一节	BigKey</h2><h2 id="第十二节缓存双写一致性"><a href="#第十二节缓存双写一致性" class="headerlink" title="第十二节	缓存双写一致性"></a>第十二节	缓存双写一致性</h2><h2 id="第十三节大数据统计"><a href="#第十三节大数据统计" class="headerlink" title="第十三节	大数据统计"></a>第十三节	大数据统计</h2><h2 id="第十四节布隆过滤器"><a href="#第十四节布隆过滤器" class="headerlink" title="第十四节	布隆过滤器"></a>第十四节	布隆过滤器</h2><h2 id="第十五节缓存"><a href="#第十五节缓存" class="headerlink" title="第十五节	缓存"></a>第十五节	缓存</h2><h2 id="第十六节分布式锁"><a href="#第十六节分布式锁" class="headerlink" title="第十六节	分布式锁"></a>第十六节	分布式锁</h2><h2 id="第十七节IO多路复用"><a href="#第十七节IO多路复用" class="headerlink" title="第十七节	IO多路复用"></a>第十七节	IO多路复用</h2>
       
     </div>
     <footer class="article-footer">

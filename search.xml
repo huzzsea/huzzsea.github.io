@@ -10020,7 +10020,7 @@
   <entry>
     <title>Ajax</title>
     <url>/2024/01/28/Ajax/</url>
-    <content><![CDATA[<h1 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h1><h2 id="第一节Ajax概述"><a href="#第一节Ajax概述" class="headerlink" title="第一节	Ajax概述"></a>第一节	Ajax概述</h2><ul>
+    <content><![CDATA[<h2 id="第一节Ajax概述"><a href="#第一节Ajax概述" class="headerlink" title="第一节	Ajax概述"></a>第一节	Ajax概述</h2><ul>
 <li><strong>Ajax 简介</strong>：全称为 <strong>async Javascript and XML</strong>，即异步 <strong>JavaScript</strong> 和 <strong>XML</strong>，是一种用于创建快速动态网页的技术，它通过在后台与服务器进行少量数据交换，可以使网页实现异步更新，是前后台交互的工具</li>
 <li><strong>同步与异步的区别</strong><ul>
 <li><strong>同步提交</strong>：当用户发送请求时，当前页面不可以使用，服务器响应页面到客户端，响应完成，用户才可以使用页面</li>

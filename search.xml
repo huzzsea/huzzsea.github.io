@@ -13924,7 +13924,7 @@
 <h3 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h3><h3 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h3><h3 id="运算符优先级"><a href="#运算符优先级" class="headerlink" title="运算符优先级"></a>运算符优先级</h3><h3 id="匹配规则"><a href="#匹配规则" class="headerlink" title="匹配规则"></a>匹配规则</h3><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3>]]></content>
   </entry>
   <entry>
-    <title>python</title>
+    <title>Python</title>
     <url>/2024/01/28/Python/</url>
     <content><![CDATA[<h2 id="字符串String"><a href="#字符串String" class="headerlink" title="字符串String"></a>字符串String</h2><blockquote>
 <p><strong>find函数:find(str)检测字符串是否包含特定字符，如果是，返回开始索引；否则，返回-1</strong></p>

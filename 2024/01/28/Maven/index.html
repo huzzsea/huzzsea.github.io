@@ -1,0 +1,325 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Maven | huzzsea</title><meta name="author" content="huzzsea"><meta name="copyright" content="huzzsea"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Maven第一节	为什么需要Maven一个项目就是一个工程 如果项目非常庞大，就不适合使用 package 来划分模块，最好是每一个模块对应一个工程，利于分工协作，借助于maven 就可以将一个项目拆分成多个工程 项目中使用 jar 包，需要“复制”、“粘贴”项目的 lib 中 同样的 jar 包重复的出现在不同的项目工程中，你需要做不停的复制粘贴的重复工作，借助于 maven，可以将 jar 包">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Maven">
+<meta property="og:url" content="http://example.com/2024/01/28/Maven/index.html">
+<meta property="og:site_name" content="huzzsea">
+<meta property="og:description" content="Maven第一节	为什么需要Maven一个项目就是一个工程 如果项目非常庞大，就不适合使用 package 来划分模块，最好是每一个模块对应一个工程，利于分工协作，借助于maven 就可以将一个项目拆分成多个工程 项目中使用 jar 包，需要“复制”、“粘贴”项目的 lib 中 同样的 jar 包重复的出现在不同的项目工程中，你需要做不停的复制粘贴的重复工作，借助于 maven，可以将 jar 包">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2024-01-28T15:07:29.000Z">
+<meta property="article:modified_time" content="2024-01-28T15:08:54.274Z">
+<meta property="article:author" content="huzzsea">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/01/28/Maven/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Maven',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-01-28 23:08:54'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="huzzsea"><span class="site-name">huzzsea</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Maven</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-01-28T15:07:29.000Z" title="发表于 2024-01-28 23:07:29">2024-01-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-01-28T15:08:54.274Z" title="更新于 2024-01-28 23:08:54">2024-01-28</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Maven"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><h2 id="第一节为什么需要Maven"><a href="#第一节为什么需要Maven" class="headerlink" title="第一节	为什么需要Maven"></a>第一节	为什么需要Maven</h2><p><strong>一个项目就是一个工程</strong></p>
+<p>如果项目非常庞大，就不适合使用 <strong>package</strong> 来划分模块，最好是每一个模块对应一个工程，利于分工协作，借助于<strong>maven</strong> 就可以将一个项目拆分成多个工程</p>
+<p><strong>项目中使用 jar 包，需要“复制”、“粘贴”项目的 lib 中</strong></p>
+<p>同样的 <strong>jar</strong> 包重复的出现在不同的项目工程中，你需要做不停的复制粘贴的重复工作，借助于 <strong>maven</strong>，可以将 <strong>jar</strong> 包保存在“仓库”中，不管在哪个项目只要使用引用即可就行</p>
+<p><strong>jar 包需要的时候每次都要自己准备好或到官网下载</strong></p>
+<p>借助于 <strong>maven</strong> 我们可以使用统一的规范方式下载 <strong>jar</strong> 包，规范</p>
+<p><strong>jar 包版本不一致的风险</strong></p>
+<p>不同的项目在使用 <strong>jar</strong> 包的时候，有可能会导致各个项目的 <strong>jar</strong> 包版本不一致，导致未执行错误，借助于 <strong>maven</strong>，所有的 <strong>jar</strong> 包都放在“仓库”中，所有的项目都使用仓库的一份 <strong>jar</strong> 包</p>
+<p><strong>一个 jar 包依赖其他的 jar 包需要自己手动的加入到项目中</strong></p>
+<p><strong>jar</strong> 的依赖关系极大的浪费了我们导入包的时间成本，也极大的增加了学习成本，借助于 <strong>maven</strong>，它会自动的将依赖的 <strong>jar</strong> 包导入进来</p>
+<h2 id="第二节Maven介绍"><a href="#第二节Maven介绍" class="headerlink" title="第二节	Maven介绍"></a>第二节	Maven介绍</h2><ul>
+<li><p><strong>maven介绍</strong>：<strong>maven 是一款服务于 java 平台的自动化构建工具</strong></p>
+</li>
+<li><p><strong>构建</strong></p>
+<ul>
+<li><strong>构建定义</strong>：把动态的 <strong>Web</strong> 工程经过编译得到的编译结果部署到服务器上的整个过程</li>
+<li><strong>编译</strong>：<strong>java</strong> 源文件 <strong>[.java]</strong> -&gt;编译-&gt; <strong>Classz</strong> 字节码文件 <strong>[.class]</strong></li>
+<li><strong>部署</strong>：最终在 <strong>servlet</strong> 容器中部署的不是动态 <strong>web</strong> 工程，而是编译后的文件</li>
+</ul>
+</li>
+<li><p><strong>构建的各个环节</strong></p>
+<ul>
+<li><p>清理 <strong>clean</strong>：将以前编译得到的旧文件 <strong>class</strong> 字节码文件删除</p>
+</li>
+<li><p>编译 <strong>compile</strong>：将 <strong>java</strong> 源程序编译成 <strong>class</strong> 字节码文件</p>
+</li>
+<li><p>测试 <strong>test</strong>：自动测试，自动调用 <strong>junit</strong> 程序</p>
+</li>
+<li><p>报告 <strong>report</strong>：测试程序执行的结果</p>
+</li>
+<li><p>打包 <strong>package</strong>：动态 <strong>Web</strong> 工程打 <strong>War</strong> 包，<strong>java</strong> 工程打 <strong>jar</strong> 包</p>
+</li>
+<li><p>安装 <strong>install</strong>：<strong>Maven</strong> 特定的概念—–将打包得到的文件复制到“仓库”中的指定位置</p>
+</li>
+<li><p>部署 <strong>deploy</strong>：将动态 <strong>Web</strong> 工程生成的 <strong>war</strong> 包复制到 <strong>Servlet</strong> 容器下，使其可以运行</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="第三节Maven入门"><a href="#第三节Maven入门" class="headerlink" title="第三节	Maven入门"></a>第三节	Maven入门</h2><ul>
+<li><strong>创建约定的目录结构</strong></li>
+</ul>
+<blockquote>
+<p>根目录：工程名<br>|—src：源码<br>|—|—main:存放主程序<br>|—|—|—java：java源码文件<br>|—|—|—resource：存放框架的配置文件<br>|—|—test：存放测试程序<br>|—pop.xml：maven的核心配置文件</p>
+</blockquote>
+<ul>
+<li><p><strong>常用的maven命令</strong></p>
+<ul>
+<li><p><strong>mvn clean</strong>：清理</p>
+</li>
+<li><p><strong>mvn compile</strong>：编译主程序</p>
+</li>
+<li><p><strong>mvn test-compile</strong>：编译测试程序</p>
+</li>
+<li><p><strong>mvn test</strong>：执行测试</p>
+</li>
+<li><p><strong>mvn package</strong>：打包</p>
+</li>
+<li><p><strong>mvn install</strong>：安装</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="第四节仓库和坐标"><a href="#第四节仓库和坐标" class="headerlink" title="第四节	仓库和坐标"></a>第四节	仓库和坐标</h2><ul>
+<li><p><strong>pom.xml</strong>：<strong>Project Object Model</strong> 项目对象模型，它是  <strong>maven</strong> 的核心配置文件，所有的构建的配置都在这里设置</p>
+</li>
+<li><p><strong>坐标：</strong>使用下面的三个向量 <strong>groupId</strong>，<strong>artifactid</strong>，<strong>version</strong> 在仓库中唯一的定位一个 <strong>maven</strong>工程</p>
+</li>
+</ul>
+<p><img src="C:\Users\86172\Pictures\Markdown\Maven\向量-1706454533232-3" alt="img"></p>
+<ul>
+<li><p><strong>仓库</strong></p>
+<ul>
+<li><p><strong>本地仓库：</strong>当前电脑上的仓库</p>
+</li>
+<li><p><strong>远程仓库</strong></p>
+<ul>
+<li><strong>私服</strong>：搭建在局域网中，一般公司都会有私服，私服一般使用 <strong>nexus</strong> 来搭建</li>
+<li><strong>中央仓库</strong>：架设在 <strong>Internet</strong> 上</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="第五节依赖"><a href="#第五节依赖" class="headerlink" title="第五节	依赖"></a>第五节	依赖</h2><ul>
+<li><p><strong>maven 解析依赖信息时会到本地仓库中取查找被依赖的 jar 包</strong></p>
+<ul>
+<li><p>对于本地仓库中没有的会去中央仓库去查找 <strong>maven</strong> 坐标来获取 <strong>jar</strong> 包，获取到 <strong>jar</strong> 之后会下载到本地仓库</p>
+</li>
+<li><p>对于中央仓库也找不到依赖的 <strong>jar</strong> 包的时候，就会编译失败了</p>
+</li>
+<li><p>如果依赖的是自己或者团队开发的 <strong>maven</strong> 工程，需要先使用 <strong>install</strong> 命令把被依赖的 <strong>maven</strong> 工程的 <strong>jar</strong> 包导入到本地仓库中</p>
+</li>
+</ul>
+</li>
+<li><p><strong>依赖范围</strong>：<strong>scope</strong>就是依赖的范围</p>
+<ul>
+<li><strong>compile</strong>：默认值，适用于所有阶段（开发、测试、部署、运行），该 <strong>jar</strong> 会一直存在所有阶段</li>
+<li><strong>provided</strong>：只在开发、测试阶段使用，目的是不让 <strong>Servlet</strong> 容器和你本地仓库的 <strong>jar</strong> 包冲突 </li>
+<li><strong>runtime</strong>：只在运行时使用，如 <strong>JDBC</strong> 驱动，适用运行和测试阶段</li>
+<li><strong>test</strong>：只在测试时使用，用于编译和运行测试代码，不会随项目发布。</li>
+<li><strong>system</strong>：类似 <strong>provided</strong>，需要显式提供包含依赖的 <strong>jar</strong>，<strong>Maven</strong> 不会在 <strong>Repository</strong> 中查找它</li>
+</ul>
+</li>
+</ul>
+<h2 id="第六节生命周期"><a href="#第六节生命周期" class="headerlink" title="第六节	生命周期"></a>第六节	生命周期</h2><ul>
+<li><p><strong>Maven</strong> 有三套相互独立的生命周期，不论执行生命周期的哪一个阶段，<strong>maven</strong> 都是从这个生命周期的开始执行</p>
+<ul>
+<li><p><strong>Clean</strong>生命周期：在进行真正的构建之前进行一些清理工作</p>
+<ul>
+<li><strong>pre-clean</strong>：执行一些需要在 <strong>clean</strong> 之前完成的工作</li>
+<li><strong>clean</strong>：移除所有上一次构建生成的文件</li>
+</ul>
+<ul>
+<li><strong>post-clean</strong>：执行一些需要在 <strong>clean</strong> 之后立刻完成的工作</li>
+</ul>
+</li>
+<li><p><strong>Default</strong>生命周期：构建的核心部分，编译，测试，打包，部署等等</p>
+<ul>
+<li><strong>validate</strong>：校验项目是否正确并且所有必要的信息可以完成项目的构建过程</li>
+<li><strong>generate-sources</strong>：生成包含在编译阶段中的任何源代码</li>
+<li><strong>process-sources</strong>：处理源代码，比如说，过滤任意值</li>
+<li><strong>generate-resources</strong>：生成将会包含在项目包中的资源文件</li>
+<li><strong>process-resources</strong>：复制并处理资源文件，至目标目录，准备打包</li>
+<li><strong>compile</strong>：编译项目的源代码</li>
+<li><strong>process-classes</strong>：处理编译生成的文件，比如说对Java class文件做字节码改善优化</li>
+<li><strong>generate-test-sources</strong>：生成包含在编译阶段中的任何测试源代码</li>
+<li><strong>process-test-sources</strong>：处理测试源代码，比如说，过滤任意值</li>
+<li><strong>generate-test-resources</strong>：为测试创建资源文件</li>
+<li><strong>process-test-resources</strong>：复制并处理资源文件，至目标测试目录</li>
+<li><strong>test-compile</strong>：编译测试源代码</li>
+<li><strong>process-test-classes</strong>：处理测试源码编译生成的文件</li>
+<li><strong>test</strong>：使用合适的单元测试框架运行测试。这些测试代码不会被打包或部署</li>
+<li><strong>prepare-package</strong>：在实际打包之前，执行任何的必要的操作为打包做准备</li>
+<li><strong>package</strong>：将编译后的代码打包成可分发格式的文件，比如JAR、WAR或者EAR文件</li>
+<li><strong>pre-integration-test</strong>：在执行集成测试前进行必要的动作。比如说，搭建需要的环境</li>
+<li><strong>integration-test</strong>：处理和部署项目到可以运行集成测试环境中</li>
+<li><strong>post-integration-test</strong>：在执行集成测试完成后进行必要的动作。比如说，清理集成测试环境</li>
+<li><strong>verify</strong>：运行任意的检查来验证项目包有效且达到质量标准</li>
+<li><strong>install</strong>：将包安装至本地仓库，以让其它项目依赖。</li>
+<li><strong>deploy</strong>：将最终的包复制到远程的仓库，以让其它开发人员与项目共享</li>
+</ul>
+</li>
+<li><p><strong>Site</strong>生命周期：创建新的报告文档、部署站点等</p>
+<ul>
+<li><strong>pre-site</strong>：执行一些需要在生成站点文档之前完成的工作</li>
+<li><strong>site</strong>：生成项目的站点文档</li>
+<li><strong>post-site</strong>： 执行一些需要在生成站点文档之后完成的工作，并且为部署做准备</li>
+<li><strong>site-deploy</strong>：将生成的站点文档部署到特定的服务器上</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>插件：</strong>每个阶段都有插件，插件的职责就是执行它对应的命令</p>
+</li>
+</ul>
+<h2 id="第七节maven工程的依赖高级特性"><a href="#第七节maven工程的依赖高级特性" class="headerlink" title="第七节	maven工程的依赖高级特性"></a>第七节	maven工程的依赖高级特性</h2><ul>
+<li><p><strong>依赖的传递性</strong>：在项目往往需要引入多个依赖， 而引入的依赖又会引入其他的依赖，形成依赖的传递性</p>
+</li>
+<li><p><strong>依赖版本的原则</strong></p>
+<ul>
+<li><strong>最短路径原则</strong>：对于多级依赖出现相同 <strong>jar</strong> 的不同版本，<strong>maven</strong> 会选择路径最短的依赖</li>
+<li><strong>声明优先原则</strong>：对于多级依赖出现相同 <strong>jar</strong> 的不同版本，并且所经历的路径相同时，<strong>maven</strong> 会选择最先声明的依赖版本</li>
+<li><strong>同级依赖，后声明会覆盖先声明原则</strong>：对于同一级的依赖出现相同 <strong>jar</strong> 的不同版本，**maven **会根据依赖声明的先后顺序，选择后声明的依赖版本</li>
+</ul>
+</li>
+<li><p><strong>统一管理依赖的版本</strong>：为了统一管理版本号，可以使用 <strong>properties</strong> 标签，里面可以自定义版本的标签名</p>
+</li>
+</ul>
+<h2 id="第八节build配置"><a href="#第八节build配置" class="headerlink" title="第八节	build配置"></a>第八节	build配置</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">　　<span class="comment">&lt;!-- 项目的名字 --&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">finalName</span>&gt;</span>WebMavenDemo<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line">　　<span class="comment">&lt;!-- 描述项目中资源的位置 --&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">　　　　<span class="comment">&lt;!-- 自定义资源1 --&gt;</span></span><br><span class="line">　　　　<span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">　　　　　　<span class="comment">&lt;!-- 资源目录 --&gt;</span></span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/java<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">　　　　　　<span class="comment">&lt;!-- 包括哪些文件参与打包 --&gt;</span></span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">　　　　　　　　<span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.xml<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">　　　　　　<span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">　　　　　　<span class="comment">&lt;!-- 排除哪些文件不参与打包 --&gt;</span></span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">excludes</span>&gt;</span></span><br><span class="line">　　　　　　　　<span class="tag">&lt;<span class="name">exclude</span>&gt;</span>**/*.txt<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">　　　　　　　　　　<span class="tag">&lt;<span class="name">exclude</span>&gt;</span>**/*.doc<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">　　　　　　<span class="tag">&lt;/<span class="name">excludes</span>&gt;</span></span><br><span class="line">　　　　<span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br><span class="line">　　<span class="comment">&lt;!-- 设置构建时候的插件 --&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">　　　　<span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">　　　　　　　　<span class="comment">&lt;!-- 源代码编译版本 --&gt;</span></span><br><span class="line">　　　　　　　　<span class="tag">&lt;<span class="name">source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">　　　　　　　　<span class="comment">&lt;!-- 目标平台编译版本 --&gt;</span></span><br><span class="line">　　　　　　　　<span class="tag">&lt;<span class="name">target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">　　　　　　<span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">　　　　<span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">　　　　<span class="comment">&lt;!-- 资源插件（资源的插件） --&gt;</span>  </span><br><span class="line">　　　　<span class="tag">&lt;<span class="name">plugin</span>&gt;</span>  </span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>  </span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-resources-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>  </span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span>  </span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">executions</span>&gt;</span>  </span><br><span class="line">　　　　　　　　<span class="tag">&lt;<span class="name">execution</span>&gt;</span>  </span><br><span class="line">　　　　　　　　　　<span class="tag">&lt;<span class="name">phase</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">phase</span>&gt;</span>  </span><br><span class="line">　　　　　　　　<span class="tag">&lt;/<span class="name">execution</span>&gt;</span>  </span><br><span class="line">　　　　　　<span class="tag">&lt;/<span class="name">executions</span>&gt;</span>  </span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">configuration</span>&gt;</span>  </span><br><span class="line">　　　　　　　　<span class="tag">&lt;<span class="name">encoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">encoding</span>&gt;</span>  </span><br><span class="line">　　　　　　<span class="tag">&lt;/<span class="name">configuration</span>&gt;</span> </span><br><span class="line">　　　　<span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">　　　　<span class="comment">&lt;!-- war插件(将项目打成war包) --&gt;</span>  </span><br><span class="line">　　　　<span class="tag">&lt;<span class="name">plugin</span>&gt;</span>  </span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>  </span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-war-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>  </span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span>  </span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">　　　　　　　　<span class="comment">&lt;!-- war包名字 --&gt;</span>  </span><br><span class="line">　　　　　　　　<span class="tag">&lt;<span class="name">warName</span>&gt;</span>WebMavenDemo1<span class="tag">&lt;/<span class="name">warName</span>&gt;</span></span><br><span class="line">　　　　　　<span class="tag">&lt;/<span class="name">configuration</span>&gt;</span>  </span><br><span class="line">　　　　<span class="tag">&lt;/<span class="name">plugin</span>&gt;</span>  </span><br><span class="line">　　<span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">huzzsea</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/01/28/Maven/">http://example.com/2024/01/28/Maven/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">huzzsea</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/01/28/RESTful/" title="RESTful"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">RESTful</div></div></a></div><div class="next-post pull-right"><a href="/2024/01/28/Makefile/" title="Makefile"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Makefile</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">huzzsea</div><div class="author-info__description">心有所向，无问东西</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Maven"><span class="toc-number">1.</span> <span class="toc-text">Maven</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%8A%82%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81Maven"><span class="toc-number">1.1.</span> <span class="toc-text">第一节	为什么需要Maven</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%8A%82Maven%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.2.</span> <span class="toc-text">第二节	Maven介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%8A%82Maven%E5%85%A5%E9%97%A8"><span class="toc-number">1.3.</span> <span class="toc-text">第三节	Maven入门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E8%8A%82%E4%BB%93%E5%BA%93%E5%92%8C%E5%9D%90%E6%A0%87"><span class="toc-number">1.4.</span> <span class="toc-text">第四节	仓库和坐标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E8%8A%82%E4%BE%9D%E8%B5%96"><span class="toc-number">1.5.</span> <span class="toc-text">第五节	依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E8%8A%82%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">1.6.</span> <span class="toc-text">第六节	生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E8%8A%82maven%E5%B7%A5%E7%A8%8B%E7%9A%84%E4%BE%9D%E8%B5%96%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7"><span class="toc-number">1.7.</span> <span class="toc-text">第七节	maven工程的依赖高级特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AB%E8%8A%82build%E9%85%8D%E7%BD%AE"><span class="toc-number">1.8.</span> <span class="toc-text">第八节	build配置</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/28/RESTful/" title="RESTful">RESTful</a><time datetime="2024-01-28T15:07:40.000Z" title="发表于 2024-01-28 23:07:40">2024-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/28/Maven/" title="Maven">Maven</a><time datetime="2024-01-28T15:07:29.000Z" title="发表于 2024-01-28 23:07:29">2024-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/28/Makefile/" title="Makefile">Makefile</a><time datetime="2024-01-28T15:07:14.000Z" title="发表于 2024-01-28 23:07:14">2024-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/28/Gradle/" title="Gradle">Gradle</a><time datetime="2024-01-28T15:07:02.000Z" title="发表于 2024-01-28 23:07:02">2024-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/28/Git/" title="Git">Git</a><time datetime="2024-01-28T15:06:53.000Z" title="发表于 2024-01-28 23:06:53">2024-01-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By huzzsea</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

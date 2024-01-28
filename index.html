@@ -53,7 +53,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-01-28 23:02:07'
+  postUpdate: '2024-01-28 23:09:14'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -150,7 +150,174 @@
         }
       }
       detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="huzzsea"><span class="site-name">huzzsea</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">huzzsea</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/01/28/JDBC/" title="JDBC">JDBC</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-28T14:59:12.000Z" title="发表于 2024-01-28 22:59:12">2024-01-28</time></span></div><div class="content">JDBC第一章	JDBC技术概述1.1	JDBC技术概念和理解
+    })(window)</script><meta name="generator" content="Hexo 7.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="huzzsea"><span class="site-name">huzzsea</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">huzzsea</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/01/28/RESTful/" title="RESTful">RESTful</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-28T15:07:40.000Z" title="发表于 2024-01-28 23:07:40">2024-01-28</time></span></div><div class="content">RESTful第一节	RESTful概述
+RESTful 简介：全称 Representational State Transfer，即表述性状态传递，在 2000 年被提出，基于 HTTP、URI、XML、JSON 等标准和协议，支持轻量级、跨平台、跨语言的架构设计，是Web服务的一种新的架构风格
+轻量级：代码不被侵入，轻量级跟包大小无关，耦合性越低，越轻量
+RESTful 主要原则
+对网络上所有的资源都有一个资源标志符
+对资源的操作不会改变标识符
+同一资源有多种表现形式
+所有操作都是无状态的
+
+
+无状态性：使得客户端和服务器端不必保存对方的详细信息，服务器只需要处理当前的请求，不需了解请求的历史，可以更容易的释放资源，让服务器利用连接池技术来提高稳定性和性能
+
+第二节	RESTful介绍
+响应设计：数据接收到即可使用，无需拆箱，在一次请求中，内容正文仅仅用于传输数据，请求头中存放描述请求或请求的元数据
+
+RESTful 资源操作
+
+
+
+HTTP方法
+资源操作
+幂等
+安全
+
+
+
+GET
+SELECT
+是
+是
+
+
+POST
+INSERT
+否
+否
+
+
+PUT
+UPDATE
+是
+否
+
+
+D ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/01/28/Maven/" title="Maven">Maven</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-28T15:07:29.000Z" title="发表于 2024-01-28 23:07:29">2024-01-28</time></span></div><div class="content">Maven第一节	为什么需要Maven一个项目就是一个工程
+如果项目非常庞大，就不适合使用 package 来划分模块，最好是每一个模块对应一个工程，利于分工协作，借助于maven 就可以将一个项目拆分成多个工程
+项目中使用 jar 包，需要“复制”、“粘贴”项目的 lib 中
+同样的 jar 包重复的出现在不同的项目工程中，你需要做不停的复制粘贴的重复工作，借助于 maven，可以将 jar 包保存在“仓库”中，不管在哪个项目只要使用引用即可就行
+jar 包需要的时候每次都要自己准备好或到官网下载
+借助于 maven 我们可以使用统一的规范方式下载 jar 包，规范
+jar 包版本不一致的风险
+不同的项目在使用 jar 包的时候，有可能会导致各个项目的 jar 包版本不一致，导致未执行错误，借助于 maven，所有的 jar 包都放在“仓库”中，所有的项目都使用仓库的一份 jar 包
+一个 jar 包依赖其他的 jar 包需要自己手动的加入到项目中
+jar 的依赖关系极大的浪费了我们导入包的时间成本，也极大的增加了学习成本，借助于 maven，它会自动的将依赖的 jar 包导入进来
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/01/28/Makefile/" title="Makefile">Makefile</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-28T15:07:14.000Z" title="发表于 2024-01-28 23:07:14">2024-01-28</time></span></div><div class="content">Makefile第一节	依赖关系通过 make 命令进行代码工程编译，其实际过程就是按照开发者在 Makefile 文件中所描述的模块与模块、模块与源代码文件之间的依赖关系，将源代码文件编译成 obj 文件，再将 obj 文件链接成库文件或可执行程序文件的过程
+如果程序只有一个源代码文件 main.c，那么下面一条命令就可以完成程序 test 的编译，其依赖关系非常简单，就是可执行程序 test 依赖于源文件 main.c
+1gcc main.c -o test
+
+但软件项目中，模块之间的依赖关系一般比较复杂，想要通过一条命令 gcc命令完成项目的编译非常困难，并且不利于扩展和维护
+下面给出一个简单工程示例，如何用 Makefile 规则为其快速编写一套编译脚本。
+
+简单的工程中目标文件与源文件依赖关系
+123456789101112131415# test依赖于libtest.a main.otest: libtest.a main.o	gcc main.o -ltest -L. -o test# main.o依赖于main.cmain.o:main.c	gcc main.c -c  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/01/28/Gradle/" title="Gradle">Gradle</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-28T15:07:02.000Z" title="发表于 2024-01-28 23:07:02">2024-01-28</time></span></div><div class="content">Gradle第一节	Gradle概述
+Gradle 简介：一款 Google 推出的基于 JVM、通用灵活的项目构建工具，支持 Maven，JCenter 多种第三方仓库，支持传递性依赖管理、废弃了繁杂的 xml 文件，转而使用简洁的、支持多种语言的 build 脚本文件
+
+Gradle 项目目录结构
+
+build：封装打包后的字节码，打成的包，测试报告等信息
+gradle：封装包装器文件夹
+src
+main
+java
+resource
+webapp
+
+
+test
+java
+resource
+
+
+
+
+gradlew
+gradlew.bat：包装器启动脚本
+build.gradle：构建脚本
+settings.gradle：设置文件，定义项目及子项目名称信息
+
+
+常用指令
+
+清空 build 目录
+  1gradle clean
+
+编译业务代码和配置文件
+  1gradle classes
+
+编译测试代码，生成测试报告
+  1gradle test
+
+构建项目
+  1gradle build
+
+跳过测试构建项目
+  1gradle build -x test
+
+
+Wrapper 包装器
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/01/28/Git/" title="Git">Git</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-28T15:06:53.000Z" title="发表于 2024-01-28 23:06:53">2024-01-28</time></span></div><div class="content">Git第一节	Git概述
+Git 简介：一个免费的、开源的分布式版本控制系统，可以快速高效地处理从小型到大型的各种项目，Git 易于学习，体积小，性能极快，具有廉价的本地库，方便的暂存区域和多个工作流分支等特性
+版本控制工具
+集中式版本控制工具：有一个单一的集中管理的服务器，保存所有文件的修订版本，而协同工作的人们都通过客户端连到这台服务器，取出最新的文件或者提交更新，例如 CVS,SVN,VSS 等
+分布式版本控制工具：客户端提取的不是最新版本的文件快照，而是把代码仓库完整地镜像下来，任何一处协同工作用的文件发生故障，事后都可以用其他客户端的本地仓库进行恢复，例如 Git，Mercurial，Bazaar 等
+
+
+Git 工作机制
+工作区：存放项目代码的地方
+暂存区：用于临时存放代码的改动，它事实上是一个文件，保存即将提交的文件列表信息，一般存放于 index 文件中
+仓库区：安全存放数据的位置，包含提交的所有版本数据
+
+
+
+第二节	Git常用命令
+设置用户配置
+
+查看用户配置
+  1git config --list
+
+设置用户名
+  1git config --global us ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/01/28/XML/" title="XML">XML</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-28T15:06:46.000Z" title="发表于 2024-01-28 23:06:46">2024-01-28</time></span></div><div class="content">XML第一节	XML简介
+XML简介：全称为 Extensible Markup Language，即可扩展标记语言，是万维网协会推出的一套数据交换标准，被设计用来传输和存储数据，可用于定义 Web 网页上的文档元素以及复杂数据的表述和传输
+XML的特点
+XML 被设计用来传输和存储数据，其焦点在于数据的内容
+XML 标签没有被预定义，需要自行定义标签
+XML 不会替代 HTML，在 Web 应用程序中，XML 用于传输数据，而 HTML 用于格式化并显示数据
+
+
+
+第二节	XML语法规则
+XML文档声明
+  1&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot; ?&gt;
+
+
+version：版本规范声明
+encoding：文档字符编码
+standalone：文档定义是否独立使用
+
+
+XML元素
+
+每个 XML 文档必须有且只有一个根元素
+  123&lt;project&gt;&lt;/project&gt;
+
+XML 元素指的是 XML 文件中出现的标签，一个 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/01/28/JSON/" title="JSON">JSON</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-28T15:06:35.000Z" title="发表于 2024-01-28 23:06:35">2024-01-28</time></span></div><div class="content">JSON第一节	JSON简介
+JSON：全称是 JavaScript Object Notation，即 JavaScript对象标记法，是一种轻量级的数据交换格式，它既易于人阅读和编写，也易于机器解析和生成，而且相比 XML 文件更小，因此迅速成为网络上十分流行的交换格式
+
+第二节	JSON对象定义和基本使用
+语法规则
+
+数组 Array 用方括号 [] 表示
+对象 0bject 用大括号 {} 表示
+名称&#x2F;值对 name&#x2F;value 组合成数组和对象
+名称 name 置于双引号中，值 value 有字符串、数值、布尔值、null、对象和数组
+并列的数据之间用逗号 , 分隔
+
+
+JSON的定义
+  123456789101112131415161718//Json 定义格式：var jsons = &#123;&quot;key1&quot;:&quot;abc&quot;, // 字符串类型&quot;key2&quot;:1234, // Number&quot;key3&quot;:[1234,&quot;21341&quot;,&quot;53&quot; ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/01/28/JDBC/" title="JDBC">JDBC</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-28T14:59:12.000Z" title="发表于 2024-01-28 22:59:12">2024-01-28</time></span></div><div class="content">JDBC第一章	JDBC技术概述1.1	JDBC技术概念和理解
 JDBC概述：全称为 Java Database Connectivity 即 Java 连接数据库，JDBC 由 Java 语言的规范和各个数据库厂商的实现驱动(组成，是一种典型的面向接口编程，只需学习 JDBC 规范接口的方法，即可操作所有的数据库软件
 
 JDBC技术理解
@@ -188,205 +355,4 @@ context.xml：对所有应用的统一配置
 
 
 lib：Tomcat的类库，里面是 jar 文件
-logs：这个 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/01/28/SpringMVC/" title="SpringMVC">SpringMVC</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-28T14:58:28.000Z" title="发表于 2024-01-28 22:58:28">2024-01-28</time></span></div><div class="content">SpringMVC第一章	SpringMVC简介1.1	SpringMVC
-MVC概述：一种软件架构的思想，将软件按照模型、视图、控制器来划分
-M：模型层，指工程中的 JavaBean，可分为实体类和 Service 或 Dao 业务处理类，用于存储业务数据或处理业务逻辑和数据访问
-V：视图层，指工程当中的 html 或 jsp 页面，用于与用户进行交互，展示数据
-C：控制层，指工程当中的 Servlet，用于接收请求和响应浏览器
-
-
-SpringMVC简介：Spring 的一个后续产品，是 Spring 的一个子项目，为表述层开发提供的一整套完备的解决方案
-SpringMVC的特点
-Spring 家族原生产品，与 IOC 容器等基础设施无缝对接
-基于原生的 Servlet，通过了功能强大的前端控制器 DispatcherServlet，对请求和响应进行统一处理
-表述层各细分领域需要解决的问题全方位覆盖，提供全面解决方案
-代码清新简洁，大幅度提升开发效率
-内部组件化程度高，可插拔式组件即插即用，想要什么功能配置相应组件即可
-性能卓著，尤其适合现代大型、超大型互联网项目要求
-
-
-
-1.2 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/01/28/SpringBoot/" title="SpringBoot">SpringBoot</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-28T14:58:10.000Z" title="发表于 2024-01-28 22:58:10">2024-01-28</time></span></div><div class="content">SpringBoot第一节	SpringBoot快速入门1.1	简介
-SpringBoot 简介：SpringBoot 帮我们简单、快速地创建一个独立的、生产级别的 Spring 应用，大多数 SpringBoot 应用只需要编写少量配置即可快速整合 Spring 平台以及第三方技术
-
-SpringBoot 的特性
-
-快速创建独立 Spring 应用
-直接嵌入Tomcat、Jetty 或者 Undertow，无需部署 war 包
-提供可选的 starter，简化应用整合
-按需自动配置 Spring 以及第三方库
-提供生产级特性，如监控指标、健康检查、外部化配置等
-无代码生成、无 xml
-
-
-
-1.2	快速体验
-依赖配置
-
-继承父项目
-  123456&lt;parent&gt;    &lt;!--所有springboot项目都必须继承--&gt;    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactI ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/01/28/Spring/" title="Spring">Spring</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-28T14:57:55.000Z" title="发表于 2024-01-28 22:57:55">2024-01-28</time></span></div><div class="content">Spring第一节	Spring概述
-Spring简介：Spring 是最受欢迎的企业级 Java 应用程序开发框架，最初是由 Rod Johnson 编写的，并且于 2003 年 6 月首次发布
-  ，其核心特性是可以用于开发任何 Java 应用程序，目标是使 J2EE 开发变得更容易使用
-
-Spring的特点
-
-非侵入式：使用 Spring Framework 开发应用程序时，Spring 对应用程序本身的结构影响非常小。对领域模型可以做到零污染；对功能性组件也只需要使用几个简单的注解进行标记，完全不会破坏原有结构，反而能将组件结构进一步简化。这就使得基于 Spring Framework 开发应用程序时结构清晰、简洁优雅
-
-控制反转：翻转资源获取方向，把自己创建资源、向环境索取资源变成环境将资源准备好，我们享受资源注入
-
-面向切面编程：在不修改源代码的基础上增强代码功能
-
-容器：Spring IoC 是一个容器，因为它包含并且管理组件对象的生命周期。组件享受到了容器化的管理，替程序员屏蔽了组件创建过程中的大量细节，极大的降低了使用门槛，大幅度提高了开发效率
-
-组件化：Spring ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/01/28/MyBatis/" title="MyBatis">MyBatis</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-28T14:57:41.000Z" title="发表于 2024-01-28 22:57:41">2024-01-28</time></span></div><div class="content">MyBatis第一节	Mybatis简介
-Mybatis简介：MyBatis 最初是 Apache 的一个开源项目 iBatis, 后迁移到了 Google Code，正式更名为MyBatis，Mybatis 是一个基于 Java 的持久层框架，提供的持久层框架包括 SQL Maps 和 Data Access Objects
-MyBatis的特性
-支持定制化 SQL、存储过程以及高级映射的优秀的持久层框架
-避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集
-可以使用简单的 XML 或注解用于配置和原始映射，将接口和 Java 的 POJO 映射成数据库中的记录
-半自动的  ORM 框架
-
-
-技术优势
-JDBC 的特点：
-SQL 夹杂在 Java 代码中耦合度高，导致硬编码内伤  
-维护不易且实际开发需求中 SQL 有变化，频繁修改的情况多见  
-代码冗长，开发效率低
-
-
-Hibernate 和 JPA 的特点：
-操作简便，开发效率高  
-程序中的长难复杂 SQL 需要绕过框架  
-内部自动生产的 SQL，不容易做特殊优化  
-基于全映射的全自动框架，大量字段的 POJO 进 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/01/28/Docker/" title="Docker">Docker</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-28T14:56:40.000Z" title="发表于 2024-01-28 22:56:40">2024-01-28</time></span></div><div class="content">Docker第一节	Docker简介
-Docker 与传统虚拟化
-传统虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程
-容器内的应用进程直接运行于宿主的内核，容器内没有自己的内核且也没有进行硬件虚拟。因此容器要比传统虚拟机更为轻便
-每个容器之间互相隔离，每个容器有自己的文件系统 ，容器之间进程不会相互影响，能区分计算资源
-
-
-Docker 三要素
-镜像：应用程序和配置依赖打包好形成一个可交付的运行环境，可以用来创建 Docker 容器，一个镜像可以创建很多容器
-容器：容器为镜像提供了一个标准的和隔离的运行环境，它可以被启动、开始、停止、删除，每个容器都是相互隔离的、保证安全的平台
-仓库：集中存放镜像文件的场所
-
-
-Docker 工作架构
-守护进程运行在主机上，通过 Socket 连接从客户端访问，守护进程从客户端接收命令并管理运行在主机上的容器
-本地寻找镜像，如果不存在，通过远程仓库获取镜像
-如果存在镜像，直接依据本地的镜像生成容器实例
-
-
-
-第二节	Docker常用命令2.1	Docker帮助命令
-常用帮助命令
-
-
-
-操作
-命令
-
-
-
-启动
-sy ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/01/28/Java%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/" title="Java编程思想">Java编程思想</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-28T14:55:47.000Z" title="发表于 2024-01-28 22:55:47">2024-01-28</time></span></div><div class="content">Java编程思想第一章	对象导论1.1	抽象过程
-抽象机制：所有编程语言都提供抽象机制，问题的复杂性取决于类型和质量
-抽象语言的五大特征
-万物皆为对象
-程序是对象的集合，它们通过发送消息来告知彼此所要做的
-每个对象都有自己的由其他对象所构成的存储
-每个对象都拥有类型
-某一特定类型的所有对象都可以接收同样的消息
-
-
-对对象的描述：对象具有状态，行为和标识
-
-1.2	每个对象都有一个接口
-类描述了具有相同特性（数据元素）和行为（功能）的对象集合
-类实际上就是一个数据类型，程序员通过定义类来适应问题，编程系统欣然接受新的类
-接口确定了对某一特定对象所能发出的请求
-
-1.3	每个对象都提供服务
-将对象想象为“服务提供者”，程序本身将向用户提供服务
-服务提供者的思想有助于提高对象的内聚性，意味着一个软件构件的各个方面组合得很好
-
-1.4	被隐藏的具体实现
-程序开发人员可分为类创建者（创建新数据类型的程序员）和客户端程序员（使用数据类型的类消费者）
-
-访问控制约束了客户端程序员，将实现隐藏起来
-
-访问控制允许库设计者可以改变类内部的工作方式而不用担心会影响到客户端程序员
-
-
-1.5	复用具体体现
- ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/01/28/Java-SE%E5%9F%BA%E7%A1%80/" title="Java SE基础">Java SE基础</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-01-28T14:54:18.000Z" title="发表于 2024-01-28 22:54:18">2024-01-28</time></span></div><div class="content">Java SE基础第一章	基本数据类型
-
-
-数据类型
-描述
-位数
-默认值
-
-
-
-byte
-位
-8
-0
-
-
-short
-短整数
-16
-0
-
-
-int
-整数
-32
-0
-
-
-long
-长整数
-64
-0
-
-
-float
-单精度浮点数
-32
-0.0
-
-
-double
-双精度浮点数
-64
-0.0
-
-
-char
-字符
-16
-null
-
-
-boolean
-布尔值
-8
-false
-
-
-第二章	数组
-定义数组
-  123int[] a = &#123;1,2,3&#125;;int[] a = new int[3];int[] a = new int[]&#123;1,2,3&#125;;
-
-输出数组地址
-  1System.out.println(a);
-
-数组转字符串
-  1System.out.println(a.toString());
-
-第三章	方法3.1	方法重载
-重载：指一个类中可以有多个方法具有相同的方法名，但这些方法的参数类型不同、个数不同、顺序不同
-  1234567public static void f() &#123;     System.out.println(&quot;3 ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">huzzsea</div><div class="author-info__description">心有所向，无问东西</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/28/JDBC/" title="JDBC">JDBC</a><time datetime="2024-01-28T14:59:12.000Z" title="发表于 2024-01-28 22:59:12">2024-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/28/JavaWeb/" title="JavaWeb">JavaWeb</a><time datetime="2024-01-28T14:59:01.000Z" title="发表于 2024-01-28 22:59:01">2024-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/28/Jakarta/" title="Jakarta">Jakarta</a><time datetime="2024-01-28T14:58:51.000Z" title="发表于 2024-01-28 22:58:51">2024-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/28/SpringMVC/" title="SpringMVC">SpringMVC</a><time datetime="2024-01-28T14:58:28.000Z" title="发表于 2024-01-28 22:58:28">2024-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/28/SpringBoot/" title="SpringBoot">SpringBoot</a><time datetime="2024-01-28T14:58:10.000Z" title="发表于 2024-01-28 22:58:10">2024-01-28</time></div></div></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><span class="card-archive-list-count">10</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">12</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-01-28T15:02:07.691Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By huzzsea</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+logs：这个 ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">huzzsea</div><div class="author-info__description">心有所向，无问东西</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/28/RESTful/" title="RESTful">RESTful</a><time datetime="2024-01-28T15:07:40.000Z" title="发表于 2024-01-28 23:07:40">2024-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/28/Maven/" title="Maven">Maven</a><time datetime="2024-01-28T15:07:29.000Z" title="发表于 2024-01-28 23:07:29">2024-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/28/Makefile/" title="Makefile">Makefile</a><time datetime="2024-01-28T15:07:14.000Z" title="发表于 2024-01-28 23:07:14">2024-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/28/Gradle/" title="Gradle">Gradle</a><time datetime="2024-01-28T15:07:02.000Z" title="发表于 2024-01-28 23:07:02">2024-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/28/Git/" title="Git">Git</a><time datetime="2024-01-28T15:06:53.000Z" title="发表于 2024-01-28 23:06:53">2024-01-28</time></div></div></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><span class="card-archive-list-count">17</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">19</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-01-28T15:09:14.272Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By huzzsea</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

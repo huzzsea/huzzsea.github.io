@@ -8214,4 +8214,857 @@
 </ul>
 ]]></content>
   </entry>
+  <entry>
+    <title>Gradle</title>
+    <url>/2024/01/28/Gradle/</url>
+    <content><![CDATA[<h1 id="Gradle"><a href="#Gradle" class="headerlink" title="Gradle"></a>Gradle</h1><h2 id="第一节Gradle概述"><a href="#第一节Gradle概述" class="headerlink" title="第一节	Gradle概述"></a>第一节	Gradle概述</h2><ul>
+<li><p><strong>Gradle 简介</strong>：一款 <strong>Google</strong> 推出的基于 <strong>JVM</strong>、通用灵活的项目构建工具，支持 <strong>Maven</strong>，<strong>JCenter</strong> 多种第三方仓库，支持传递性依赖管理、废弃了繁杂的 <strong>xml</strong> 文件，转而使用简洁的、支持多种语言的 <strong>build</strong> 脚本文件</p>
+</li>
+<li><p><strong>Gradle 项目目录结构</strong></p>
+<ul>
+<li><strong>build</strong>：封装打包后的字节码，打成的包，测试报告等信息</li>
+<li><strong>gradle</strong>：封装包装器文件夹</li>
+<li><strong>src</strong><ul>
+<li><strong>main</strong><ul>
+<li><strong>java</strong></li>
+<li><strong>resource</strong></li>
+<li><strong>webapp</strong></li>
+</ul>
+</li>
+<li><strong>test</strong><ul>
+<li><strong>java</strong></li>
+<li><strong>resource</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>gradlew</strong></li>
+<li><strong>gradlew.bat</strong>：包装器启动脚本</li>
+<li><strong>build.gradle</strong>：构建脚本</li>
+<li><strong>settings.gradle</strong>：设置文件，定义项目及子项目名称信息</li>
+</ul>
+</li>
+<li><p><strong>常用指令</strong></p>
+<ul>
+<li><p>清空 <strong>build</strong> 目录</p>
+  <figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">gradle clean</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编译业务代码和配置文件</p>
+  <figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">gradle classes</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编译测试代码，生成测试报告</p>
+  <figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">gradle test</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>构建项目</p>
+  <figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">gradle build</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>跳过测试构建项目</p>
+  <figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">gradle build -x test</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>Wrapper 包装器</strong></p>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>Git</title>
+    <url>/2024/01/28/Git/</url>
+    <content><![CDATA[<h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><h2 id="第一节Git概述"><a href="#第一节Git概述" class="headerlink" title="第一节	Git概述"></a>第一节	Git概述</h2><ul>
+<li><strong>Git 简介</strong>：一个免费的、开源的分布式版本控制系统，可以快速高效地处理从小型到大型的各种项目，<strong>Git</strong> 易于学习，体积小，性能极快，具有廉价的本地库，方便的暂存区域和多个工作流分支等特性</li>
+<li><strong>版本控制工具</strong><ul>
+<li><strong>集中式版本控制工具</strong>：有一个单一的集中管理的服务器，保存所有文件的修订版本，而协同工作的人们都通过客户端连到这台服务器，取出最新的文件或者提交更新，例如 <strong>CVS</strong>,<strong>SVN</strong>,<strong>VSS</strong> 等</li>
+<li><strong>分布式版本控制工具</strong>：客户端提取的不是最新版本的文件快照，而是把代码仓库完整地镜像下来，任何一处协同工作用的文件发生故障，事后都可以用其他客户端的本地仓库进行恢复，例如 <strong>Git</strong>，<strong>Mercurial</strong>，<strong>Bazaar</strong> 等</li>
+</ul>
+</li>
+<li><strong>Git 工作机制</strong><ul>
+<li><strong>工作区</strong>：存放项目代码的地方</li>
+<li><strong>暂存区</strong>：用于临时存放代码的改动，它事实上是一个文件，保存即将提交的文件列表信息，一般存放于 <strong>index</strong> 文件中</li>
+<li><strong>仓库区</strong>：安全存放数据的位置，包含提交的所有版本数据</li>
+</ul>
+</li>
+</ul>
+<h2 id="第二节Git常用命令"><a href="#第二节Git常用命令" class="headerlink" title="第二节	Git常用命令"></a>第二节	Git常用命令</h2><ul>
+<li><p><strong>设置用户配置</strong></p>
+<ul>
+<li><p><strong>查看用户配置</strong></p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --list</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>设置用户名</strong></p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>设置邮箱</strong></p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.email</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>初始化本地库</strong></p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>查看本地库状态</strong></p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>添加暂存区</strong></p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add [filename]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>提交到本地库</strong></p>
+<ul>
+<li><p><strong>添加提交备注</strong></p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -m [message] [filename]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>跳过缓存步骤</strong></p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -am [message] [filename]</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>历史版本</strong></p>
+<ul>
+<li><p><strong>查看历史版本</strong></p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reflog // 查看版本信息</span><br><span class="line">git <span class="built_in">log</span> // 查看详细版本信息</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>版本穿梭</strong></p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset --hard [version] // 切换版本</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="第三节Git的分支操作"><a href="#第三节Git的分支操作" class="headerlink" title="第三节	Git的分支操作"></a>第三节	Git的分支操作</h2><ul>
+<li><p><strong>分支</strong>：在版本控制过程中，同时推进多个任务，创建每个任务的单独分支，使用分支可以把自己的工作从开发主线上分离开来，开发自己分支的时候，不会影响主线分支的运行</p>
+</li>
+<li><p><strong>查看分支</strong></p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -v</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>创建分支</strong></p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch [branchname]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>切换分支</strong></p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout [branchname]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>合并分支</strong></p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git merge [branchname]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>解决冲突</strong></p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">// 手动合并冲突</span><br><span class="line">git add *</span><br><span class="line">git commit</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="第四节GitHub操作"><a href="#第四节GitHub操作" class="headerlink" title="第四节	GitHub操作"></a>第四节	GitHub操作</h2><ul>
+<li><p><strong>创建远程仓库别名</strong></p>
+<ul>
+<li><p><strong>查看远程地址别名</strong></p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote -v </span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>创建远程别名</strong></p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote add [<span class="built_in">alias</span>] [address]</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>推送本地分支到远程仓库</strong></p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push [<span class="built_in">alias</span>] [branname]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>克隆远程仓库到本地</strong></p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> [address]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>拉取远程库内容</strong></p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull [<span class="built_in">alias</span>] [branchname]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>跨团队协作</strong>：使用 <strong>fork</strong> 命令复刻他人的项目地址，作出修改后提交推送申请，被同意后即可完成推送</p>
+</li>
+<li><p><strong>SSH 免密登录</strong></p>
+<ul>
+<li><p><strong>删除原有密钥</strong></p>
+</li>
+<li><p><strong>创建密钥</strong></p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;[address]&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>远程仓库添加密钥</strong></p>
+</li>
+<li><p><strong>克隆远程仓库</strong></p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> [address]</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="第五节IDEA集成Git"><a href="#第五节IDEA集成Git" class="headerlink" title="第五节	IDEA集成Git"></a>第五节	IDEA集成Git</h2><ul>
+<li><strong>Git 忽略文件</strong>：与项目的实际功能无关，不参与服务器上部署运行，把它们忽略掉能够屏蔽 <strong>IDE</strong> 工具之间的差异</li>
+<li><strong>分支整合</strong><ul>
+<li><strong>变基</strong>：是将一个分支的更改应用到另一个分支的过程，不同于合并操作，它会将分支上的提交重新应用在目标分支上</li>
+<li><strong>合并</strong>：是将一个分支的更改合并到另一个分支中，它会创建一个新的提交，包含两个分支的更改，合并会在分支历史中保留各个分支的独立提交历史</li>
+</ul>
+</li>
+<li><strong>获取变更</strong><ul>
+<li><strong>提取</strong>：仅会从远程仓库中获取最新的提交记录，不会自动将其应用到本地分支，可以查看远程仓库上的变更情况，然后再决定是否将其合并到本地分支上</li>
+<li><strong>拉取</strong>：先从远程仓库中获取最新的提交记录，然后将这些提交记录应用到本地分支上，可以更新本地分支，使其与远程分支保持同步，在执行拉取操作时，还可以选择将远程分支合并到当前本地分支上</li>
+</ul>
+</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>Makefile</title>
+    <url>/2024/01/28/Makefile/</url>
+    <content><![CDATA[<h1 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h1><h2 id="第一节依赖关系"><a href="#第一节依赖关系" class="headerlink" title="第一节	依赖关系"></a>第一节	依赖关系</h2><p>通过 <strong>make</strong> 命令进行代码工程编译，其实际过程就是按照开发者在 <strong>Makefile</strong> 文件中所描述的模块与模块、模块与源代码文件之间的依赖关系，将源代码文件编译成 <strong>obj</strong> 文件，再将 <strong>obj</strong> 文件链接成库文件或可执行程序文件的过程</p>
+<p>如果程序只有一个源代码文件 <strong>main.c</strong>，那么下面一条命令就可以完成程序 <strong>test</strong> 的编译，其依赖关系非常简单，就是可执行程序 <strong>test</strong> 依赖于源文件 <strong>main.c</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc main.c -o <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<p>但软件项目中，模块之间的依赖关系一般比较复杂，想要通过一条命令 <strong>gcc</strong>命令完成项目的编译非常困难，并且不利于扩展和维护</p>
+<p>下面给出一个简单工程示例，如何用 <strong>Makefile</strong> 规则为其快速编写一套编译脚本。</p>
+<p><img src="C:\Users\86172\Pictures\Markdown\Makefile\v2-d7ed0199af5277cf04982e8502c65dfb_1440w.webp" alt="img"></p>
+<p>简单的工程中目标文件与源文件依赖关系</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line"># test依赖于libtest.a main.o</span><br><span class="line">test: libtest.a main.o</span><br><span class="line">	gcc main.o -ltest -L. -o test</span><br><span class="line"># main.o依赖于main.c</span><br><span class="line">main.o:main.c</span><br><span class="line">	gcc main.c -c -o main.o</span><br><span class="line"># libtest.a依赖于test1.o test2.o</span><br><span class="line">libtest.a: test1.o test2.o</span><br><span class="line">	ar -r libtest.a test1.o test2.o</span><br><span class="line"># test1.o依赖于test1.c</span><br><span class="line">test1.o:test1.c</span><br><span class="line">	gcc test1.c -c -o test1.o</span><br><span class="line"># test2.o依赖于test2.c</span><br><span class="line">test2.o:test2.c</span><br><span class="line">	gcc test2.c -c -o test2.o</span><br></pre></td></tr></table></figure>
+
+<p>将所有源文件和 <strong>Makefile</strong> 放在一个目录下，执行 <strong>make</strong> 命令，可以看到直接生成了可执行程序 <strong>test</strong>，这里没有使用<strong>Makefile</strong> 里面任何技巧，仅仅使用 <strong>Makefile</strong> 的规则描述了各个文件之间的依赖关系</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">target... : prerequisites ...</span><br><span class="line">          command</span><br><span class="line">          ......</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>target</strong>：可以是一个 <strong>object file</strong>（目标文件），也可以是一个执行文件，还可以是一个标签 <strong>label</strong></p>
+<p><strong>prerequisites</strong>：生成该 <strong>target</strong> 所依赖的文件，可以有多个依赖</p>
+<p><strong>command</strong>：该 <strong>target</strong> 要执行的命令（任意的 <strong>shell</strong> 命令）</p>
+</blockquote>
+<p>当要生成目标 <strong>test</strong> 时，<strong>make</strong> 工具会从 <strong>test</strong> 开始依次寻找依赖关系，由源文件逐步生成目标 <strong>test</strong>。<strong>test</strong> 依赖于 <strong>libtest.a</strong> 和 <strong>main.o</strong>，如果 <strong>libtest.a</strong> 和 <strong>main.o</strong> 存在，那么将直接使用命令 <strong>gcc main.o -ltest -L. -o test</strong> 生成 <strong>test</strong>；否则再向下遍历，寻找 <strong>libtest.a</strong> 和 <strong>main.o</strong> 的前置条件，去生成 <strong>libtest.a</strong> 和 <strong>main.o</strong>，就这样一直寻找到可以满足的前置条件，逐步生成目标 <strong>test</strong></p>
+<p>在检查依赖关系时，同时会检查目标与源文件的时间戳，当源文件时间戳更新时，<strong>make</strong> 会更新依赖它的链路上所有目录</p>
+<h2 id="第二节变量与函数"><a href="#第二节变量与函数" class="headerlink" title="第二节	变量与函数"></a>第二节	变量与函数</h2><p>上面的 <strong>Makefile</strong> 中，所有的依赖关系中直接使用文件名称，当新增加文件或者模块时，需要手动去添加新的依赖关系，那么这就比较麻烦，不利于扩展，因此可以使用变量，自动完成新依赖关系添加</p>
+<p><strong>Makefile</strong> 中的变量类型基本上就可以直接理解为字符串类型</p>
+<figure class="highlight make"><table><tr><td class="code"><pre><span class="line">SRC = test1.c test2.c main.c</span><br><span class="line">OBJ = test1.o test2.o main.o</span><br><span class="line"></span><br><span class="line"><span class="section">$&#123;OBJ&#125;:$&#123;SRC&#125;</span></span><br><span class="line">	gcc -c $&#123;SRC&#125;</span><br></pre></td></tr></table></figure>
+
+<p>与 <strong>shell</strong> 脚本中的变量类似，定义变量时，直接使用等号赋值，使用变量时用 <strong>${VAR}</strong> 表示即可，上面 <strong>SRC</strong> 和 <strong>OBJ</strong> 变量分别表示 <strong>.c</strong> 与 <strong>.o</strong> 文件，但是展开写太麻烦了，这里可以用更为方便的办法</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">SRC = $(wildcard *.c)</span><br><span class="line">OBJ = $(patsubst %.c,%.o,$&#123;SRC&#125;)</span><br><span class="line"></span><br><span class="line">$&#123;OBJ&#125;:$&#123;SRC&#125;</span><br><span class="line">	gcc -c $&#123;SRC&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里使用了 <strong>Makefile</strong> 中的函数，使用 <strong>$(<function> <arguments>)</strong> 的形式可以调用函数，<strong>Makefile</strong> 与 <strong>shell</strong> 脚本类似，支持通配符</p>
+<table>
+<thead>
+<tr>
+<th>通配符</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>*</td>
+<td>匹配0个或者是任意个字符</td>
+</tr>
+<tr>
+<td>？</td>
+<td>匹配任意一个字符</td>
+</tr>
+<tr>
+<td>[]</td>
+<td>指定匹配的字符放在 “[]” 中</td>
+</tr>
+</tbody></table>
+<p><strong>$(wildcard *.c)</strong> 表示将通配符 <em><strong>.c</strong> 展开，即 <strong>test1.c test2.c main.c</strong>，</em><em>patsubst</em>* 是模式替换函数，<strong>$(patsubst %.c,%.o,${SRC})</strong> 表示将变量 <strong>SRC</strong> 中符合 <strong>%.c</strong> 形式的字符串，修改为 <strong>%.o</strong> 形式</p>
+<p>另外，这里的命令使用了自动化变量</p>
+<table>
+<thead>
+<tr>
+<th>自动化变量</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>$@</strong></td>
+<td>规则的目标文件名(依赖关系中冒号:左边的文件，如果 <strong>a: b c</strong>，那么 <strong>$@</strong> 指 <strong>a</strong>)</td>
+</tr>
+<tr>
+<td><strong>$%</strong></td>
+<td>当目标文件是一个静态库文件时，代表静态库的一个成员名</td>
+</tr>
+<tr>
+<td><strong>$&lt;</strong></td>
+<td>被依赖文件的第一项(如果 <strong>a: b c</strong>，那么 <strong>$&lt;</strong> 指 <strong>b</strong>)</td>
+</tr>
+<tr>
+<td><strong>$?</strong></td>
+<td>所有比目标文件更新的依赖文件列表，空格分隔</td>
+</tr>
+<tr>
+<td><strong>$^</strong></td>
+<td>所有依赖文件列表，使用空格分隔(如果 <strong>a: b c c</strong>，那么 <strong>$^</strong> 指 <strong>b c</strong>)，不包含重复文件</td>
+</tr>
+<tr>
+<td><strong>$+</strong></td>
+<td>所有依赖文件列表，使用空格分隔(如果 <strong>a: b c c</strong>，那么 <strong>$+</strong> 指 <strong>b c c</strong>)，包含重复文件</td>
+</tr>
+<tr>
+<td><strong>$</strong>*</td>
+<td>在模式规则和静态模式规则中的 <strong>%</strong> 所匹配的内容</td>
+</tr>
+</tbody></table>
+<h2 id="第三节伪目标"><a href="#第三节伪目标" class="headerlink" title="第三节	伪目标"></a>第三节	伪目标</h2><figure class="highlight text"><table><tr><td class="code"><pre><span class="line">.PHONY : clean</span><br><span class="line">clean:</span><br><span class="line">	rm *.o *.a test</span><br></pre></td></tr></table></figure>
+
+<p>这里定义了一个 <strong>clean</strong> 目标，它没有依赖，当执行 <strong>make clean</strong> 命令时，会删除所有的 <strong>.o</strong>、**.a** 文件和 <strong>test</strong> 文件，这样就可以利用 <strong>Makefile</strong> 来清除生成的文件。这里 <strong>make clean</strong> 并不是为了生成一个名称为 <strong>clean</strong> 的文件，为了防止文件同名，可以用 <strong>.PHONY</strong> 来声明伪目标</p>
+<h2 id="第四节四种等号"><a href="#第四节四种等号" class="headerlink" title="第四节	四种等号"></a>第四节	四种等号</h2><p><strong>Makefile</strong> 中的等号有4种，**&#x3D;<strong>，</strong>:&#x3D;<strong>，</strong>?&#x3D;<strong>，</strong>+&#x3D;**</p>
+<p><strong>?&#x3D;</strong> 表示，如果左边的变量没有被赋值，那么将等号右边的值赋给左边的变量</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">VAR_A ?= 123</span><br></pre></td></tr></table></figure>
+
+<p>**+&#x3D; ** 表示将等号右边的值追加到左边变量中，类似于C语言中的 <strong>strcat</strong> 函数</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">VAR_B = 123</span><br><span class="line">VAR_B += 456</span><br></pre></td></tr></table></figure>
+
+<p><strong>&#x3D;</strong> 与 <strong>:&#x3D;</strong> 是比较不好区分的两个等号，可以将 <strong>&#x3D;</strong> 理解为址传递或引用，**:&#x3D;** 理解为值传递，类似于浅拷贝和深拷贝</p>
+<figure class="highlight make"><table><tr><td class="code"><pre><span class="line">var_a = 1 2 3</span><br><span class="line">var_b = <span class="variable">$(var_a)</span></span><br><span class="line">var_a += 4</span><br><span class="line"><span class="section">var_a:</span></span><br><span class="line">	echo $&#123;var_a&#125;</span><br><span class="line">	echo $&#123;var_b&#125;</span><br><span class="line">------------------------------------------------------------------------------</span><br><span class="line"><span class="comment"># 执行make var_a的结果:</span></span><br><span class="line">echo 1 2 3 4</span><br><span class="line">1 2 3 4</span><br><span class="line">echo 1 2 3 4</span><br><span class="line">1 2 3 4</span><br><span class="line"><span class="comment">###############################################################################</span></span><br><span class="line">var_a = 1 2 3</span><br><span class="line">var_b := <span class="variable">$(var_a)</span></span><br><span class="line">var_a += 4</span><br><span class="line"><span class="section">var_a:</span></span><br><span class="line">	echo $&#123;var_a&#125;</span><br><span class="line">	echo $&#123;var_b&#125;</span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line"><span class="comment"># 执行make var_a的结果:</span></span><br><span class="line">echo 1 2 3 4</span><br><span class="line">1 2 3 4</span><br><span class="line">echo 1 2 3</span><br><span class="line">1 2 3</span><br></pre></td></tr></table></figure>
+
+<h2 id="第五节环境变量"><a href="#第五节环境变量" class="headerlink" title="第五节	环境变量"></a>第五节	环境变量</h2><p><strong>Makefile</strong> 的执行是受 <strong>shell</strong> 环境变量影响的，<strong>shell</strong> 环境变量会直接传递到 <strong>Makefile</strong> 的执行过程中</p>
+<p>例如，针对语句 <strong>VAR_A ?&#x3D; yes</strong>，如果在 <strong>shell</strong> 中设置过环境变量 <strong>export VAR_A&#x3D;no</strong>，那么在执行 <strong>make</strong> 命令时 <strong>VAR_A</strong> 的值会是no，而不是 <strong>yes</strong>，另外可以在执行 <strong>make</strong> 命令时为传递变量的值，如果执行 <strong>make VAR_A&#x3D;maybe</strong> 命令，那么执行过程中 <strong>VAR_A</strong> 是 <strong>maybe</strong></p>
+<p>利用这个特性，可以在 <strong>Shell</strong> 中设置环境变量来影响 <strong>Makefile</strong> 的执行过程，同样可以在 <strong>Makefile</strong> 中通过修改 <strong>PATH</strong> 等变量的值，来解决找不命令的问题</p>
+<h2 id="第六节变量的嵌套使用"><a href="#第六节变量的嵌套使用" class="headerlink" title="第六节	变量的嵌套使用"></a>第六节	变量的嵌套使用</h2><p><strong>Makefile</strong> 允许变量的嵌套使用，下面的例子中 <strong>${var_a}</strong> 会解释为 <strong>b</strong>，<strong>var_${var_a}</strong> 变成 <strong>var_b</strong>，**${var_${var_a}}** 的值就变成了123</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">var_a = b</span><br><span class="line">var_b = 123</span><br><span class="line">var_c = $&#123;var_$&#123;var_a&#125;&#125;</span><br><span class="line">var_c:</span><br><span class="line">	echo $&#123;var_c&#125;</span><br><span class="line"># 执行make var_c结果</span><br><span class="line">echo 123</span><br><span class="line">123</span><br></pre></td></tr></table></figure>
+
+<h2 id="第七节条件判断"><a href="#第七节条件判断" class="headerlink" title="第七节	条件判断"></a>第七节	条件判断</h2><p>下面给出了一个条件判断的示例，当 <strong>DEBUG_BUILD</strong> 的值是 <strong>yes</strong> 时，<strong>CFLAGS</strong> 中将包含 <strong>-ggdb -ggdb3 -gdwarf-2 -D_DEBUG_&#x3D;1 -g</strong>，否则将包含 <strong>-O3 -DNDEBUG</strong>，通过这段语句，可以在环境变量中设置 <strong>DEBUG_BUILD</strong>，是否生成调试版本的程序</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">ifeq ($&#123;DEBUG_BUILD&#125;,&quot;yes&quot;)</span><br><span class="line">CFLAGS += -ggdb -ggdb3 -gdwarf-2 -D_DEBUG_=1 -g</span><br><span class="line">else</span><br><span class="line">CFLAGS += -O3 -DNDEBUG</span><br><span class="line">endif</span><br></pre></td></tr></table></figure>
+
+<h2 id="第八节关于-与"><a href="#第八节关于-与" class="headerlink" title="第八节	关于@与-"></a>第八节	关于@与-</h2><p>在执行 <strong>make</strong> 命令时，会打印 <strong>Makefile</strong> 里面执行的 <strong>command</strong> ，有时候 <strong>command</strong> 过长，不容易查看编译过程中出现的错误与警告，可以通过在 <strong>command</strong> 前加上 <strong>@</strong> 来取消打印 <strong>command</strong></p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">var_a = 123</span><br><span class="line">var_a:</span><br><span class="line">	echo $&#123;var_a&#125;</span><br><span class="line">-----------------------------</span><br><span class="line"># 执行make var_a输出</span><br><span class="line">echo 123</span><br><span class="line">123</span><br><span class="line">##############################</span><br><span class="line">var_a = 123</span><br><span class="line">var_a:</span><br><span class="line">	@echo $&#123;var_a&#125;</span><br><span class="line">------------------------------</span><br><span class="line"># 执行make var_a输出</span><br><span class="line">123</span><br></pre></td></tr></table></figure>
+
+<p>生成 <strong>target</strong> 的过程中，可能需要执行多条命令，执行过程中也可能出现错误， 一般出现错误后，<strong>make</strong> 命令会立即退出，停止编译。如果想要忽略执行过程中的错误，可以在 <strong>command</strong> 前加上 <strong>-</strong> 来忽略这条命令的执行错误</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">var_a = 123</span><br><span class="line">var_a:</span><br><span class="line">	@ls dir1</span><br><span class="line">	@echo $&#123;var_a&#125;</span><br><span class="line">----------------------------------------------</span><br><span class="line"># 执行make var_a输出</span><br><span class="line">ls: 无法访问 &#x27;dir1&#x27;: 没有那个文件或目录</span><br><span class="line">make: [Makefile:19：var_a] 错误 2</span><br><span class="line">##############################################</span><br><span class="line">var_a = 123</span><br><span class="line">var_a:</span><br><span class="line">	-@ls dir1</span><br><span class="line">	@echo $&#123;var_a&#125;</span><br><span class="line">----------------------------------------------</span><br><span class="line"># 执行make var_a输出</span><br><span class="line">ls: 无法访问 &#x27;dir1&#x27;: 没有那个文件或目录</span><br><span class="line">make: [Makefile:19：var_a] 错误 2 (已忽略）</span><br><span class="line">123</span><br></pre></td></tr></table></figure>
+
+<h2 id="第九节关于依赖中的头文件"><a href="#第九节关于依赖中的头文件" class="headerlink" title="第九节	关于依赖中的头文件"></a>第九节	关于依赖中的头文件</h2><p><strong>Makefile</strong> 与 <strong>C&#x2F;C++</strong> 一样，支持 <strong>include</strong> 另外一文件，这个机制允许 <strong>Makefile</strong> 可以根据不同的环境或者平台设置不同编译过程</p>
+<p>但是这里更想提及的是另外一条语法 <strong>sinclude</strong> 的妙用，<strong>sinclude</strong> 在找不到文件时，并不会报错，会直接跳过，利用这个机制，可以更新目标文件的依赖关系</p>
+<p>在上面举过的例子中，所有 <strong>.o</strong> 文件仅依赖于一个 <strong>.c</strong> 文件，而这个 <strong>.c</strong> 文件其实是包含了不少头文件的，所以更加正确的依赖关系应该是下面这样的</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">main.o: main.c include_file1.h include_file2.h include_file3.h ......</span><br><span class="line">    gcc @&lt; -o $@</span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">main.o: include_file1.h include_file2.h include_file3.h ......</span><br><span class="line"></span><br><span class="line">main.o: main.c </span><br><span class="line">    gcc @&lt; -o $@</span><br></pre></td></tr></table></figure>
+
+<h2 id="第十节make命令参数"><a href="#第十节make命令参数" class="headerlink" title="第十节	make命令参数"></a>第十节	make命令参数</h2><p>当直接运行 <strong>make</strong> 命令，后面不接 <strong>target</strong> 参数时，默认会生成 <strong>Makefile</strong> 中的第一个目标，如果要生成指定目标，需要在 <strong>make</strong> 命令后面接 <strong>target</strong> 名称</p>
+<p><strong>make <target> VAR_A&#x3D;&lt;var*_*a&gt; -j <num></strong> 表示同时产生<num>个进程编译<target>，同时设置 <strong>Makefile</strong> 中变量<strong>VAR_A</strong> 的值为 <strong>var_a</strong>，如果 <strong>-j</strong> 后面不接数字参数，将会为每个目标文件产生一个进程进行编译，如果工程是源文件过多，可能导致进程数量过多而使计算机没有响应，所以直接使用 <strong>-j</strong> 参数而后面不接数字是一个不好的操作</p>
+<p><strong>make -C &#x2F;build&#x2F;path -f make1.mak</strong> 表示在开始编译前，先将当前目录切换到 <strong>&#x2F;build&#x2F;path</strong> 路径下，再执行编译，相当于 <strong>cd &#x2F;build&#x2F;path &amp;&amp; make -f make1.mak</strong>，**-f** 参数用于指定要使用的 <strong>Makefile</strong> 文件，如果不使用 <strong>-f</strong> 参数，则默认使用当前目录下的名称为 <strong>Makefile</strong> 的文件</p>
+<h2 id="第十一节简单Makefile模板"><a href="#第十一节简单Makefile模板" class="headerlink" title="第十一节	简单Makefile模板"></a>第十一节	简单Makefile模板</h2><p>这里给出了一个较为简单的 <strong>Makefile</strong> 模板，其最终生成目标为可执行程序，如果最终生成目标为库文件，需要进行简单调整</p>
+<figure class="highlight make"><table><tr><td class="code"><pre><span class="line"><span class="comment">###################################################################################################</span></span><br><span class="line"><span class="comment"># 编译工具链设置</span></span><br><span class="line">PATH := $&#123;PATH&#125;:/your/tool_chain/path</span><br><span class="line">TOOL_CHAIN = </span><br><span class="line">CC = $&#123;TOOL_CHAIN&#125;gcc</span><br><span class="line">AR = $&#123;TOOL_CHAIN&#125;ar</span><br><span class="line"></span><br><span class="line">DEBUG_BUILD ?= yes</span><br><span class="line"></span><br><span class="line"><span class="comment"># SHOW_COMMAND=yes，显示编译命令</span></span><br><span class="line"><span class="keyword">ifeq</span> ($&#123;SHOW_COMMAND&#125;, yes)</span><br><span class="line">QUIET :=</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">QUIET := @</span><br><span class="line"><span class="keyword">endif</span></span><br><span class="line"></span><br><span class="line"><span class="comment">###################################################################################################</span></span><br><span class="line"><span class="comment"># 目录设置</span></span><br><span class="line"><span class="comment"># 工程根路径</span></span><br><span class="line">PROJ_ROOT = <span class="variable">$(<span class="built_in">abspath</span> ../..)</span></span><br><span class="line"><span class="comment"># 中间文件缓存文件夹</span></span><br><span class="line">TMP_PATH = <span class="variable">$(<span class="built_in">abspath</span> .)</span>/tmp</span><br><span class="line"><span class="comment"># 当前路径</span></span><br><span class="line">PWD_PATH = <span class="variable">$(<span class="built_in">abspath</span> .)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">###################################################################################################</span></span><br><span class="line"><span class="comment"># 源文件.c</span></span><br><span class="line">SRC := $&#123;PROJ_ROOT&#125;/module1/*.c</span><br><span class="line">SRC += $&#123;PROJ_ROOT&#125;/module2/*.c</span><br><span class="line"><span class="comment"># 展开*匹配，获取所有源文件完整路径</span></span><br><span class="line">SRC := <span class="variable">$(<span class="built_in">wildcard</span> $&#123;SRC&#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">###################################################################################################</span></span><br><span class="line"><span class="comment"># 头文件路径设置</span></span><br><span class="line">INCLUDE_PATH += /<span class="keyword">include</span>/path1</span><br><span class="line">INCLUDE_PATH += /<span class="keyword">include</span>/path2</span><br><span class="line">INCLUDE_PATH += $&#123;PROJ_ROOT&#125;/<span class="keyword">include</span>/path1</span><br><span class="line">INCLUDE_PATH += $&#123;PROJ_ROOT&#125;/<span class="keyword">include</span>/path2</span><br><span class="line"></span><br><span class="line"><span class="comment">###################################################################################################</span></span><br><span class="line"><span class="comment"># 编译宏设定</span></span><br><span class="line">DEFINE_SETTINGS := LINUX</span><br><span class="line">DEFINE_SETTINGS += A72=<span class="string">&quot;A72&quot;</span></span><br><span class="line">DEFINE_SETTINGS += TARGET_NUM_CORES=1</span><br><span class="line">DEFINE_SETTINGS += TARGET_ARCH=64</span><br><span class="line">DEFINE_SETTINGS += ARCH_64</span><br><span class="line">DEFINE_SETTINGS += ARM</span><br><span class="line"></span><br><span class="line"><span class="comment">###################################################################################################</span></span><br><span class="line"><span class="comment"># 库路径设置</span></span><br><span class="line"><span class="comment"># 静态库.a文件夹路径</span></span><br><span class="line">STATIC_LIB_PATH := $&#123;PROJ_ROOT&#125;/moduleXXX1/lib</span><br><span class="line">STATIC_LIB_PATH += $&#123;PROJ_ROOT&#125;/moduleXXX2/lib</span><br><span class="line"><span class="comment"># 动态库.so文件夹路径</span></span><br><span class="line">DYNAMIC_LIB_PATH := $&#123;PROJ_ROOT&#125;/moduleXXX3/lib</span><br><span class="line"></span><br><span class="line"><span class="comment">###################################################################################################</span></span><br><span class="line"><span class="comment"># 库设置(静态库)</span></span><br><span class="line">STATIC_LIB += static_lib1</span><br><span class="line">STATIC_LIB += static_lib2</span><br><span class="line">STATIC_LIB += static_lib3</span><br><span class="line">STATIC_LIB += static_lib4</span><br><span class="line"><span class="comment"># 库设置(动态库)</span></span><br><span class="line">DYNAMIC_LIB := stdc++</span><br><span class="line">DYNAMIC_LIB += m</span><br><span class="line">DYNAMIC_LIB += rt</span><br><span class="line">DYNAMIC_LIB += pthread</span><br><span class="line"></span><br><span class="line"><span class="comment">###################################################################################################</span></span><br><span class="line"><span class="comment"># 编译选项</span></span><br><span class="line">CFLAGS := -fPIC -Wall -fms-extensions -Wno-write-strings -Wno-format-security</span><br><span class="line">CFLAGS += -fno-short-enums -Werror</span><br><span class="line">CFLAGS += -mlittle-endian  -Wno-format-truncation</span><br><span class="line"><span class="keyword">ifeq</span> (<span class="string">&quot;$&#123;DEBUG_BUILD&#125;&quot;</span>,<span class="string">&quot;yes&quot;</span>)</span><br><span class="line">CFLAGS += -ggdb -ggdb3 -gdwarf-2 -D_DEBUG_=1 -g</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">CFLAGS += -O3 -DNDEBUG</span><br><span class="line"><span class="keyword">endif</span></span><br><span class="line"></span><br><span class="line"><span class="comment">###################################################################################################</span></span><br><span class="line"><span class="comment"># 生成的中间文件.o</span></span><br><span class="line">OBJ := <span class="variable">$(<span class="built_in">patsubst</span> $&#123;PROJ_ROOT&#125;/%.c,$&#123;TMP_PATH&#125;/%.o,$&#123;SRC&#125;)</span></span><br><span class="line"><span class="comment"># 头文件存放路径设置</span></span><br><span class="line">INC := <span class="variable">$(<span class="built_in">foreach</span> path,$&#123;INCLUDE_PATH&#125;,-I$&#123;path&#125;)</span></span><br><span class="line"><span class="comment"># 编译宏设置</span></span><br><span class="line">DEF := <span class="variable">$(<span class="built_in">foreach</span> macro,$&#123;DEFINE_SETTINGS&#125;,-D$&#123;macro&#125;)</span></span><br><span class="line"><span class="comment"># 库设置</span></span><br><span class="line">LIB := -rdynamic -Wl,--cref</span><br><span class="line">LIB += <span class="variable">$(<span class="built_in">foreach</span> path,$&#123;DYNAMIC_LIB_PATH&#125;,&quot;-Wl,-rpath-link=$&#123;path&#125;&quot;)</span></span><br><span class="line">LIB += <span class="variable">$(<span class="built_in">foreach</span> path,$&#123;STATIC_LIB_PATH&#125;,-L$&#123;path&#125;)</span></span><br><span class="line">LIB += -Wl,-Bstatic -Wl,--start-group</span><br><span class="line">LIB += <span class="variable">$(<span class="built_in">foreach</span> lib,$&#123;STATIC_LIB&#125;,-l$&#123;lib&#125;)</span></span><br><span class="line">LIB += -Wl,--end-group</span><br><span class="line">LIB += -Wl,-Bdynamic</span><br><span class="line">LIB += <span class="variable">$(<span class="built_in">foreach</span> lib,$&#123;DYNAMIC_LIB&#125;,-l$&#123;lib&#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成目标</span></span><br><span class="line">TARGET := $&#123;PWD_PATH&#125;/demo/demo</span><br><span class="line"><span class="comment"># 生成目标中的详细符号信息文件</span></span><br><span class="line">DEP_FILE := -Wl,-Map=$&#123;TMP_PATH&#125;/<span class="variable">$(<span class="built_in">notdir</span> $&#123;TARGET&#125;)</span>.dep</span><br><span class="line"></span><br><span class="line"><span class="meta"><span class="keyword">.PHONY</span>: all clean</span></span><br><span class="line"><span class="section">all: $&#123;TARGET&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="section">$&#123;TARGET&#125;:$&#123;OBJ&#125;</span></span><br><span class="line">	@echo <span class="string">&quot;[Linking <span class="variable">$@</span>]&quot;</span></span><br><span class="line">	$&#123;QUIET&#125;$&#123;CC&#125; $&#123;OBJ&#125; $&#123;CFLAGS&#125; $&#123;LIB&#125; -o <span class="variable">$@</span> $&#123;DEP_FILE&#125; &gt;/dev/null</span><br><span class="line"></span><br><span class="line"><span class="section">$&#123;TMP_PATH&#125;/%.o:$&#123;PROJ_ROOT&#125;/%.c</span></span><br><span class="line">	@echo <span class="string">&quot;[Compiling <span class="variable">$@</span>]&quot;</span></span><br><span class="line">	@mkdir <span class="variable">$(<span class="built_in">dir</span> <span class="variable">$@</span>)</span> -p</span><br><span class="line">	$&#123;QUIET&#125;$&#123;CC&#125; -c <span class="variable">$&lt;</span> -o <span class="variable">$@</span> $&#123;CFLAGS&#125; $&#123;DEF&#125; $&#123;INC&#125; -MMD -MF <span class="variable">$(<span class="built_in">patsubst</span> %.o,%.dep,<span class="variable">$@</span>)</span> -MT &#x27;<span class="variable">$@</span>&#x27;</span><br><span class="line"></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	@echo <span class="string">&quot;[cleaning $&#123;TARGET&#125;]&quot;</span></span><br><span class="line">	$&#123;QUIET&#125;rm -rf $&#123;TARGET&#125;</span><br><span class="line">	$&#123;QUIET&#125;rm -rf $&#123;TMP_PATH&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+  </entry>
+  <entry>
+    <title>JSON</title>
+    <url>/2024/01/28/JSON/</url>
+    <content><![CDATA[<h1 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h1><h2 id="第一节JSON简介"><a href="#第一节JSON简介" class="headerlink" title="第一节	JSON简介"></a>第一节	JSON简介</h2><ul>
+<li><strong>JSON</strong>：全称是 <strong>JavaScript Object Notation</strong>，即 <strong>JavaScript</strong>对象标记法，是一种轻量级的数据交换格式，它既易于人阅读和编写，也易于机器解析和生成，而且相比 <strong>XML</strong> 文件更小，因此迅速成为网络上十分流行的交换格式</li>
+</ul>
+<h2 id="第二节JSON对象定义和基本使用"><a href="#第二节JSON对象定义和基本使用" class="headerlink" title="第二节	JSON对象定义和基本使用"></a>第二节	JSON对象定义和基本使用</h2><ul>
+<li><p><strong>语法规则</strong></p>
+<ul>
+<li>数组 <strong>Array</strong> 用方括号 <strong>[]</strong> 表示</li>
+<li>对象 <strong>0bject</strong> 用大括号 <strong>{}</strong> 表示</li>
+<li>名称&#x2F;值对 <strong>name&#x2F;value</strong> 组合成数组和对象</li>
+<li>名称 <strong>name</strong> 置于双引号中，值 <strong>value</strong> 有字符串、数值、布尔值、<strong>null</strong>、对象和数组</li>
+<li>并列的数据之间用逗号 <strong>,</strong> 分隔</li>
+</ul>
+</li>
+<li><p><strong>JSON的定义</strong></p>
+  <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">//Json 定义格式：</span></span><br><span class="line">var jsons = <span class="punctuation">&#123;</span></span><br><span class="line"><span class="attr">&quot;key1&quot;</span><span class="punctuation">:</span><span class="string">&quot;abc&quot;</span><span class="punctuation">,</span> <span class="comment">// 字符串类型</span></span><br><span class="line"><span class="attr">&quot;key2&quot;</span><span class="punctuation">:</span><span class="number">1234</span><span class="punctuation">,</span> <span class="comment">// Number</span></span><br><span class="line"><span class="attr">&quot;key3&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="number">1234</span><span class="punctuation">,</span><span class="string">&quot;21341&quot;</span><span class="punctuation">,</span><span class="string">&quot;53&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span> <span class="comment">// 数组</span></span><br><span class="line"><span class="attr">&quot;key4&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span> <span class="comment">// json 类型</span></span><br><span class="line"><span class="attr">&quot;key4_1&quot;</span> <span class="punctuation">:</span> <span class="number">12</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;key4_2&quot;</span> <span class="punctuation">:</span> <span class="string">&quot;kkk&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">&quot;key5&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">&#123;</span> <span class="comment">// json 数组</span></span><br><span class="line"><span class="attr">&quot;key5_1_1&quot;</span> <span class="punctuation">:</span> <span class="number">12</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;key5_1_2&quot;</span> <span class="punctuation">:</span> <span class="string">&quot;abc&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span></span><br><span class="line"><span class="attr">&quot;key5_2_1&quot;</span> <span class="punctuation">:</span> <span class="number">41</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;key5_2_2&quot;</span> <span class="punctuation">:</span> <span class="string">&quot;bbj&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span>;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="第三节JSON的解析和生成"><a href="#第三节JSON的解析和生成" class="headerlink" title="第三节	JSON的解析和生成"></a>第三节	JSON的解析和生成</h2><ul>
+<li><p>**JSON.parse()**：将 <strong>JSON</strong> 字符串转换为 <strong>JS</strong> 对象</p>
+  <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">var</span> str = <span class="string">&#x27;&#123;&quot;name&quot;: &quot;兮动人&quot;,&quot;age&quot;:22&#125;&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">var</span> obj = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(str);</span></span><br><span class="line"><span class="language-javascript">	<span class="variable language_">console</span>.<span class="title function_">log</span>(obj);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>**JSON.stringify()**：将 <strong>JS</strong> 对象转换为 <strong>JSON</strong> 字符串</p>
+  <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">var</span> str = <span class="string">&#x27;&#123;&quot;name&quot;: &quot;兮动人&quot;,&quot;age&quot;:22&#125;&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">var</span> obj = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(str);</span></span><br><span class="line"><span class="language-javascript">	<span class="variable language_">console</span>.<span class="title function_">log</span>(obj);</span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">var</span> jsonstr = <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(obj);</span></span><br><span class="line"><span class="language-javascript">	<span class="variable language_">console</span>.<span class="title function_">log</span>(jsonstr);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="第四节Java中的JSON"><a href="#第四节Java中的JSON" class="headerlink" title="第四节	Java中的JSON"></a>第四节	Java中的JSON</h2><ul>
+<li><p><strong>Java 对象和 JSON 的转换</strong></p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// json 操作，一定要先 new 一个 gson 对象。</span></span><br><span class="line"><span class="type">Gson</span> <span class="variable">gson</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Gson</span>();</span><br><span class="line"><span class="comment">// java 对象--json</span></span><br><span class="line"><span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="number">12</span>, <span class="string">&quot;wzg168&quot;</span>);</span><br><span class="line"><span class="comment">// 把对象转成为 json 字符串</span></span><br><span class="line"><span class="type">String</span> <span class="variable">personjson</span> <span class="operator">=</span> gson.toJson(person);</span><br><span class="line"><span class="comment">// 把 json 字符串转换成为 java 对象</span></span><br><span class="line"><span class="type">Person</span> <span class="variable">p</span> <span class="operator">=</span> gson.fromJson(personjson, Person.class);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Java 对象 list 集合和 JSON 的转换</strong></p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;Person&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Person&gt;(); </span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">list.add(<span class="keyword">new</span> <span class="title class_">Person</span>(<span class="number">10</span> * i, <span class="string">&quot;name-&quot;</span> + i));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//把  List 对象转换成为json 字符串</span></span><br><span class="line"><span class="type">String</span> <span class="variable">jsonListString</span> <span class="operator">=</span> gson.toJson(list);</span><br><span class="line"><span class="comment">// 把 json 数组转换成为 List 对象</span></span><br><span class="line"><span class="comment">// 我们可以使用匿名内部类</span></span><br><span class="line">List&lt;Person&gt; ps = gson.fromJson(jsonListString, <span class="keyword">new</span> <span class="title class_">TypeToken</span>&lt;List&lt;Person&gt;&gt;() &#123;</span><br><span class="line">&#125;.getType());</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Map 对象和 JSON 的转换</strong></p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Map&lt;String, Person&gt; mapPerson = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;String, GsonTest.Person&gt;();</span><br><span class="line"><span class="comment">// 添加 person 到 map 中</span></span><br><span class="line">mapPerson.put(<span class="string">&quot;p1&quot;</span>, <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="number">1</span>, <span class="string">&quot;person-1&quot;</span>));</span><br><span class="line">mapPerson.put(<span class="string">&quot;p2&quot;</span>, <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="number">2</span>, <span class="string">&quot;person-2&quot;</span>));</span><br><span class="line"><span class="comment">// 把 map 转换成为 json 对象</span></span><br><span class="line"><span class="type">String</span> <span class="variable">jsonMapString</span> <span class="operator">=</span> gson.toJson(mapPerson);</span><br><span class="line">System.out.println(jsonMapString);</span><br><span class="line"><span class="comment">// 通过使用匿名内部类的方式</span></span><br><span class="line">Map&lt;String, Person&gt; map = gson.fromJson(jsonMapString,<span class="keyword">new</span> <span class="title class_">TypeToken</span>&lt;HashMap&lt;String, Person&gt;&gt;() &#123;&#125;.getType());</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>RESTful</title>
+    <url>/2024/01/28/RESTful/</url>
+    <content><![CDATA[<h1 id="RESTful"><a href="#RESTful" class="headerlink" title="RESTful"></a>RESTful</h1><h2 id="第一节RESTful概述"><a href="#第一节RESTful概述" class="headerlink" title="第一节	RESTful概述"></a>第一节	RESTful概述</h2><ul>
+<li><strong>RESTful 简介</strong>：全称 <strong>Representational State Transfer</strong>，即表述性状态传递，在 2000 年被提出，基于 <strong>HTTP</strong>、<strong>URI</strong>、<strong>XML</strong>、<strong>JSON</strong> 等标准和协议，支持轻量级、跨平台、跨语言的架构设计，是Web服务的一种新的架构风格</li>
+<li><strong>轻量级</strong>：代码不被侵入，轻量级跟包大小无关，耦合性越低，越轻量</li>
+<li><strong>RESTful 主要原则</strong><ul>
+<li>对网络上所有的资源都有一个资源标志符</li>
+<li>对资源的操作不会改变标识符</li>
+<li>同一资源有多种表现形式</li>
+<li>所有操作都是无状态的</li>
+</ul>
+</li>
+<li><strong>无状态性</strong>：使得客户端和服务器端不必保存对方的详细信息，服务器只需要处理当前的请求，不需了解请求的历史，可以更容易的释放资源，让服务器利用连接池技术来提高稳定性和性能</li>
+</ul>
+<h2 id="第二节RESTful介绍"><a href="#第二节RESTful介绍" class="headerlink" title="第二节	RESTful介绍"></a>第二节	RESTful介绍</h2><ul>
+<li><p><strong>响应设计</strong>：数据接收到即可使用，无需拆箱，在一次请求中，内容正文仅仅用于传输数据，请求头中存放描述请求或请求的元数据</p>
+</li>
+<li><p><strong>RESTful 资源操作</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">HTTP方法</th>
+<th align="center">资源操作</th>
+<th align="center">幂等</th>
+<th align="center">安全</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>GET</strong></td>
+<td align="center">SELECT</td>
+<td align="center">是</td>
+<td align="center">是</td>
+</tr>
+<tr>
+<td align="center"><strong>POST</strong></td>
+<td align="center">INSERT</td>
+<td align="center">否</td>
+<td align="center">否</td>
+</tr>
+<tr>
+<td align="center"><strong>PUT</strong></td>
+<td align="center">UPDATE</td>
+<td align="center">是</td>
+<td align="center">否</td>
+</tr>
+<tr>
+<td align="center"><strong>DELETE</strong></td>
+<td align="center">DELETE</td>
+<td align="center">是</td>
+<td align="center">否</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>接口示例</strong></p>
+<ul>
+<li><p><strong>查询</strong></p>
+<ul>
+<li><p>传统 <strong>URL</strong> 请求格式</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">http://127.0.0.1/user/query/1 GET</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>RESTful</strong> 请求格式</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">http://127.0.0.1/user/1 GET</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>新增</strong></p>
+<ul>
+<li><p>传统 <strong>URL</strong> 请求格式</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">http://127.0.0.1/user/save POST</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>RESTful</strong> 请求格式</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">http://127.0.0.1/user POST</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>修改</strong></p>
+<ul>
+<li><p>传统 <strong>URL</strong> 请求格式</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">http://127.0.0.1/user/update POST</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>RESTful</strong> 请求格式</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">http://127.0.0.1/user PUT</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>删除</strong></p>
+<ul>
+<li><p>传统 <strong>URL</strong> 请求格式</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">http://127.0.0.1/user/delete GET/POST</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>RESTful</strong> 请求格式</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">http://127.0.0.1/user DELETE</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>HTTP 响应状态码</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">响应码</th>
+<th align="center">HTTP方法</th>
+<th align="center">正文内容</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>200</strong></td>
+<td align="center">GET，PUT</td>
+<td align="center">资源</td>
+<td align="center">操作成功</td>
+</tr>
+<tr>
+<td align="center"><strong>201</strong></td>
+<td align="center">POST</td>
+<td align="center">资源，元数据</td>
+<td align="center">对象创建成功</td>
+</tr>
+<tr>
+<td align="center"><strong>202</strong></td>
+<td align="center">POST，PUT，DELETE，PATCH</td>
+<td align="center">N&#x2F;A</td>
+<td align="center">请求已经被接受</td>
+</tr>
+<tr>
+<td align="center"><strong>204</strong></td>
+<td align="center">DELETE，PUT，PATCH</td>
+<td align="center">N&#x2F;A</td>
+<td align="center">操作已经执行成功，但是没有返回数据</td>
+</tr>
+<tr>
+<td align="center"><strong>301</strong></td>
+<td align="center">GET</td>
+<td align="center">link</td>
+<td align="center">资源已被移除</td>
+</tr>
+<tr>
+<td align="center"><strong>303</strong></td>
+<td align="center">GET</td>
+<td align="center">link</td>
+<td align="center">重定向</td>
+</tr>
+<tr>
+<td align="center"><strong>304</strong></td>
+<td align="center">GET</td>
+<td align="center">N&#x2F;A</td>
+<td align="center">资源没有被修改</td>
+</tr>
+<tr>
+<td align="center"><strong>400</strong></td>
+<td align="center">GET，POST，PUT，DELETE，PATCH</td>
+<td align="center">错误提示</td>
+<td align="center">参数列表错误</td>
+</tr>
+<tr>
+<td align="center"><strong>401</strong></td>
+<td align="center">GET，POST，PUT，DELETE，PATCH</td>
+<td align="center">错误提示</td>
+<td align="center">未授权</td>
+</tr>
+<tr>
+<td align="center"><strong>403</strong></td>
+<td align="center">GET，POST，PUT，DELETE，PATCH</td>
+<td align="center">错误提示</td>
+<td align="center">访问受限，授权过期</td>
+</tr>
+<tr>
+<td align="center"><strong>404</strong></td>
+<td align="center">GET，POST，PUT，DELETE，PATCH</td>
+<td align="center">错误提示</td>
+<td align="center">资源，服务未找到</td>
+</tr>
+<tr>
+<td align="center"><strong>405</strong></td>
+<td align="center">GET，POST，PUT，DELETE，PATCH</td>
+<td align="center">错误提示</td>
+<td align="center">不允许的 <strong>HTTP</strong> 方法</td>
+</tr>
+<tr>
+<td align="center"><strong>409</strong></td>
+<td align="center">GET，POST，PUT，DELETE，PATCH</td>
+<td align="center">错误提示</td>
+<td align="center">资源冲突，或者资源被锁定</td>
+</tr>
+<tr>
+<td align="center"><strong>415</strong></td>
+<td align="center">GET，POST，PUT，DELETE，PATCH</td>
+<td align="center">错误提示</td>
+<td align="center">不支持的数据类型</td>
+</tr>
+<tr>
+<td align="center"><strong>429</strong></td>
+<td align="center">GET，POST，PUT，DELETE，PATCH</td>
+<td align="center">错误提示</td>
+<td align="center">请求过多被限制</td>
+</tr>
+<tr>
+<td align="center"><strong>500</strong></td>
+<td align="center">GET，POST，PUT，DELETE，PATCH</td>
+<td align="center">错误提示</td>
+<td align="center">系统内部错误</td>
+</tr>
+<tr>
+<td align="center"><strong>501</strong></td>
+<td align="center">GET，POST，PUT，DELETE，PATCH</td>
+<td align="center">错误提示</td>
+<td align="center">接口未实现</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h2 id="第三节RESTful的使用"><a href="#第三节RESTful的使用" class="headerlink" title="第三节	RESTful的使用"></a>第三节	RESTful的使用</h2><ul>
+<li><p><strong>注入业务层组件</strong></p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> NewUserService newUserService;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>查询 GET</strong></p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;&#123;userId&#125;&quot;, method = RequestMethod.GET)</span></span><br><span class="line"><span class="keyword">public</span> ResponseEntity&lt;User&gt; <span class="title function_">queryUserById</span> <span class="params">(PathVariable (<span class="string">&quot;userId&quot;</span>)</span> Long userId)&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> <span class="built_in">this</span>.newUserService.queryUserById(userId);</span><br><span class="line">        <span class="keyword">if</span>(<span class="literal">null</span> = user)&#123;</span><br><span class="line">            <span class="keyword">return</span> ResponseEntity.status(HttpStatus.NOT_FOUND).body(<span class="literal">null</span>);<span class="comment">// 资源不存在，响应404</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ResponseEntity.ok(user);<span class="comment">// 响应200</span></span><br><span class="line">    &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">return</span> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(<span class="literal">null</span>);<span class="comment">// 响应500</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>新增 POST</strong></p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequsetMapping(method = RequestMothod.POST)</span></span><br><span class="line"><span class="keyword">public</span> ResponseEntity&lt;Void&gt; <span class="title function_">saveUser</span><span class="params">(User user)</span>&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.userService.saveUser(user);</span><br><span class="line">        <span class="keyword">return</span> ResponseEntity.status(HttpStatus.CREATED).build();<span class="comment">// 响应201</span></span><br><span class="line">    &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">return</span> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();<span class="comment">// 响应500</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>更新 PUT</strong></p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequsetMapping(method = RequestMothod.PUT)</span></span><br><span class="line"><span class="keyword">public</span> ResponseEntity&lt;Void&gt; <span class="title function_">updateUser</span><span class="params">(User user)</span>&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="built_in">this</span>.userService.updateUser(user);</span><br><span class="line">        <span class="keyword">if</span>(count == <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> ResponseEntity.status(HttpStatus.NO_CONTENT).build();<span class="comment">// 响应204</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">return</span> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();<span class="comment">// 响应500</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>删除 DELETE</strong></p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequsetMapping(method = RequestMothod.DELETE)</span></span><br><span class="line"><span class="keyword">public</span> ResponseEntity&lt;Void&gt; <span class="title function_">deleteUserById</span><span class="params">(<span class="meta">@RequestParam(value = &quot;id&quot;, defaultValue = &quot;0&quot;)</span> Long id)</span>&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(id.intVlaue() == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> ResponseEntity.status(HttpStatus.BAD_REQUEST).build();<span class="comment">// 响应400</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="built_in">this</span>.userService.deleteUserById(id);</span><br><span class="line">        <span class="keyword">if</span>(count.intVlaue() == <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> ResponseEntity.status(HttpStatus.NO_CONTENT).build();<span class="comment">// 响应204</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">return</span> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();<span class="comment">// 响应500</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>Maven</title>
+    <url>/2024/01/28/Maven/</url>
+    <content><![CDATA[<h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><h2 id="第一节为什么需要Maven"><a href="#第一节为什么需要Maven" class="headerlink" title="第一节	为什么需要Maven"></a>第一节	为什么需要Maven</h2><p><strong>一个项目就是一个工程</strong></p>
+<p>如果项目非常庞大，就不适合使用 <strong>package</strong> 来划分模块，最好是每一个模块对应一个工程，利于分工协作，借助于<strong>maven</strong> 就可以将一个项目拆分成多个工程</p>
+<p><strong>项目中使用 jar 包，需要“复制”、“粘贴”项目的 lib 中</strong></p>
+<p>同样的 <strong>jar</strong> 包重复的出现在不同的项目工程中，你需要做不停的复制粘贴的重复工作，借助于 <strong>maven</strong>，可以将 <strong>jar</strong> 包保存在“仓库”中，不管在哪个项目只要使用引用即可就行</p>
+<p><strong>jar 包需要的时候每次都要自己准备好或到官网下载</strong></p>
+<p>借助于 <strong>maven</strong> 我们可以使用统一的规范方式下载 <strong>jar</strong> 包，规范</p>
+<p><strong>jar 包版本不一致的风险</strong></p>
+<p>不同的项目在使用 <strong>jar</strong> 包的时候，有可能会导致各个项目的 <strong>jar</strong> 包版本不一致，导致未执行错误，借助于 <strong>maven</strong>，所有的 <strong>jar</strong> 包都放在“仓库”中，所有的项目都使用仓库的一份 <strong>jar</strong> 包</p>
+<p><strong>一个 jar 包依赖其他的 jar 包需要自己手动的加入到项目中</strong></p>
+<p><strong>jar</strong> 的依赖关系极大的浪费了我们导入包的时间成本，也极大的增加了学习成本，借助于 <strong>maven</strong>，它会自动的将依赖的 <strong>jar</strong> 包导入进来</p>
+<h2 id="第二节Maven介绍"><a href="#第二节Maven介绍" class="headerlink" title="第二节	Maven介绍"></a>第二节	Maven介绍</h2><ul>
+<li><p><strong>maven介绍</strong>：<strong>maven 是一款服务于 java 平台的自动化构建工具</strong></p>
+</li>
+<li><p><strong>构建</strong></p>
+<ul>
+<li><strong>构建定义</strong>：把动态的 <strong>Web</strong> 工程经过编译得到的编译结果部署到服务器上的整个过程</li>
+<li><strong>编译</strong>：<strong>java</strong> 源文件 <strong>[.java]</strong> -&gt;编译-&gt; <strong>Classz</strong> 字节码文件 <strong>[.class]</strong></li>
+<li><strong>部署</strong>：最终在 <strong>servlet</strong> 容器中部署的不是动态 <strong>web</strong> 工程，而是编译后的文件</li>
+</ul>
+</li>
+<li><p><strong>构建的各个环节</strong></p>
+<ul>
+<li><p>清理 <strong>clean</strong>：将以前编译得到的旧文件 <strong>class</strong> 字节码文件删除</p>
+</li>
+<li><p>编译 <strong>compile</strong>：将 <strong>java</strong> 源程序编译成 <strong>class</strong> 字节码文件</p>
+</li>
+<li><p>测试 <strong>test</strong>：自动测试，自动调用 <strong>junit</strong> 程序</p>
+</li>
+<li><p>报告 <strong>report</strong>：测试程序执行的结果</p>
+</li>
+<li><p>打包 <strong>package</strong>：动态 <strong>Web</strong> 工程打 <strong>War</strong> 包，<strong>java</strong> 工程打 <strong>jar</strong> 包</p>
+</li>
+<li><p>安装 <strong>install</strong>：<strong>Maven</strong> 特定的概念—–将打包得到的文件复制到“仓库”中的指定位置</p>
+</li>
+<li><p>部署 <strong>deploy</strong>：将动态 <strong>Web</strong> 工程生成的 <strong>war</strong> 包复制到 <strong>Servlet</strong> 容器下，使其可以运行</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="第三节Maven入门"><a href="#第三节Maven入门" class="headerlink" title="第三节	Maven入门"></a>第三节	Maven入门</h2><ul>
+<li><strong>创建约定的目录结构</strong></li>
+</ul>
+<blockquote>
+<p>根目录：工程名<br>|—src：源码<br>|—|—main:存放主程序<br>|—|—|—java：java源码文件<br>|—|—|—resource：存放框架的配置文件<br>|—|—test：存放测试程序<br>|—pop.xml：maven的核心配置文件</p>
+</blockquote>
+<ul>
+<li><p><strong>常用的maven命令</strong></p>
+<ul>
+<li><p><strong>mvn clean</strong>：清理</p>
+</li>
+<li><p><strong>mvn compile</strong>：编译主程序</p>
+</li>
+<li><p><strong>mvn test-compile</strong>：编译测试程序</p>
+</li>
+<li><p><strong>mvn test</strong>：执行测试</p>
+</li>
+<li><p><strong>mvn package</strong>：打包</p>
+</li>
+<li><p><strong>mvn install</strong>：安装</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="第四节仓库和坐标"><a href="#第四节仓库和坐标" class="headerlink" title="第四节	仓库和坐标"></a>第四节	仓库和坐标</h2><ul>
+<li><p><strong>pom.xml</strong>：<strong>Project Object Model</strong> 项目对象模型，它是  <strong>maven</strong> 的核心配置文件，所有的构建的配置都在这里设置</p>
+</li>
+<li><p><strong>坐标：</strong>使用下面的三个向量 <strong>groupId</strong>，<strong>artifactid</strong>，<strong>version</strong> 在仓库中唯一的定位一个 <strong>maven</strong>工程</p>
+</li>
+</ul>
+<p><img src="C:\Users\86172\Pictures\Markdown\Maven\向量-1706454533232-3" alt="img"></p>
+<ul>
+<li><p><strong>仓库</strong></p>
+<ul>
+<li><p><strong>本地仓库：</strong>当前电脑上的仓库</p>
+</li>
+<li><p><strong>远程仓库</strong></p>
+<ul>
+<li><strong>私服</strong>：搭建在局域网中，一般公司都会有私服，私服一般使用 <strong>nexus</strong> 来搭建</li>
+<li><strong>中央仓库</strong>：架设在 <strong>Internet</strong> 上</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="第五节依赖"><a href="#第五节依赖" class="headerlink" title="第五节	依赖"></a>第五节	依赖</h2><ul>
+<li><p><strong>maven 解析依赖信息时会到本地仓库中取查找被依赖的 jar 包</strong></p>
+<ul>
+<li><p>对于本地仓库中没有的会去中央仓库去查找 <strong>maven</strong> 坐标来获取 <strong>jar</strong> 包，获取到 <strong>jar</strong> 之后会下载到本地仓库</p>
+</li>
+<li><p>对于中央仓库也找不到依赖的 <strong>jar</strong> 包的时候，就会编译失败了</p>
+</li>
+<li><p>如果依赖的是自己或者团队开发的 <strong>maven</strong> 工程，需要先使用 <strong>install</strong> 命令把被依赖的 <strong>maven</strong> 工程的 <strong>jar</strong> 包导入到本地仓库中</p>
+</li>
+</ul>
+</li>
+<li><p><strong>依赖范围</strong>：<strong>scope</strong>就是依赖的范围</p>
+<ul>
+<li><strong>compile</strong>：默认值，适用于所有阶段（开发、测试、部署、运行），该 <strong>jar</strong> 会一直存在所有阶段</li>
+<li><strong>provided</strong>：只在开发、测试阶段使用，目的是不让 <strong>Servlet</strong> 容器和你本地仓库的 <strong>jar</strong> 包冲突 </li>
+<li><strong>runtime</strong>：只在运行时使用，如 <strong>JDBC</strong> 驱动，适用运行和测试阶段</li>
+<li><strong>test</strong>：只在测试时使用，用于编译和运行测试代码，不会随项目发布。</li>
+<li><strong>system</strong>：类似 <strong>provided</strong>，需要显式提供包含依赖的 <strong>jar</strong>，<strong>Maven</strong> 不会在 <strong>Repository</strong> 中查找它</li>
+</ul>
+</li>
+</ul>
+<h2 id="第六节生命周期"><a href="#第六节生命周期" class="headerlink" title="第六节	生命周期"></a>第六节	生命周期</h2><ul>
+<li><p><strong>Maven</strong> 有三套相互独立的生命周期，不论执行生命周期的哪一个阶段，<strong>maven</strong> 都是从这个生命周期的开始执行</p>
+<ul>
+<li><p><strong>Clean</strong>生命周期：在进行真正的构建之前进行一些清理工作</p>
+<ul>
+<li><strong>pre-clean</strong>：执行一些需要在 <strong>clean</strong> 之前完成的工作</li>
+<li><strong>clean</strong>：移除所有上一次构建生成的文件</li>
+</ul>
+<ul>
+<li><strong>post-clean</strong>：执行一些需要在 <strong>clean</strong> 之后立刻完成的工作</li>
+</ul>
+</li>
+<li><p><strong>Default</strong>生命周期：构建的核心部分，编译，测试，打包，部署等等</p>
+<ul>
+<li><strong>validate</strong>：校验项目是否正确并且所有必要的信息可以完成项目的构建过程</li>
+<li><strong>generate-sources</strong>：生成包含在编译阶段中的任何源代码</li>
+<li><strong>process-sources</strong>：处理源代码，比如说，过滤任意值</li>
+<li><strong>generate-resources</strong>：生成将会包含在项目包中的资源文件</li>
+<li><strong>process-resources</strong>：复制并处理资源文件，至目标目录，准备打包</li>
+<li><strong>compile</strong>：编译项目的源代码</li>
+<li><strong>process-classes</strong>：处理编译生成的文件，比如说对Java class文件做字节码改善优化</li>
+<li><strong>generate-test-sources</strong>：生成包含在编译阶段中的任何测试源代码</li>
+<li><strong>process-test-sources</strong>：处理测试源代码，比如说，过滤任意值</li>
+<li><strong>generate-test-resources</strong>：为测试创建资源文件</li>
+<li><strong>process-test-resources</strong>：复制并处理资源文件，至目标测试目录</li>
+<li><strong>test-compile</strong>：编译测试源代码</li>
+<li><strong>process-test-classes</strong>：处理测试源码编译生成的文件</li>
+<li><strong>test</strong>：使用合适的单元测试框架运行测试。这些测试代码不会被打包或部署</li>
+<li><strong>prepare-package</strong>：在实际打包之前，执行任何的必要的操作为打包做准备</li>
+<li><strong>package</strong>：将编译后的代码打包成可分发格式的文件，比如JAR、WAR或者EAR文件</li>
+<li><strong>pre-integration-test</strong>：在执行集成测试前进行必要的动作。比如说，搭建需要的环境</li>
+<li><strong>integration-test</strong>：处理和部署项目到可以运行集成测试环境中</li>
+<li><strong>post-integration-test</strong>：在执行集成测试完成后进行必要的动作。比如说，清理集成测试环境</li>
+<li><strong>verify</strong>：运行任意的检查来验证项目包有效且达到质量标准</li>
+<li><strong>install</strong>：将包安装至本地仓库，以让其它项目依赖。</li>
+<li><strong>deploy</strong>：将最终的包复制到远程的仓库，以让其它开发人员与项目共享</li>
+</ul>
+</li>
+<li><p><strong>Site</strong>生命周期：创建新的报告文档、部署站点等</p>
+<ul>
+<li><strong>pre-site</strong>：执行一些需要在生成站点文档之前完成的工作</li>
+<li><strong>site</strong>：生成项目的站点文档</li>
+<li><strong>post-site</strong>： 执行一些需要在生成站点文档之后完成的工作，并且为部署做准备</li>
+<li><strong>site-deploy</strong>：将生成的站点文档部署到特定的服务器上</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>插件：</strong>每个阶段都有插件，插件的职责就是执行它对应的命令</p>
+</li>
+</ul>
+<h2 id="第七节maven工程的依赖高级特性"><a href="#第七节maven工程的依赖高级特性" class="headerlink" title="第七节	maven工程的依赖高级特性"></a>第七节	maven工程的依赖高级特性</h2><ul>
+<li><p><strong>依赖的传递性</strong>：在项目往往需要引入多个依赖， 而引入的依赖又会引入其他的依赖，形成依赖的传递性</p>
+</li>
+<li><p><strong>依赖版本的原则</strong></p>
+<ul>
+<li><strong>最短路径原则</strong>：对于多级依赖出现相同 <strong>jar</strong> 的不同版本，<strong>maven</strong> 会选择路径最短的依赖</li>
+<li><strong>声明优先原则</strong>：对于多级依赖出现相同 <strong>jar</strong> 的不同版本，并且所经历的路径相同时，<strong>maven</strong> 会选择最先声明的依赖版本</li>
+<li><strong>同级依赖，后声明会覆盖先声明原则</strong>：对于同一级的依赖出现相同 <strong>jar</strong> 的不同版本，**maven **会根据依赖声明的先后顺序，选择后声明的依赖版本</li>
+</ul>
+</li>
+<li><p><strong>统一管理依赖的版本</strong>：为了统一管理版本号，可以使用 <strong>properties</strong> 标签，里面可以自定义版本的标签名</p>
+</li>
+</ul>
+<h2 id="第八节build配置"><a href="#第八节build配置" class="headerlink" title="第八节	build配置"></a>第八节	build配置</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">　　<span class="comment">&lt;!-- 项目的名字 --&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">finalName</span>&gt;</span>WebMavenDemo<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line">　　<span class="comment">&lt;!-- 描述项目中资源的位置 --&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">　　　　<span class="comment">&lt;!-- 自定义资源1 --&gt;</span></span><br><span class="line">　　　　<span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">　　　　　　<span class="comment">&lt;!-- 资源目录 --&gt;</span></span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/java<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">　　　　　　<span class="comment">&lt;!-- 包括哪些文件参与打包 --&gt;</span></span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">　　　　　　　　<span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.xml<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">　　　　　　<span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">　　　　　　<span class="comment">&lt;!-- 排除哪些文件不参与打包 --&gt;</span></span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">excludes</span>&gt;</span></span><br><span class="line">　　　　　　　　<span class="tag">&lt;<span class="name">exclude</span>&gt;</span>**/*.txt<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">　　　　　　　　　　<span class="tag">&lt;<span class="name">exclude</span>&gt;</span>**/*.doc<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">　　　　　　<span class="tag">&lt;/<span class="name">excludes</span>&gt;</span></span><br><span class="line">　　　　<span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br><span class="line">　　<span class="comment">&lt;!-- 设置构建时候的插件 --&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">　　　　<span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">　　　　　　　　<span class="comment">&lt;!-- 源代码编译版本 --&gt;</span></span><br><span class="line">　　　　　　　　<span class="tag">&lt;<span class="name">source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">　　　　　　　　<span class="comment">&lt;!-- 目标平台编译版本 --&gt;</span></span><br><span class="line">　　　　　　　　<span class="tag">&lt;<span class="name">target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">　　　　　　<span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">　　　　<span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">　　　　<span class="comment">&lt;!-- 资源插件（资源的插件） --&gt;</span>  </span><br><span class="line">　　　　<span class="tag">&lt;<span class="name">plugin</span>&gt;</span>  </span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>  </span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-resources-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>  </span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span>  </span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">executions</span>&gt;</span>  </span><br><span class="line">　　　　　　　　<span class="tag">&lt;<span class="name">execution</span>&gt;</span>  </span><br><span class="line">　　　　　　　　　　<span class="tag">&lt;<span class="name">phase</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">phase</span>&gt;</span>  </span><br><span class="line">　　　　　　　　<span class="tag">&lt;/<span class="name">execution</span>&gt;</span>  </span><br><span class="line">　　　　　　<span class="tag">&lt;/<span class="name">executions</span>&gt;</span>  </span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">configuration</span>&gt;</span>  </span><br><span class="line">　　　　　　　　<span class="tag">&lt;<span class="name">encoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">encoding</span>&gt;</span>  </span><br><span class="line">　　　　　　<span class="tag">&lt;/<span class="name">configuration</span>&gt;</span> </span><br><span class="line">　　　　<span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">　　　　<span class="comment">&lt;!-- war插件(将项目打成war包) --&gt;</span>  </span><br><span class="line">　　　　<span class="tag">&lt;<span class="name">plugin</span>&gt;</span>  </span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>  </span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-war-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>  </span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span>  </span><br><span class="line">　　　　　　<span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">　　　　　　　　<span class="comment">&lt;!-- war包名字 --&gt;</span>  </span><br><span class="line">　　　　　　　　<span class="tag">&lt;<span class="name">warName</span>&gt;</span>WebMavenDemo1<span class="tag">&lt;/<span class="name">warName</span>&gt;</span></span><br><span class="line">　　　　　　<span class="tag">&lt;/<span class="name">configuration</span>&gt;</span>  </span><br><span class="line">　　　　<span class="tag">&lt;/<span class="name">plugin</span>&gt;</span>  </span><br><span class="line">　　<span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+  </entry>
+  <entry>
+    <title>XML</title>
+    <url>/2024/01/28/XML/</url>
+    <content><![CDATA[<h1 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h1><h2 id="第一节XML简介"><a href="#第一节XML简介" class="headerlink" title="第一节	XML简介"></a>第一节	XML简介</h2><ul>
+<li><strong>XML简介</strong>：全称为 <strong>Extensible Markup Language</strong>，即可扩展标记语言，是万维网协会推出的一套数据交换标准，被设计用来传输和存储数据，可用于定义 <strong>Web</strong> 网页上的文档元素以及复杂数据的表述和传输</li>
+<li><strong>XML的特点</strong><ul>
+<li><strong>XML</strong> 被设计用来传输和存储数据，其焦点在于数据的内容</li>
+<li><strong>XML</strong> 标签没有被预定义，需要自行定义标签</li>
+<li><strong>XML</strong> 不会替代 <strong>HTML</strong>，在 <strong>Web</strong> 应用程序中，<strong>XML</strong> 用于传输数据，而 <strong>HTML</strong> 用于格式化并显示数据</li>
+</ul>
+</li>
+</ul>
+<h2 id="第二节XML语法规则"><a href="#第二节XML语法规则" class="headerlink" title="第二节	XML语法规则"></a>第二节	XML语法规则</h2><ul>
+<li><p><strong>XML文档声明</strong></p>
+  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span> standalone=<span class="string">&quot;yes&quot;</span> ?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>version</strong>：版本规范声明</li>
+<li><strong>encoding</strong>：文档字符编码</li>
+<li><strong>standalone</strong>：文档定义是否独立使用</li>
+</ul>
+</li>
+<li><p><strong>XML元素</strong></p>
+<ul>
+<li><p>每个 <strong>XML</strong> 文档必须有且只有一个根元素</p>
+  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>XML</strong> 元素指的是 <strong>XML</strong> 文件中出现的标签，一个标签分为开始标签和结束标签</p>
+  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span>&gt;</span>www.sohu.com<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>一个标签中也可以嵌套若干子标签</p>
+  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对于 <strong>XML</strong> 标签中出现的所有空格和换行，<strong>XML</strong> 解析程序都会当做标签内容进行处理，下列内容有不同的意义</p>
+  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">stu</span>&gt;</span>xiaoming<span class="tag">&lt;/<span class="name">stu</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">stu</span>&gt;</span></span><br><span class="line">    xiaoming</span><br><span class="line"><span class="tag">&lt;/<span class="name">stu</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>命名规范</strong>：一个 <strong>XML</strong> 元素可以包含字母、数字以及其它一些可见字符，但必须遵守以下规范</p>
+<ul>
+<li>区分大小写</li>
+<li>不能以数字或下划线 <strong>_</strong> 开头</li>
+<li>元素内不能包含空格</li>
+<li>名称中间不能包含冒号 <strong>:</strong></li>
+<li>可以使用中文，但一般不这么用</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>XML属性</strong></p>
+<ul>
+<li><p>属性值用双引号或单引号分隔</p>
+  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">student</span> <span class="attr">id</span>=<span class="string">&quot;100&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">student</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>一个元素可以有多个属性</p>
+  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">元素名</span> <span class="attr">属性名1</span>=<span class="string">&quot;属性值1&quot;</span> <span class="attr">属性名2</span>=<span class="string">&quot;属性值2&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>预定义实体字符</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">实体字符</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>&amp;lt</strong></td>
+<td align="center"><strong>&lt;</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>&amp;gt</strong></td>
+<td align="center"><strong>&gt;</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>&amp;amp</strong></td>
+<td align="center"><strong>&amp;</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>&amp;apos</strong></td>
+<td align="center"><strong>‘</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>&amp;quot</strong></td>
+<td align="center"><strong>“</strong></td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+<li><p><strong>XML注释</strong></p>
+  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--这是一个注释--&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>XML CDATA节</strong>：避免让解析引擎解析执行，而是将数据当做原始内容处理，不会因为非法字符而报错</p>
+  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">&lt;![CDATA[</span><br><span class="line">    ......</span><br><span class="line">]]&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>XML处理指令</strong>：用来指示解析引擎如何解析 <strong>XML</strong> 文件</p>
+  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;gb2312&quot;</span>?&gt;</span></span><br><span class="line"><span class="meta">&lt;?xml-stylesheet href=<span class="string">&quot;my.css&quot;</span> type=<span class="string">&quot;text/css&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">stu</span> <span class="attr">id</span>=<span class="string">&quot;001&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>杨过<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">sex</span>&gt;</span>男<span class="tag">&lt;/<span class="name">sex</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">age</span>&gt;</span>20<span class="tag">&lt;/<span class="name">age</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">stu</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">stu</span> <span class="attr">id</span>=<span class="string">&quot;002&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>小龙女<span class="tag">&lt;/<span class="name">name</span>&gt;</span>    </span><br><span class="line">        <span class="tag">&lt;<span class="name">sex</span>&gt;</span>女<span class="tag">&lt;/<span class="name">sex</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">age</span>&gt;</span>21<span class="tag">&lt;/<span class="name">age</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">stu</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">class</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="第三节XML实例"><a href="#第三节XML实例" class="headerlink" title="第三节	XML实例"></a>第三节	XML实例</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.example<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>tt<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>11<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>11<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+  </entry>
 </search>

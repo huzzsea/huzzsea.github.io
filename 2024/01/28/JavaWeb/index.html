@@ -1,0 +1,783 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>JavaWeb | huzzsea</title><meta name="author" content="huzzsea"><meta name="copyright" content="huzzsea"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="JavaWeb第一节	Servlet简介 Servlet简介：Server Applet 的简称，即服务程序，它是由 Sun 公司提供的一门用于开发动态 Web 资源的技术，用 Java 编写的服务器端程序，其主要功能在于交互式地浏览和修改数据，生成动态 Web 内容，从实现上讲，Servlet 可以响应任何类型的请求，但绝大多数情况下 Servlet 只用来扩展基于 HTTP 协议的 Web 服">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWeb">
+<meta property="og:url" content="http://example.com/2024/01/28/JavaWeb/index.html">
+<meta property="og:site_name" content="huzzsea">
+<meta property="og:description" content="JavaWeb第一节	Servlet简介 Servlet简介：Server Applet 的简称，即服务程序，它是由 Sun 公司提供的一门用于开发动态 Web 资源的技术，用 Java 编写的服务器端程序，其主要功能在于交互式地浏览和修改数据，生成动态 Web 内容，从实现上讲，Servlet 可以响应任何类型的请求，但绝大多数情况下 Servlet 只用来扩展基于 HTTP 协议的 Web 服">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2024-01-28T14:59:01.000Z">
+<meta property="article:modified_time" content="2024-01-28T15:00:22.493Z">
+<meta property="article:author" content="huzzsea">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/01/28/JavaWeb/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'JavaWeb',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-01-28 23:00:22'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="huzzsea"><span class="site-name">huzzsea</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JavaWeb</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-01-28T14:59:01.000Z" title="发表于 2024-01-28 22:59:01">2024-01-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-01-28T15:00:22.493Z" title="更新于 2024-01-28 23:00:22">2024-01-28</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="JavaWeb"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="JavaWeb"><a href="#JavaWeb" class="headerlink" title="JavaWeb"></a>JavaWeb</h1><h2 id="第一节Servlet简介"><a href="#第一节Servlet简介" class="headerlink" title="第一节	Servlet简介"></a>第一节	Servlet简介</h2><ul>
+<li><strong>Servlet简介</strong>：<strong>Server Applet</strong> 的简称，即服务程序，它是由 <strong>Sun</strong> 公司提供的一门用于开发动态 <strong>Web</strong> 资源的技术，用 <strong>Java</strong> 编写的服务器端程序，其主要功能在于交互式地浏览和修改数据，生成动态 <strong>Web</strong> 内容，从实现上讲，<strong>Servlet</strong> 可以响应任何类型的请求，但绝大多数情况下 <strong>Servlet</strong> 只用来扩展基于 <strong>HTTP</strong> 协议的 <strong>Web</strong> 服务器</li>
+<li><strong>Idea 创建 Servlet项目流程</strong><ul>
+<li>创建 <strong>Java</strong> 项目</li>
+<li>添加 <strong>Web Application</strong> 框架支持</li>
+<li>在 <strong>WEB-INF</strong> 目录下添加 <strong>classes</strong> 目录和 <strong>lib</strong> 目录，并在项目结构中配置为输出路径</li>
+<li>复制 <strong>servelet-api.jar</strong>包 和 <strong>Tomcat-api.jar</strong> 包到 <strong>lib</strong> 目录，并在项目结构中导入</li>
+<li>在构建配置中配置 <strong>Tomcat</strong> 服务器，并部署项目</li>
+</ul>
+</li>
+</ul>
+<h2 id="第二节Servlet-API概述"><a href="#第二节Servlet-API概述" class="headerlink" title="第二节	Servlet API概述"></a>第二节	Servlet API概述</h2><ul>
+<li><p><strong>Servlet API</strong> 主要包括</p>
+<ul>
+<li><strong>jakarta.servlet.Servlet</strong>：其中包含定义 <strong>servlet</strong> 和 <strong>servlet</strong> 容器之间契约的类和接口</li>
+<li>**jakarta.servlet.http.***：其中包含定义 <strong>HTTP Servlet</strong> 和 <strong>Servlet</strong> 容器之间的关系</li>
+<li><em>*jakarta.servlet.annotation.<em><strong>：其中包含标注</strong>servlet</em>*，</em>*Filter<strong>，</strong>Listener**的标注</li>
+<li>**jakarta.servlet.descriptor.**：其中包含提供程序化登录 <strong>Web</strong> 应用程序的配置信息的类型</li>
+</ul>
+</li>
+<li><p><strong>Servlet</strong>：核心接口，被具体的类实现以达到不同的功能</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>init()</strong></td>
+<td align="center">初始化 <strong>Servlet</strong> 类</td>
+</tr>
+<tr>
+<td align="center"><strong>getServletConfig()</strong></td>
+<td align="center">返回 <strong>Servlet</strong> 配置类</td>
+</tr>
+<tr>
+<td align="center"><strong>service()</strong></td>
+<td align="center">向对象提供服务</td>
+</tr>
+<tr>
+<td align="center"><strong>getServletInfo()</strong></td>
+<td align="center">返回一个描述字符串</td>
+</tr>
+<tr>
+<td align="center"><strong>destroy()</strong></td>
+<td align="center">在对象销毁前关闭资源</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>ServletConfig</strong>：在<strong>Web</strong> 服务器在加载 <strong>Servlet</strong> 时，用于获取 <strong>Servlet</strong> 的初始化参数，以及获取 <strong>Servlet</strong> 的配置信息，侧重于某个 <strong>Servlet</strong> 实例</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>getInitParameter()</strong></td>
+<td align="center">根据参数名获取 <strong>Servlet</strong> 的初始化参数值</td>
+</tr>
+<tr>
+<td align="center"><strong>getInitParameterNames()</strong></td>
+<td align="center">获取所有初始化参数的参数名的枚举</td>
+</tr>
+<tr>
+<td align="center"><strong>getServletContext()</strong></td>
+<td align="center">获取 <strong>Servlet</strong> 上下文对象，可以用于获取更全局的配置信息</td>
+</tr>
+<tr>
+<td align="center"><strong>getServletName()</strong></td>
+<td align="center">获取 <strong>Servlet</strong> 的名称</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>ServletRequest</strong>：定义了与 <strong>HTTP</strong> 请求相关的属性和方法，可以用于获取请求的信息和数据</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>getParameter()</strong></td>
+<td align="center">根据参数名获取请求的参数值</td>
+</tr>
+<tr>
+<td align="center"><strong>getParameterNames()</strong></td>
+<td align="center">获取所有请求参数的参数名的枚举</td>
+</tr>
+<tr>
+<td align="center"><strong>getParameterValues()</strong></td>
+<td align="center">根据参数名获取请求参数的多个值</td>
+</tr>
+<tr>
+<td align="center"><strong>getParameterMap()</strong></td>
+<td align="center">获取所有请求参数的 <strong>Map</strong>，其中键为参数名，值为参数值数组</td>
+</tr>
+<tr>
+<td align="center"><strong>getReader()</strong></td>
+<td align="center">获取请求体的字符输入流，可以用于读取 <strong>POST</strong> 请求的内容</td>
+</tr>
+<tr>
+<td align="center"><strong>getContentLength()</strong></td>
+<td align="center">获取请求体的字节数</td>
+</tr>
+<tr>
+<td align="center"><strong>getContentType()</strong></td>
+<td align="center">获取请求体的内容类型</td>
+</tr>
+<tr>
+<td align="center"><strong>getMethod()</strong></td>
+<td align="center">获取 <strong>HTTP</strong> 请求的方法（<strong>GET</strong>、<strong>POST</strong>等）</td>
+</tr>
+<tr>
+<td align="center"><strong>getProtocol()</strong></td>
+<td align="center">获取请求的协议（例如，<strong>HTTP&#x2F;1.1</strong>）</td>
+</tr>
+<tr>
+<td align="center"><strong>getRemoteAddr()</strong></td>
+<td align="center">获取客户端的 <strong>IP</strong> 地址</td>
+</tr>
+<tr>
+<td align="center"><strong>getSession()</strong></td>
+<td align="center">获取与该请求关联的会话对象</td>
+</tr>
+<tr>
+<td align="center"><strong>getInputStream()</strong></td>
+<td align="center">获取请求体的字节输入流，可以用于读取 <strong>POST</strong> 请求的内容</td>
+</tr>
+<tr>
+<td align="center"><strong>getRequestDispatcher()</strong></td>
+<td align="center">获取请求分派器，用于在服务器内部转发请求</td>
+</tr>
+<tr>
+<td align="center"><strong>setAttribute()</strong></td>
+<td align="center">设置请求属性</td>
+</tr>
+<tr>
+<td align="center"><strong>getAttribute()</strong></td>
+<td align="center">根据属性名获取请求属性的值</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>ServletResponse</strong>：定义了与 <strong>HTTP</strong> 响应相关的属性和方法，可以用于设置响应的状态和内容</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>setContentType()</strong></td>
+<td align="center">设置响应的内容类型</td>
+</tr>
+<tr>
+<td align="center"><strong>getContentType()</strong></td>
+<td align="center">获取响应的内容类型</td>
+</tr>
+<tr>
+<td align="center"><strong>setContentLength()</strong></td>
+<td align="center">设置响应体的长度</td>
+</tr>
+<tr>
+<td align="center"><strong>getWriter()</strong></td>
+<td align="center">获取用于向客户端发送字符数据的 <strong>PrintWriter</strong> 对象</td>
+</tr>
+<tr>
+<td align="center"><strong>getOutputStream()</strong></td>
+<td align="center">获取用于向客户端发送字节数据的 <strong>ServletOutputStream</strong> 对象</td>
+</tr>
+<tr>
+<td align="center"><strong>setStatus()</strong></td>
+<td align="center">设置响应的状态码</td>
+</tr>
+<tr>
+<td align="center"><strong>sendRedirect()</strong></td>
+<td align="center">将请求重定向到指定的 <strong>URL</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>addHeader()</strong></td>
+<td align="center">添加一个响应头</td>
+</tr>
+<tr>
+<td align="center"><strong>setHeader()</strong></td>
+<td align="center">设置一个响应头</td>
+</tr>
+<tr>
+<td align="center"><strong>addCookie()</strong></td>
+<td align="center">添加一个 <strong>Cookie</strong> 到响应中</td>
+</tr>
+<tr>
+<td align="center"><strong>setDateHeader()</strong></td>
+<td align="center">设置一个响应头的日期值</td>
+</tr>
+<tr>
+<td align="center"><strong>setIntHeader()</strong></td>
+<td align="center">设置一个响应头的整数值</td>
+</tr>
+<tr>
+<td align="center"><strong>setCharacterEncoding()</strong></td>
+<td align="center">设置响应的字符编码</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>ServletContext</strong>：代表着整个 <strong>Web</strong> 应用程序，并提供了访问 <strong>Web</strong> 应用程序的上下文信息、共享数据和其他服务的方法，侧重于全局的配置，多个 <strong>ServletConfig</strong> 对应一个 <strong>ServletContext</strong>*</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>getInitParameter()</strong></td>
+<td align="center">获取指定名称的初始化参数的值</td>
+</tr>
+<tr>
+<td align="center"><strong>getInitParameterNames()</strong></td>
+<td align="center">获取所有初始化参数的名称的枚举</td>
+</tr>
+<tr>
+<td align="center"><strong>getAttribute()</strong></td>
+<td align="center">获取指定名称的属性值</td>
+</tr>
+<tr>
+<td align="center"><strong>setAttribute()</strong></td>
+<td align="center">设置指定名称的属性值</td>
+</tr>
+<tr>
+<td align="center"><strong>getAttributeNames()</strong></td>
+<td align="center">获取所有属性的名称的枚举</td>
+</tr>
+<tr>
+<td align="center"><strong>getServletContextName()</strong></td>
+<td align="center">获取 <strong>Web</strong> 应用程序的名称</td>
+</tr>
+<tr>
+<td align="center"><strong>getServerInfo()</strong></td>
+<td align="center">获取 <strong>Web</strong> 容器的服务器信息</td>
+</tr>
+<tr>
+<td align="center"><strong>getContextPath()</strong></td>
+<td align="center">获取 <strong>Web</strong> 应用程序的上下文路径</td>
+</tr>
+<tr>
+<td align="center"><strong>getResource()</strong></td>
+<td align="center">获取指定路径的资源 <strong>URL</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>getRealPath()</strong></td>
+<td align="center">获取指定路径在服务器上的实际路径</td>
+</tr>
+<tr>
+<td align="center"><strong>getRequestDispatcher()</strong></td>
+<td align="center">获取用于将请求转发到指定路径的请求调度器</td>
+</tr>
+<tr>
+<td align="center"><strong>log()</strong></td>
+<td align="center">将日志消息写入 <strong>ServletContext</strong> 日志文件</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h2 id="第三节Servlet的生命周期"><a href="#第三节Servlet的生命周期" class="headerlink" title="第三节	Servlet的生命周期"></a>第三节	Servlet的生命周期</h2><ul>
+<li><p><strong>生命周期方法</strong></p>
+<ul>
+<li><strong>无参构造器</strong>：只会被调用一次，用于创建对象</li>
+<li>**init()**：只在第一次创建时被调用一次，用于初始化数据，这些数据将被用于 <strong>Servlet</strong> 的整个生命周期</li>
+<li><strong>service()<strong>：执行实际任务的主要方法，</strong>Web</strong> 服务器调用 <strong>service()</strong> 方法来处理来自客户端（浏览器）的请求，并把格式化的响应写回给客户端</li>
+<li><strong>destroy()<strong>：只会在 <strong>Servlet</strong> 生命周期结束时被调用一次，</strong>destroy()</strong> 方法可以让 <strong>Servlet</strong> 关闭数据库连接、停止后台线程、把 <strong>Cookie</strong> 列表或点击计数器写入到磁盘，并执行其他类似的清理活动</li>
+</ul>
+</li>
+<li><p><strong>示例图</strong></p>
+<p>  <img src="C:\Users\86172\Pictures\Markdown\JavaWeb\生命周期.jpg"></p>
+</li>
+</ul>
+<h2 id="第三节Servlet详解"><a href="#第三节Servlet详解" class="headerlink" title="第三节	Servlet详解"></a>第三节	Servlet详解</h2><ul>
+<li><p><strong>web.xml 文件</strong></p>
+<ul>
+<li><p>添加映射使浏览器可以访问到 <strong>Servlet</strong></p>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.baidu.servlet.HelloServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/demo2<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加初始化信息，可以用 <strong>ServletConfig</strong> 类中的方法访问</p>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>username<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>admin<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>映射注解</strong>：使用 <strong>@WebServlet()</strong> 注解代替 <strong>web.xml</strong> 文件进行映射，括号内的参数即为映射路径</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet(&quot;/demo2&quot;)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Servlet</strong> 的层次结构：<strong>GenericServlet</strong> 实现 <strong>Servlet</strong> 接口，同时 <strong>HttpServlet</strong> 继承 <strong>GenericServlet</strong>，主要用于处理 <strong>HTTP</strong> 请求信息，主要包括 <strong>doGet</strong> 方法和 <strong>doPost</strong> 方法，分别用于处理 <strong>Get</strong> 请求和 <strong>Post</strong> 请求</p>
+</li>
+</ul>
+<h2 id="第四节JSP介绍"><a href="#第四节JSP介绍" class="headerlink" title="第四节	JSP介绍"></a>第四节	JSP介绍</h2><ul>
+<li><p><strong>JSP介绍</strong>：全称为<strong>Java Server Pages</strong>，是一种动态网页开发技术，本质上就是一个 <strong>Servlet</strong>，主要负责与用户交互，将最终的界面呈现给用户，是 <strong>HTML</strong>，<strong>CSS</strong> 和 <strong>JavaScript</strong> 的混合文件</p>
+</li>
+<li><p><strong>嵌入代码方式</strong></p>
+<ul>
+<li><p>直接嵌入 <strong>Java</strong> 代码</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">    System.out.ln(<span class="string">&quot;hello,world&quot;</span>);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用声明的方式定义 <strong>Java</strong> 的方法</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;%!</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">test</span><span class="params">()</span>&#123;</span><br><span class="line">    	<span class="keyword">return</span> <span class="string">&quot;hello,world&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>JSP</strong> 表达式直接在页面输出 <strong>Java</strong> 对象</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;%=</span><br><span class="line">    str</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="第五章JSP内置对象"><a href="#第五章JSP内置对象" class="headerlink" title="第五章	JSP内置对象"></a>第五章	JSP内置对象</h2><ul>
+<li><p><strong>JSP 内置对象</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">内置对象</th>
+<th align="center">产生类</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>request</strong></td>
+<td align="center"><strong>HttpServletRequest</strong></td>
+<td align="center">表示一次请求</td>
+</tr>
+<tr>
+<td align="center"><strong>response</strong></td>
+<td align="center"><strong>HttpServletResponse</strong></td>
+<td align="center">表示一次响应</td>
+</tr>
+<tr>
+<td align="center"><strong>pageContext</strong></td>
+<td align="center"><strong>PageContext</strong></td>
+<td align="center">表示页面上下文，用于获取页面信息</td>
+</tr>
+<tr>
+<td align="center"><strong>session</strong></td>
+<td align="center"><strong>HttpSession</strong></td>
+<td align="center">表示一次会话，用于保存用户信息</td>
+</tr>
+<tr>
+<td align="center"><strong>application</strong></td>
+<td align="center"><strong>ServletContext</strong></td>
+<td align="center">表示当前 <strong>Web</strong> 应用，用于保存所有用户共享信息</td>
+</tr>
+<tr>
+<td align="center"><strong>config</strong></td>
+<td align="center"><strong>ServletConfig</strong></td>
+<td align="center">表示当前 <strong>JSP</strong> 的 <strong>ServletConfig</strong> 对象，用于获取当前 <strong>Servlet</strong> 的信息</td>
+</tr>
+<tr>
+<td align="center"><strong>out</strong></td>
+<td align="center"><strong>JspWriter</strong></td>
+<td align="center">向页面输出内容</td>
+</tr>
+<tr>
+<td align="center"><strong>page</strong></td>
+<td align="center"><strong>Servlet</strong></td>
+<td align="center">当前 <strong>JSP</strong> 对应的 <strong>Servlet</strong> 对象</td>
+</tr>
+<tr>
+<td align="center"><strong>excerption</strong></td>
+<td align="center"><strong>Exception</strong></td>
+<td align="center"><strong>JSP</strong> 页面发生的异常</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>request对象常用方法</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>getParameter()</strong></td>
+<td align="center">获取客户端传来的参数</td>
+</tr>
+<tr>
+<td align="center"><strong>setAttribute()</strong></td>
+<td align="center">通过键值对的形式保存数据</td>
+</tr>
+<tr>
+<td align="center"><strong>getAttritube()</strong></td>
+<td align="center">通过键取出值</td>
+</tr>
+<tr>
+<td align="center"><strong>getRequestDispatcher()</strong></td>
+<td align="center">返回一个对象，用于请求转发(转发是服务器端进行跳转，地址栏不会转换，数据不会丢失)</td>
+</tr>
+<tr>
+<td align="center"><strong>getParameterValues()</strong></td>
+<td align="center">获取客户端传来的多个同名参数</td>
+</tr>
+<tr>
+<td align="center"><strong>setCharacterEncoding()</strong></td>
+<td align="center">指定字符编码</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>response对象常用方法</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>setContentType()</strong></td>
+<td align="center">设置响应的内容类型</td>
+</tr>
+<tr>
+<td align="center"><strong>setStatus()</strong></td>
+<td align="center">设置响应的状态码</td>
+</tr>
+<tr>
+<td align="center"><strong>sendRedirect()</strong></td>
+<td align="center">重定向到指定的 <strong>URL</strong>(重定向是浏览器端进行跳转，地址栏会发生转换，数据会丢失)</td>
+</tr>
+<tr>
+<td align="center"><strong>setHeader()</strong></td>
+<td align="center">设置响应头的指定名称的值</td>
+</tr>
+<tr>
+<td align="center"><strong>addHeader()</strong></td>
+<td align="center">添加响应头的指定名称和值</td>
+</tr>
+<tr>
+<td align="center"><strong>getWriter()</strong></td>
+<td align="center">获取一个 <strong>PrintWriter</strong> 对象，用于向客户端输出文本</td>
+</tr>
+<tr>
+<td align="center"><strong>getOutputStream()</strong></td>
+<td align="center">获取一个 <strong>ServletOutputStream</strong> 对象，用于向客户端输出二进制数据</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>session对象常用方法</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>getId()</strong></td>
+<td align="center">获取 <strong>session ID</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>setMaxInactiveInterval()</strong></td>
+<td align="center">设置最大 <strong>session</strong> 失效时间</td>
+</tr>
+<tr>
+<td align="center"><strong>getMaxInactiveInterval()</strong></td>
+<td align="center">获取最大 <strong>session</strong> 失效时间</td>
+</tr>
+<tr>
+<td align="center"><strong>invalidate()</strong></td>
+<td align="center">设置 <strong>session</strong> 立即失效</td>
+</tr>
+<tr>
+<td align="center"><strong>setAttribute()</strong></td>
+<td align="center">通过键值对的形式保存数据</td>
+</tr>
+<tr>
+<td align="center"><strong>getAttribute()</strong></td>
+<td align="center">通过键取出值</td>
+</tr>
+<tr>
+<td align="center"><strong>removeAttribute()</strong></td>
+<td align="center">通过键删除对应的数据</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>内置对象的作用域</strong></p>
+<ul>
+<li><strong>page</strong>：只在当前页面有效</li>
+<li><strong>request</strong>：在一次请求内有效</li>
+<li><strong>session</strong>：在一次会话内有效</li>
+<li><strong>application</strong>：在整个 <strong>Web</strong> 应用内都有效</li>
+</ul>
+</li>
+</ul>
+<h2 id="第六章Cookie简介"><a href="#第六章Cookie简介" class="headerlink" title="第六章	Cookie简介"></a>第六章	Cookie简介</h2><ul>
+<li><p><strong>创建 Cookie</strong></p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Cookie</span> <span class="variable">cookie</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Cookie</span>(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;Tom&quot;</span>);</span><br><span class="line">response.addCookie(cookie);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>读取 Cookie</strong></p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Cookie[] cookies = request.getCookies();</span><br><span class="line"><span class="keyword">for</span>(Cookie cookie : cookies)&#123;</span><br><span class="line">    <span class="keyword">if</span>(cookie.getName().equals(<span class="string">&quot;name&quot;</span>))&#123;</span><br><span class="line">        out.write(cookie.getValue());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Cookie常用方法</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>setMaxAge()</strong></td>
+<td align="center">设置 <strong>Cookie</strong> 有效时间</td>
+</tr>
+<tr>
+<td align="center"><strong>getMaxAge()</strong></td>
+<td align="center">获取 <strong>Cookie</strong> 有效时间，默认时间为 -1</td>
+</tr>
+<tr>
+<td align="center"><strong>getName()</strong></td>
+<td align="center">获取 <strong>Cookie</strong> 的 <strong>name</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>setValue()</strong></td>
+<td align="center">获取 <strong>Cookie</strong> 的 <strong>value</strong></td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>Cookie</strong> 和 <strong>Session</strong> 的区别</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">存储位置</th>
+<th align="center">数据类型</th>
+<th align="center">存储时间</th>
+<th align="center">信息类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>Cookie</strong></td>
+<td align="center">浏览器</td>
+<td align="center"><strong>String</strong></td>
+<td align="center">长期保存在浏览器中</td>
+<td align="center">保存不重要信息</td>
+</tr>
+<tr>
+<td align="center"><strong>Session</strong></td>
+<td align="center">服务器</td>
+<td align="center"><strong>Object</strong></td>
+<td align="center">随着绘画的结束而销毁</td>
+<td align="center">可以保存重要信息</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h2 id="第七章EL表达式"><a href="#第七章EL表达式" class="headerlink" title="第七章	EL表达式"></a>第七章	EL表达式</h2><ul>
+<li><p><strong>EL表达式简介</strong>：全称为 <strong>Expression Language</strong>，即 <strong>JSP</strong> 表达式语言，用来更方便的读取对象</p>
+</li>
+<li><p><strong>EL表达式基本语法</strong>：可以非常便捷地读取对象的数据</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&#123;变量名&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>读取优先级</strong></p>
+<ul>
+<li><p><strong>默认查找</strong>：<strong>EL</strong> 表达式读取数据的优先级正好与对象的作用域相反，<strong>page</strong> &gt; <strong>request</strong> &gt; <strong>session</strong> &gt; <strong>application</strong></p>
+</li>
+<li><p><strong>指定查找</strong>：添加前缀对象名</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&#123;sessionScope.name&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="第八章JSTL简介"><a href="#第八章JSTL简介" class="headerlink" title="第八章	JSTL简介"></a>第八章	JSTL简介</h2><ul>
+<li><p><strong>JSTL简介</strong>：全称为 <strong>JSP Standard Tag Library</strong>，即 <strong>JSP</strong> 标准标签库，是一个 <strong>JSP</strong> 标签集合，它封装了 <strong>JSP</strong> 应用的通用核心功能，为开发者提供一系列的可以完成逻辑处理的标签，使代码更加简洁</p>
+</li>
+<li><p><strong>JSTL 的使用步骤</strong></p>
+<ul>
+<li><p>导入两个 <strong>jar</strong> 包（<strong>standard.jar</strong> 和 <strong>jstl.jar</strong>）</p>
+</li>
+<li><p>在 <strong>JSP</strong> 页面开始处导入标签库</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ taglib prefix=<span class="string">&quot;c&quot;</span> uri=<span class="string">&quot;http://java.sun.com/jsp/jstl/core&quot;</span> %&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>JSTL 标签的使用</strong></p>
+<ul>
+<li><p>循环遍历，类似于增强 <strong>for</strong> 循环语句</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;c:forEach items=<span class="string">&quot;$&#123;list&#125;&quot;</span> <span class="keyword">var</span>=<span class="string">&quot;user&quot;</span>&gt;&lt;/c:forEach&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加和修改数据，类似于 <strong>setAttribute()</strong> 方法</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;c:set <span class="keyword">var</span>=<span class="string">&quot;name&quot;</span> value=<span class="string">&quot;Tom&quot;</span>&gt;&lt;/c:set&gt;</span><br><span class="line">&lt;c:set target=<span class="string">&quot;$&#123;user&#125;&quot;</span> property=<span class="string">&quot;name&quot;</span> value=<span class="string">&quot;Jack&quot;</span>&gt;&lt;/c:set&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>输出数据</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;c:out value=<span class="string">&quot;$&#123;name&#125;&quot;</span> <span class="keyword">default</span>=<span class="string">&quot;未定义&quot;</span>&gt;&lt;/c:out&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除数据</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;c:remove <span class="keyword">var</span>=<span class="string">&quot;name&quot;</span> scope=<span class="string">&quot;request&quot;</span>&gt;&lt;/c:remove&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="第九章Filter过滤器"><a href="#第九章Filter过滤器" class="headerlink" title="第九章	Filter过滤器"></a>第九章	Filter过滤器</h2><ul>
+<li><p><strong>Filter简介</strong>：<strong>Servlet</strong> 中的一项使用的技术，通过 <strong>Filter</strong> 技术，对 <strong>Web</strong> 服务器管理的所有资源进行拦截，从而实现一些特殊的功能</p>
+</li>
+<li><p><strong>过滤器的使用</strong>：实现 <strong>Filter</strong> 接口并实现其中的 <strong>doFilter</strong> 方法</p>
+</li>
+<li><p><strong>过滤器映射</strong></p>
+<ul>
+<li><p><strong>web.xml 文件映射</strong></p>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>com.baidu.servlet.HelloFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/demo1<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/demo2<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>注解映射</strong></p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebFilter(&quot;/demo&quot;)</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>filterChain类</strong>：表示过滤器链，实现 <strong>doFilter</strong> 方法时需要将 <strong>ServletRequest</strong> 和 <strong>ServletResponse</strong> 添加到 <strong>filterChain</strong> 中，否则会导致整个过滤器无法使用</p>
+</li>
+</ul>
+<h2 id="第十章文件的上传与下载"><a href="#第十章文件的上传与下载" class="headerlink" title="第十章	文件的上传与下载"></a>第十章	文件的上传与下载</h2><ul>
+<li><strong>文件上传步骤</strong><ul>
+<li>设置类型为 <strong>file</strong> 的 <strong>input</strong> 标签，使用 <strong>post</strong> 的请求方式</li>
+<li>将表单的 <strong>enctype</strong> 属性设置为 <strong>multipart&#x2F;form-data</strong>，使用二进制的形式传输</li>
+<li>使用 <strong>getInputSream()</strong> 将上传的文件转换为字节流，根据需要再转换为字符流</li>
+<li>在 <strong>out</strong> 文件夹新建路径，并使用 <strong>getServletContext()</strong> 方法和 <strong>getRealPath()</strong> 获取绝对路径</li>
+<li>使用输出流将得到的字符流写入服务端指定的文件夹中</li>
+</ul>
+</li>
+<li><strong>fileupload组件的使用</strong><ul>
+<li>导入两个 <strong>jar</strong> 包</li>
+<li>使用 <strong>fileupload</strong> 组件将所有的请求信息都构建为 <strong>FileItem</strong> 对象，再根据需要来操作文件完成上传</li>
+</ul>
+</li>
+<li><strong>文件下载的步骤</strong><ul>
+<li>在 <strong>Servlet</strong> 中设置响应方式和下载后的文件名</li>
+<li>获取输出流，将文件下载到客户端中</li>
+</ul>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">huzzsea</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/01/28/JavaWeb/">http://example.com/2024/01/28/JavaWeb/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">huzzsea</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/01/28/JDBC/" title="JDBC"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">JDBC</div></div></a></div><div class="next-post pull-right"><a href="/2024/01/28/Jakarta/" title="Jakarta"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Jakarta</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">huzzsea</div><div class="author-info__description">心有所向，无问东西</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaWeb"><span class="toc-number">1.</span> <span class="toc-text">JavaWeb</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%8A%82Servlet%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">第一节	Servlet简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%8A%82Servlet-API%E6%A6%82%E8%BF%B0"><span class="toc-number">1.2.</span> <span class="toc-text">第二节	Servlet API概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%8A%82Servlet%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">1.3.</span> <span class="toc-text">第三节	Servlet的生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%8A%82Servlet%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.4.</span> <span class="toc-text">第三节	Servlet详解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E8%8A%82JSP%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.5.</span> <span class="toc-text">第四节	JSP介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0JSP%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.6.</span> <span class="toc-text">第五章	JSP内置对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0Cookie%E7%AE%80%E4%BB%8B"><span class="toc-number">1.7.</span> <span class="toc-text">第六章	Cookie简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E7%AB%A0EL%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.8.</span> <span class="toc-text">第七章	EL表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0JSTL%E7%AE%80%E4%BB%8B"><span class="toc-number">1.9.</span> <span class="toc-text">第八章	JSTL简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B9%9D%E7%AB%A0Filter%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-number">1.10.</span> <span class="toc-text">第九章	Filter过滤器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E7%AB%A0%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD"><span class="toc-number">1.11.</span> <span class="toc-text">第十章	文件的上传与下载</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/28/JDBC/" title="JDBC">JDBC</a><time datetime="2024-01-28T14:59:12.000Z" title="发表于 2024-01-28 22:59:12">2024-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/28/JavaWeb/" title="JavaWeb">JavaWeb</a><time datetime="2024-01-28T14:59:01.000Z" title="发表于 2024-01-28 22:59:01">2024-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/28/Jakarta/" title="Jakarta">Jakarta</a><time datetime="2024-01-28T14:58:51.000Z" title="发表于 2024-01-28 22:58:51">2024-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/28/SpringMVC/" title="SpringMVC">SpringMVC</a><time datetime="2024-01-28T14:58:28.000Z" title="发表于 2024-01-28 22:58:28">2024-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/28/SpringBoot/" title="SpringBoot">SpringBoot</a><time datetime="2024-01-28T14:58:10.000Z" title="发表于 2024-01-28 22:58:10">2024-01-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By huzzsea</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

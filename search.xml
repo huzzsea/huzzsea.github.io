@@ -13070,7 +13070,7 @@ print(a)
   <entry>
     <title>Redis</title>
     <url>/2024/06/06/Redis/</url>
-    <content><![CDATA[<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><h2 id="第一节入门概述"><a href="#第一节入门概述" class="headerlink" title="第一节	入门概述"></a>第一节	入门概述</h2><ul>
+    <content><![CDATA[<h2 id="第一节入门概述"><a href="#第一节入门概述" class="headerlink" title="第一节	入门概述"></a>第一节	入门概述</h2><ul>
 <li><p><strong>基本介绍</strong>：全称 <strong>Remote Dictionary Server</strong> ，即远程字典服务，是一个完全开源的，使用 <strong>ANSIC</strong> 语言编写遵守 <strong>BSD</strong> 协议，高性能的 <strong>Key-Value</strong> 数据库，提供了丰富的数据结构，数据是存在内存中的，同时 <strong>Redis</strong> 支持事务、持久化、<strong>LUA</strong> 脚本、发布&#x2F;订阅、缓存淘汰、流技术等多种功能特性提供了主从模式、<strong>Redis Sentinel和Redis Cluster</strong> 集群架构方案</p>
 </li>
 <li><p><strong>功能</strong></p>

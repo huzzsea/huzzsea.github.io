@@ -17270,4 +17270,349 @@ print(a)
 </ul>
 ]]></content>
   </entry>
+  <entry>
+    <title>RabbitMQ</title>
+    <url>/2024/07/26/RabbitMQ/</url>
+    <content><![CDATA[<h1 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h1><h2 id="第一节RabbitMQ基本概念"><a href="#第一节RabbitMQ基本概念" class="headerlink" title="第一节	RabbitMQ基本概念"></a>第一节	RabbitMQ基本概念</h2><h3 id="1-1消息队列"><a href="#1-1消息队列" class="headerlink" title="1.1	消息队列"></a>1.1	消息队列</h3><ul>
+<li><p><strong>消息队列</strong>：实现应用程序和应用程序之间通信的中间件产品</p>
+</li>
+<li><p><strong>消息队列的功能</strong></p>
+<ul>
+<li>功能解耦</li>
+<li>快速响应</li>
+<li>削峰限流</li>
+<li>便于扩展</li>
+</ul>
+</li>
+<li><p><strong>底层通信标准</strong></p>
+<ul>
+<li><strong>AMQP</strong>：通用协议，<strong>IBM</strong> 公司研发</li>
+<li><strong>JMS</strong>：专门为 <strong>Java</strong> 语言服务，<strong>SUN</strong> 公司研发，一组由 <strong>Java</strong> 接口组成的 <strong>Java</strong> 标准</li>
+</ul>
+</li>
+<li><p><strong>底层通信标准对比</strong></p>
+<ul>
+<li>七层网络模型<ul>
+<li><strong>AMQP</strong> 对应传输层与会话层</li>
+<li><strong>JMS</strong> 对应应用层</li>
+</ul>
+</li>
+<li>消息模型<ul>
+<li><strong>AMQP</strong> 支持多种消息模型，包括点对点和发布&#x2F;订阅</li>
+<li><strong>JMS</strong> 主要支持点对点和发布&#x2F;订阅两种消息模型</li>
+</ul>
+</li>
+<li>支持的编程语言和平台<ul>
+<li><strong>AMQP</strong> 支持多种编程语言和平台，包括 <strong>Java</strong>、<strong>C++<strong>、</strong>Python</strong> 等</li>
+<li><strong>JMS</strong> 主要针对 <strong>Java</strong> 平台，因此在其他编程语言和平台上的支持相对较少</li>
+</ul>
+</li>
+<li>可靠性<ul>
+<li><strong>AMQP</strong> 提供了强大的消息可靠性保证，包括消息持久化、事务性消息和消息确认机制</li>
+<li><strong>JMS</strong> 也支持消息持久化和事务性消息，但具体实现取决于消息传递系统的提供者</li>
+</ul>
+</li>
+<li>传输协议<ul>
+<li><strong>AMQP</strong> 使用二进制协议进行消息传递，提供了高效、可靠的消息投递机制</li>
+<li><strong>JMS</strong> 使用一种面向文本的协议，消息的传输效率可能较低</li>
+</ul>
+</li>
+<li>扩展性和兼容性<ul>
+<li><strong>AMQP</strong> 具有很好的拓展性和兼容性，可以在不同的消息代理之间交互操作</li>
+<li><strong>JMS</strong> 在 <strong>Java</strong> 环境中有较好的拓展性和兼容性，但在与非 <strong>Java</strong> 环境集成时受到限制</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-2RabbitMQ概述"><a href="#1-2RabbitMQ概述" class="headerlink" title="1.2	RabbitMQ概述"></a>1.2	RabbitMQ概述</h3><ul>
+<li><p><strong>RabbitMQ</strong>：基于 <strong>AMQP</strong>、由 <strong>Erlang</strong> 语言开发的消息队列产品</p>
+</li>
+<li><p><strong>RabbitMQ体系结构</strong></p>
+<ul>
+<li><strong>Producer</strong>：消息的发送端，生产者</li>
+<li><strong>Consumer</strong>：消息的接收端，消费者</li>
+<li><strong>Connection</strong>：生产者到消息队列主体服务器之间的TCP连接</li>
+<li><strong>Channel</strong>：在一个已经建立的 <strong>Connection</strong> 中建立的逻辑连接，每个 <strong>Channel</strong> 都有自己的 <strong>id</strong>，实现 <strong>Connection</strong> 复用</li>
+<li><strong>Broker</strong>：主体服务器本身，负责接受消息和分发消息</li>
+<li><strong>Virtual Host</strong>：每一个 <strong>Virtual</strong> <strong>Host</strong> 就是一个虚拟分组，用户在自己的 <strong>Virtual</strong> <strong>Host</strong> 中使用 <strong>RabbitMQ</strong> 组件</li>
+<li><strong>Enchange</strong>：交换机，是消息达到 <strong>Broker</strong> 的第一站</li>
+<li><strong>Queue</strong>：队列，是消息的容器，消息放在这里等待被消费端取走</li>
+</ul>
+</li>
+<li><p><strong>HelloWorld</strong></p>
+<ul>
+<li><p>创建项目</p>
+  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.rabbitmq<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>amqp-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.20.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>生产者</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 创建连接工厂  </span></span><br><span class="line"><span class="type">ConnectionFactory</span> <span class="variable">connectionFactory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ConnectionFactory</span>();  </span><br><span class="line"><span class="comment">// 设置主机地址  </span></span><br><span class="line">connectionFactory.setHost(<span class="string">&quot;192.168.200.100&quot;</span>);  </span><br><span class="line"><span class="comment">// 设置连接端口号：默认为 5672</span></span><br><span class="line">connectionFactory.setPort(<span class="number">5672</span>);</span><br><span class="line"><span class="comment">// 虚拟主机名称：默认为 /</span></span><br><span class="line">connectionFactory.setVirtualHost(<span class="string">&quot;/&quot;</span>);</span><br><span class="line"><span class="comment">// 设置连接用户名；默认为guest  </span></span><br><span class="line">connectionFactory.setUsername(<span class="string">&quot;guest&quot;</span>);</span><br><span class="line"><span class="comment">// 设置连接密码；默认为guest  </span></span><br><span class="line">connectionFactory.setPassword(<span class="string">&quot;123456&quot;</span>);</span><br><span class="line"><span class="comment">// 创建连接  </span></span><br><span class="line"><span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> connectionFactory.newConnection();  </span><br><span class="line"><span class="comment">// 创建频道  </span></span><br><span class="line"><span class="type">Channel</span> <span class="variable">channel</span> <span class="operator">=</span> connection.createChannel();  </span><br><span class="line"><span class="comment">// 声明（创建）队列  </span></span><br><span class="line"><span class="comment">// queue      参数1：队列名称  </span></span><br><span class="line"><span class="comment">// durable    参数2：是否定义持久化队列，当 MQ 重启之后还在  </span></span><br><span class="line"><span class="comment">// exclusive  参数3：是否独占本次连接。若独占，只能有一个消费者监听这个队列且 Connection 关闭时删除这个队列  </span></span><br><span class="line"><span class="comment">// autoDelete 参数4：是否在不使用的时候自动删除队列，也就是在没有Consumer时自动删除  </span></span><br><span class="line"><span class="comment">// arguments  参数5：队列其它参数  </span></span><br><span class="line">channel.queueDeclare(<span class="string">&quot;simple_queue&quot;</span>, <span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">null</span>);  </span><br><span class="line"><span class="comment">// 要发送的信息  </span></span><br><span class="line"><span class="type">String</span> <span class="variable">message</span> <span class="operator">=</span> <span class="string">&quot;你好；小兔子！&quot;</span>;  </span><br><span class="line"><span class="comment">// 参数1：交换机名称,如果没有指定则使用默认Default Exchange  </span></span><br><span class="line"><span class="comment">// 参数2：路由key,简单模式可以传递队列名称  </span></span><br><span class="line"><span class="comment">// 参数3：配置信息  </span></span><br><span class="line"><span class="comment">// 参数4：消息内容  </span></span><br><span class="line">channel.basicPublish(<span class="string">&quot;&quot;</span>, <span class="string">&quot;simple_queue&quot;</span>, <span class="literal">null</span>, message.getBytes());  </span><br><span class="line"><span class="comment">// 关闭资源  </span></span><br><span class="line">channel.close();  </span><br><span class="line">connection.close();  </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>消费者</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 1.创建连接工厂  </span></span><br><span class="line"><span class="type">ConnectionFactory</span> <span class="variable">factory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ConnectionFactory</span>();  </span><br><span class="line"><span class="comment">// 2. 设置参数  </span></span><br><span class="line">factory.setHost(<span class="string">&quot;192.168.200.100&quot;</span>);  </span><br><span class="line">factory.setPort(<span class="number">5672</span>);  </span><br><span class="line">factory.setVirtualHost(<span class="string">&quot;/&quot;</span>);  </span><br><span class="line">factory.setUsername(<span class="string">&quot;guest&quot;</span>);</span><br><span class="line">factory.setPassword(<span class="string">&quot;123456&quot;</span>);  </span><br><span class="line"><span class="comment">// 3. 创建连接 Connection        </span></span><br><span class="line"><span class="type">Connection</span> <span class="variable">connection</span> <span class="operator">=</span> factory.newConnection();  </span><br><span class="line"><span class="comment">// 4. 创建Channel  </span></span><br><span class="line"><span class="type">Channel</span> <span class="variable">channel</span> <span class="operator">=</span> connection.createChannel();  </span><br><span class="line"><span class="comment">// 5. 创建队列  </span></span><br><span class="line"><span class="comment">// 如果没有一个名字叫simple_queue的队列，则会创建该队列，如果有则不会创建  </span></span><br><span class="line"><span class="comment">// 参数1. queue：队列名称  </span></span><br><span class="line"><span class="comment">// 参数2. durable：是否持久化。如果持久化，则当MQ重启之后还在  </span></span><br><span class="line"><span class="comment">// 参数3. exclusive：是否独占。  </span></span><br><span class="line"><span class="comment">// 参数4. autoDelete：是否自动删除。当没有Consumer时，自动删除掉  </span></span><br><span class="line"><span class="comment">// 参数5. arguments：其它参数。  </span></span><br><span class="line">channel.queueDeclare(<span class="string">&quot;simple_queue&quot;</span>,<span class="literal">true</span>,<span class="literal">false</span>,<span class="literal">false</span>,<span class="literal">null</span>);  </span><br><span class="line"><span class="comment">// 接收消息  </span></span><br><span class="line"><span class="type">DefaultConsumer</span> <span class="variable">consumer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DefaultConsumer</span>(channel)&#123;  </span><br><span class="line">    <span class="comment">// 回调方法,当收到消息后，会自动执行该方法  </span></span><br><span class="line">    <span class="comment">// 参数1. consumerTag：标识  </span></span><br><span class="line">    <span class="comment">// 参数2. envelope：获取一些信息，交换机，路由key...  </span></span><br><span class="line">    <span class="comment">// 参数3. properties：配置信息  </span></span><br><span class="line">    <span class="comment">// 参数4. body：数据  </span></span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">handleDelivery</span><span class="params">(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, <span class="type">byte</span>[] body)</span> <span class="keyword">throws</span> IOException &#123;  </span><br><span class="line">        System.out.println(<span class="string">&quot;consumerTag：&quot;</span>+consumerTag);  </span><br><span class="line">        System.out.println(<span class="string">&quot;Exchange：&quot;</span>+envelope.getExchange());  </span><br><span class="line">        System.out.println(<span class="string">&quot;RoutingKey：&quot;</span>+envelope.getRoutingKey());  </span><br><span class="line">        System.out.println(<span class="string">&quot;properties：&quot;</span>+properties);  </span><br><span class="line">        System.out.println(<span class="string">&quot;body：&quot;</span>+<span class="keyword">new</span> <span class="title class_">String</span>(body));  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">&#125;;  </span><br><span class="line"><span class="comment">// 参数1. queue：队列名称  </span></span><br><span class="line"><span class="comment">// 参数2. autoAck：是否自动确认，类似咱们发短信，发送成功会收到一个确认消息  </span></span><br><span class="line"><span class="comment">// 参数3. callback：回调对象  </span></span><br><span class="line"><span class="comment">// 消费者类似一个监听程序，主要是用来监听消息  </span></span><br><span class="line">channel.basicConsume(<span class="string">&quot;simple_queue&quot;</span>,<span class="literal">true</span>,consumer);  </span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="1-3RabbitMQ工作模式"><a href="#1-3RabbitMQ工作模式" class="headerlink" title="1.3	RabbitMQ工作模式"></a>1.3	RabbitMQ工作模式</h3><ul>
+<li><strong>Work Queues</strong><ul>
+<li>多个消费者监听同一个队列，各消费者之间对同一个消息是竞争的关系</li>
+<li>适用于任务较重或任务较多的情况，多消费者分摊任务可以提高消息处理的效率</li>
+</ul>
+</li>
+<li><strong>Publish&#x2F;Subscribe</strong><ul>
+<li>生产者把消息发送到交换机</li>
+<li>交换机有如下3种常见类型<ul>
+<li><strong>Fanout</strong>：广播，将消息发送给所有绑定到交换机的队列</li>
+<li><strong>Direct</strong>：定向，把消息交给符合指定路由键的队列</li>
+<li><strong>Topic</strong>：通配符，把消息交给符合路由模式的队列</li>
+</ul>
+</li>
+<li>队列直接和交换机绑定</li>
+</ul>
+</li>
+<li><strong>Routing</strong><ul>
+<li>通过路由绑定的方式，把交换机和队列关联起来</li>
+<li>交换机和队列通过路由键进行绑定</li>
+<li>生产者发送消息时不仅要指定交换机，还要指定路由键</li>
+<li>交换机接收到消息会发送到路由键绑定的队列</li>
+</ul>
+</li>
+<li><strong>Topics</strong><ul>
+<li>让队列在绑定路由键的时候使用通配符</li>
+</ul>
+</li>
+<li><strong>RPC</strong><ul>
+<li>远程过程调用，本质上是同步调用</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-4SpringBoot整合RabbitMQ"><a href="#1-4SpringBoot整合RabbitMQ" class="headerlink" title="1.4	SpringBoot整合RabbitMQ"></a>1.4	SpringBoot整合RabbitMQ</h3><ul>
+<li><p><strong>搭建项目</strong></p>
+  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-amqp<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>编写配置</strong></p>
+  <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">host:</span> <span class="number">192.168</span><span class="number">.200</span><span class="number">.100</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">5672</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">guest</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br><span class="line">    <span class="attr">virtual-host:</span> <span class="string">/</span></span><br><span class="line"><span class="attr">logging:</span></span><br><span class="line">  <span class="attr">level:</span></span><br><span class="line">    <span class="attr">com.atguigu.mq.listener.MyMessageListener:</span> <span class="string">info</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>生产者</strong></p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">rabbitTemplate.convertAndSend(  </span><br><span class="line">                <span class="string">&quot;exchange.direct.order&quot;</span>,   </span><br><span class="line">                <span class="string">&quot;order&quot;</span>,   </span><br><span class="line">                <span class="string">&quot;Hello rabbitmq&quot;</span>); </span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>消费者</strong></p>
+<ul>
+<li><p><strong>bindings</strong> 属性：指定交换机和队列之间的绑定关系，并指定监听队列</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RabbitListener(bindings = @QueueBinding(</span></span><br><span class="line"><span class="meta">        value = @Queue(value = &quot;queue.order&quot;, durable = &quot;true&quot;),</span></span><br><span class="line"><span class="meta">        exchange = @Exchange(value = &quot;exchange.direct.order&quot;),</span></span><br><span class="line"><span class="meta">        key = &#123;&quot;order&quot;&#125;</span></span><br><span class="line"><span class="meta">))</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">processMessage</span><span class="params">(String dateString,Message message,Channel channel)</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>queue</strong> 属性：只指定监听队列</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RabbitListener(queues = &#123;&quot;queue.order&quot;&#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">processMessage</span><span class="params">(String dateString,Message message,Channel channel)</span> &#123;&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="第二节RabbitMQ机制"><a href="#第二节RabbitMQ机制" class="headerlink" title="第二节	RabbitMQ机制"></a>第二节	RabbitMQ机制</h2><h3 id="2-1消息可靠性投递"><a href="#2-1消息可靠性投递" class="headerlink" title="2.1	消息可靠性投递"></a>2.1	消息可靠性投递</h3><ul>
+<li><p><strong>故障情况</strong></p>
+<ul>
+<li>消息没有发送到消息队列上</li>
+<li>消息队列服务器宕机</li>
+<li>消费端出现问题</li>
+</ul>
+</li>
+<li><p><strong>解决方案</strong></p>
+<ul>
+<li><p>消息没有发送到消息队列</p>
+<ul>
+<li><p>在生产者端进行确认，分别针对交换机和队列来确认，如果没有成功发送到消息队列服务器上，那就尝试重新发送</p>
+<ul>
+<li><p>编写配置</p>
+  <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">publisher-confirm-type:</span> <span class="string">CORRELATED</span> <span class="comment"># 交换机的确认</span></span><br><span class="line">    <span class="attr">publisher-returns:</span> <span class="literal">true</span> <span class="comment"># 队列的确认</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置类</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MQProducerAckConfig</span> <span class="keyword">implements</span> <span class="title class_">RabbitTemplate</span>.ConfirmCallback, RabbitTemplate.ReturnsCallback&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RabbitTemplate rabbitTemplate;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@PostConstruct</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span> &#123;</span><br><span class="line">        rabbitTemplate.setConfirmCallback(<span class="built_in">this</span>);</span><br><span class="line">        rabbitTemplate.setReturnsCallback(<span class="built_in">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">confirm</span><span class="params">(CorrelationData correlationData, <span class="type">boolean</span> ack, String cause)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (ack) &#123;</span><br><span class="line">            log.info(<span class="string">&quot;消息发送到交换机成功！数据：&quot;</span> + correlationData);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            log.info(<span class="string">&quot;消息发送到交换机失败！数据：&quot;</span> + correlationData + <span class="string">&quot; 原因：&quot;</span> + cause);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">returnedMessage</span><span class="params">(ReturnedMessage returned)</span> &#123;</span><br><span class="line">        log.info(<span class="string">&quot;消息主体: &quot;</span> + <span class="keyword">new</span> <span class="title class_">String</span>(returned.getMessage().getBody()));</span><br><span class="line">        log.info(<span class="string">&quot;应答码: &quot;</span> + returned.getReplyCode());</span><br><span class="line">        log.info(<span class="string">&quot;描述：&quot;</span> + returned.getReplyText());</span><br><span class="line">        log.info(<span class="string">&quot;消息使用的交换器 exchange : &quot;</span> + returned.getExchange());</span><br><span class="line">        log.info(<span class="string">&quot;消息使用的路由键 routing : &quot;</span> + returned.getRoutingKey());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>为目标交换机指定备份交换机，当目标交换机投递失败时，把消息投递至备份交换机</p>
+<ul>
+<li>创建备份交换机，类型为 <strong>fanout</strong></li>
+<li>创建队列，绑定交换机</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>消息队列服务器宕机</p>
+<ul>
+<li>消息持久化到硬盘上，哪怕服务器重启也不会导致消息丢失<ul>
+<li>在后台管理界面创建交换机和队列时，默认就是持久化的模式</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>消费端出现问题</p>
+<ul>
+<li><p>消费端消费消息成功，给服务器返回ACK信息，然后消息队列删除该消息，否则给服务器端返回NACK信息，同时把消息恢复为待消费的状态</p>
+<ul>
+<li><p>编写配置</p>
+  <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">listener:</span></span><br><span class="line">      <span class="attr">simple:</span></span><br><span class="line">        <span class="attr">acknowledge-mode:</span> <span class="string">manual</span> <span class="comment"># 把消息确认模式改为手动确认</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>消费者监听器</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 修饰监听方法</span></span><br><span class="line"><span class="meta">@RabbitListener(</span></span><br><span class="line"><span class="meta">    // 设置绑定关系</span></span><br><span class="line"><span class="meta">    bindings = @QueueBinding(</span></span><br><span class="line"><span class="meta">        // 配置队列信息：durable 设置为 true 表示队列持久化；autoDelete 设置为 false 表示关闭自动删除</span></span><br><span class="line"><span class="meta">        value = @Queue(value = QUEUE_NAME, durable = &quot;true&quot;, autoDelete = &quot;false&quot;),</span></span><br><span class="line"><span class="meta">        // 配置交换机信息：durable 设置为 true 表示队列持久化；autoDelete 设置为 false 表示关闭自动删除</span></span><br><span class="line"><span class="meta">        exchange = @Exchange(value = EXCHANGE_DIRECT, durable = &quot;true&quot;, autoDelete = &quot;false&quot;),</span></span><br><span class="line"><span class="meta">        // 配置路由键信息</span></span><br><span class="line"><span class="meta">        key = &#123;ROUTING_KEY&#125;</span></span><br><span class="line"><span class="meta">))</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">processMessage</span><span class="params">(String dataString, Message message, Channel channel)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="comment">// 1、获取当前消息的 deliveryTag 值备用</span></span><br><span class="line">    <span class="type">long</span> <span class="variable">deliveryTag</span> <span class="operator">=</span> message.getMessageProperties().getDeliveryTag();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 2、正常业务操作</span></span><br><span class="line">        log.info(<span class="string">&quot;消费端接收到消息内容：&quot;</span> + dataString);</span><br><span class="line">        <span class="comment">// 3、给 RabbitMQ 服务器返回 ACK 确认信息</span></span><br><span class="line">        channel.basicAck(deliveryTag, <span class="literal">false</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        <span class="comment">// 4、获取信息，看当前消息是否曾经被投递过</span></span><br><span class="line">        <span class="type">Boolean</span> <span class="variable">redelivered</span> <span class="operator">=</span> message.getMessageProperties().getRedelivered();</span><br><span class="line">        <span class="keyword">if</span> (!redelivered) &#123;</span><br><span class="line">            <span class="comment">// 5、如果没有被投递过，那就重新放回队列，重新投递，再试一次</span></span><br><span class="line">            channel.basicNack(deliveryTag, <span class="literal">false</span>, <span class="literal">true</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 6、如果已经被投递过，且这一次仍然进入了 catch 块，那么返回拒绝且不再放回队列</span></span><br><span class="line">            channel.basicReject(deliveryTag, <span class="literal">false</span>);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2消息端限流"><a href="#2-2消息端限流" class="headerlink" title="2.2	消息端限流"></a>2.2	消息端限流</h3><ul>
+<li><p><strong>削峰限流的好处</strong></p>
+<ul>
+<li>在消息队列的协助下，峰值流量下降服务器运行更稳定</li>
+<li>任务转移到相对空闲的时间段处理资源利用更充分</li>
+</ul>
+</li>
+<li><p><strong>设置方式</strong></p>
+<ul>
+<li><p>编写配置</p>
+  <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">listener:</span></span><br><span class="line">      <span class="attr">simple:</span></span><br><span class="line">        <span class="attr">prefetch:</span> <span class="number">1</span> <span class="comment"># 设置每次最多从消息队列服务器取回多少消息</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="2-3消息超时"><a href="#2-3消息超时" class="headerlink" title="2.3	消息超时"></a>2.3	消息超时</h3><ul>
+<li><p><strong>设置过期时间</strong></p>
+<ul>
+<li>队列：这个队列中的消息全部使用同一个过期时间</li>
+<li>消息：给具体的某个消息设定过期时间</li>
+</ul>
+</li>
+<li><p><strong>设置方式</strong></p>
+<ul>
+<li><p>队列：客户端设置</p>
+</li>
+<li><p>消息：后置处理器</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 1、创建消息后置处理器对象  </span></span><br><span class="line"><span class="type">MessagePostProcessor</span> <span class="variable">messagePostProcessor</span> <span class="operator">=</span> (Message message) -&gt; &#123;  </span><br><span class="line">    <span class="comment">// 设定 TTL 时间，以毫秒为单位</span></span><br><span class="line">    message.getMessageProperties().setExpiration(<span class="string">&quot;5000&quot;</span>);  </span><br><span class="line">    <span class="keyword">return</span> message;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 2、发送消息  </span></span><br><span class="line">rabbitTemplate.convertAndSend(    </span><br><span class="line">        EXCHANGE_DIRECT,     </span><br><span class="line">        ROUTING_KEY,     </span><br><span class="line">        <span class="string">&quot;Hello atguigu&quot;</span>, messagePostProcessor); </span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="2-4死信和死信队列"><a href="#2-4死信和死信队列" class="headerlink" title="2.4	死信和死信队列"></a>2.4	死信和死信队列</h3><ul>
+<li><strong>死信</strong>：当一个消息无法被消费，它就变成了死信</li>
+<li><strong>死信的来源</strong><ul>
+<li>拒绝：消费者拒接消息，并且不把消息重新放入原目标队列</li>
+<li>溢出：队列中消息数量到达限制</li>
+<li>超时：消息到达超时时间未被消费</li>
+</ul>
+</li>
+<li><strong>死信的处理方式</strong><ul>
+<li>丢弃：对不重要的消息直接丢弃，不做处理</li>
+<li>入库：把死信写入数据库，日后处理</li>
+<li>监听：消息变成死信后进入死信队列，我们专门设置消费端监听死信队列，做后续处理</li>
+</ul>
+</li>
+<li><strong>死信处理方式</strong><ul>
+<li>创建死信交换机</li>
+<li>创建死信队列</li>
+<li>消费者监听死信</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-5延迟队列"><a href="#2-5延迟队列" class="headerlink" title="2.5	延迟队列"></a>2.5	延迟队列</h3><ul>
+<li><p><strong>延迟队列</strong>：延迟一段时间后，执行指定操作</p>
+</li>
+<li><p><strong>延迟队列的实现方式</strong></p>
+<ul>
+<li>借助消息超时时间和死信队列</li>
+<li>安装插件</li>
+</ul>
+</li>
+<li><p><strong>延迟插件</strong></p>
+<ul>
+<li><p>安装插件</p>
+  <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker inspect rabbitmq</span><br><span class="line">wget https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/releases/download/v3.13.0/rabbitmq_delayed_message_exchange-3.13.0.ez</span><br><span class="line">mv rabbitmq_delayed_message_exchange-3.13.0.ez /var/lib/docker/volumes/rabbitmq-plugin/_data</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启用插件</p>
+  <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">登录进入容器内部</span></span><br><span class="line">docker exec -it rabbitmq /bin/bash</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">rabbitmq-plugins命令所在目录已经配置到<span class="variable">$PATH</span>环境变量中了，可以直接调用</span></span><br><span class="line">rabbitmq-plugins enable rabbitmq_delayed_message_exchange</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">退出Docker容器</span></span><br><span class="line">exit</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重启Docker容器</span></span><br><span class="line">docker restart rabbitmq</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建交换机，类型为 <strong>x-delayed-message</strong></p>
+</li>
+<li><p>生产者</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">rabbitTemplate.convertAndSend(</span><br><span class="line">    EXCHANGE_DELAY,</span><br><span class="line">    ROUTING_KEY_DELAY,</span><br><span class="line">    <span class="string">&quot;测试基于插件的延迟消息 [&quot;</span> + <span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;hh:mm:ss&quot;</span>).format(<span class="keyword">new</span> <span class="title class_">Date</span>()) + <span class="string">&quot;]&quot;</span>,</span><br><span class="line">    messageProcessor -&gt; &#123;</span><br><span class="line">        <span class="comment">// 设置延迟时间：以毫秒为单位</span></span><br><span class="line">        messageProcessor.getMessageProperties().setHeader(<span class="string">&quot;x-delay&quot;</span>, <span class="string">&quot;10000&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> messageProcessor;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="2-6事务消息"><a href="#2-6事务消息" class="headerlink" title="2.6	事务消息"></a>2.6	事务消息</h3><ul>
+<li><p><strong>事务消息</strong></p>
+<ul>
+<li>在生产者端使用事务消息和消费端没有关系</li>
+<li>在生产者端使用事务消息仅仅是控制事务内的消息是否发送</li>
+<li>提交事务就把事务内所有消息都发送到交换机</li>
+<li>回滚事务则事务内任何消息都不会被发送</li>
+</ul>
+</li>
+<li><p><strong>使用事务消息</strong></p>
+<ul>
+<li><p>配置类</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> RabbitTransactionManager <span class="title function_">transactionManager</span><span class="params">(CachingConnectionFactory connectionFactory)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RabbitTransactionManager</span>(connectionFactory);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> RabbitTemplate <span class="title function_">rabbitTemplate</span><span class="params">(CachingConnectionFactory connectionFactory)</span> &#123;</span><br><span class="line">    <span class="type">RabbitTemplate</span> <span class="variable">rabbitTemplate</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RabbitTemplate</span>(connectionFactory);</span><br><span class="line">    rabbitTemplate.setChannelTransacted(<span class="literal">true</span>);</span><br><span class="line">    <span class="keyword">return</span> rabbitTemplate;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>生产者</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 1、发送第一条消息</span></span><br><span class="line">rabbitTemplate.convertAndSend(EXCHANGE_NAME, ROUTING_KEY, <span class="string">&quot;I am a dragon(tx msg ~~~01)&quot;</span>);</span><br><span class="line"><span class="comment">// 2、抛出异常</span></span><br><span class="line">log.info(<span class="string">&quot;do bad:&quot;</span> + <span class="number">10</span> / <span class="number">0</span>);</span><br><span class="line"><span class="comment">// 3、发送第二条消息</span></span><br><span class="line">rabbitTemplate.convertAndSend(EXCHANGE_NAME, ROUTING_KEY, <span class="string">&quot;I am a dragon(tx msg ~~~02)&quot;</span>);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="2-7惰性队列"><a href="#2-7惰性队列" class="headerlink" title="2.7	惰性队列"></a>2.7	惰性队列</h3><ul>
+<li><p><strong>惰性队列</strong>：以惰性模式运行的经典队列，队列中的消息会尽可能早地移动到磁盘，这些消息仅在消费者请求时加载到 <strong>RAM</strong> 中</p>
+</li>
+<li><p><strong>应用场景</strong></p>
+<ul>
+<li>消费者离线&#x2F;崩溃&#x2F;停机进行维护</li>
+<li>突然出现消息进入高峰，生产者的速度超过了消费者</li>
+<li>消费者比正常情况慢</li>
+</ul>
+</li>
+<li><p><strong>设置惰性队列</strong></p>
+<ul>
+<li><p>基于策略方式</p>
+  <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">登录Docker容器</span></span><br><span class="line">docker exec -it rabbitmq /bin/bash</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">运行rabbitmqctl命令</span></span><br><span class="line">rabbitmqctl set_policy Lazy &quot;^lazy-queue$&quot; &#x27;&#123;&quot;queue-mode&quot;:&quot;lazy&quot;&#125;&#x27; --apply-to queues</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>声明队列时使用参数</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Queue(value = QUEUE_NAME, durable = &quot;true&quot;, autoDelete = &quot;false&quot;, arguments = &#123;</span></span><br><span class="line"><span class="meta">	@Argument(name = &quot;x-queue-mode&quot;, value = &quot;lazy&quot;)</span></span><br><span class="line"><span class="meta">&#125;)</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="2-8优先级队列"><a href="#2-8优先级队列" class="headerlink" title="2.8	优先级队列"></a>2.8	优先级队列</h3><ul>
+<li><p><strong>优先级队列</strong></p>
+<ul>
+<li>默认情况：基于队列先进先出的特性，通常来说，先入队的先投递</li>
+<li>设置优先级：优先级高的消息更大几率先投递</li>
+</ul>
+</li>
+<li><p><strong>设置优先级</strong></p>
+<ul>
+<li><p>创建交换机</p>
+</li>
+<li><p>创建队列，设置 <strong>x-max-priority</strong> 优先级字段，类型为 <strong>Number</strong></p>
+</li>
+<li><p>绑定交换机和队列</p>
+</li>
+<li><p>生产者</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">rabbitTemplate.convertAndSend(EXCHANGE_PRIORITY, ROUTING_KEY_PRIORITY, <span class="string">&quot;I am a message with priority 1.&quot;</span>, message-&gt;&#123;</span><br><span class="line">        message.getMessageProperties().setPriority(<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> message;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="第三节RabbitMQ集群"><a href="#第三节RabbitMQ集群" class="headerlink" title="第三节	RabbitMQ集群"></a>第三节	RabbitMQ集群</h2><h3 id="3-1工作机制"><a href="#3-1工作机制" class="headerlink" title="3.1	工作机制"></a>3.1	工作机制</h3><ul>
+<li><strong>基本诉求</strong><ul>
+<li>避免单点故障</li>
+<li>大流量场景分摊负载</li>
+<li>数据同步</li>
+</ul>
+</li>
+<li><strong>工作机制</strong>：各节点逐步加入集群</li>
+</ul>
+<h3 id="3-2集群搭建"><a href="#3-2集群搭建" class="headerlink" title="3.2	集群搭建"></a>3.2	集群搭建</h3><p>省略</p>
+<h3 id="3-3负载均衡"><a href="#3-3负载均衡" class="headerlink" title="3.3	负载均衡"></a>3.3	负载均衡</h3><ul>
+<li><strong>管理界面负载均衡</strong></li>
+<li><strong>核心功能负载均衡</strong></li>
+</ul>
+<h3 id="3-4仲裁队列"><a href="#3-4仲裁队列" class="headerlink" title="3.4	仲裁队列"></a>3.4	仲裁队列</h3><p>省略</p>
+<h3 id="3-5流式队列"><a href="#3-5流式队列" class="headerlink" title="3.5	流式队列"></a>3.5	流式队列</h3><p>省略</p>
+<h3 id="3-6异地容灾"><a href="#3-6异地容灾" class="headerlink" title="3.6	异地容灾"></a>3.6	异地容灾</h3><ul>
+<li><strong>Federation插件</strong></li>
+<li><strong>Shovel插件</strong></li>
+</ul>
+]]></content>
+  </entry>
 </search>

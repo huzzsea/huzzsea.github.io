@@ -14948,7 +14948,7 @@ print(a)
   <entry>
     <title>SpringBoot</title>
     <url>/2024/07/24/SpringBoot/</url>
-    <content><![CDATA[<h1 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h1><h2 id="第一节SpringBoot快速入门"><a href="#第一节SpringBoot快速入门" class="headerlink" title="第一节	SpringBoot快速入门"></a>第一节	SpringBoot快速入门</h2><h3 id="1-1简介"><a href="#1-1简介" class="headerlink" title="1.1	简介"></a>1.1	简介</h3><ul>
+    <content><![CDATA[<h2 id="第一节SpringBoot快速入门"><a href="#第一节SpringBoot快速入门" class="headerlink" title="第一节	SpringBoot快速入门"></a>第一节	SpringBoot快速入门</h2><h3 id="1-1简介"><a href="#1-1简介" class="headerlink" title="1.1	简介"></a>1.1	简介</h3><ul>
 <li><p><strong>SpringBoot 简介</strong>：<strong>SpringBoot</strong> 帮我们简单、快速地创建一个独立的、生产级别的 <strong>Spring</strong> 应用，大多数 <strong>SpringBoot</strong> 应用只需要编写少量配置即可快速整合 <strong>Spring</strong> 平台以及第三方技术</p>
 </li>
 <li><p><strong>SpringBoot 的特性</strong></p>
@@ -17273,7 +17273,7 @@ print(a)
   <entry>
     <title>RabbitMQ</title>
     <url>/2024/07/26/RabbitMQ/</url>
-    <content><![CDATA[<h1 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h1><h2 id="第一节RabbitMQ基本概念"><a href="#第一节RabbitMQ基本概念" class="headerlink" title="第一节	RabbitMQ基本概念"></a>第一节	RabbitMQ基本概念</h2><h3 id="1-1消息队列"><a href="#1-1消息队列" class="headerlink" title="1.1	消息队列"></a>1.1	消息队列</h3><ul>
+    <content><![CDATA[<h2 id="第一节RabbitMQ基本概念"><a href="#第一节RabbitMQ基本概念" class="headerlink" title="第一节	RabbitMQ基本概念"></a>第一节	RabbitMQ基本概念</h2><h3 id="1-1消息队列"><a href="#1-1消息队列" class="headerlink" title="1.1	消息队列"></a>1.1	消息队列</h3><ul>
 <li><p><strong>消息队列</strong>：实现应用程序和应用程序之间通信的中间件产品</p>
 </li>
 <li><p><strong>消息队列的功能</strong></p>
